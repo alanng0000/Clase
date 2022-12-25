@@ -1,0 +1,84 @@
+Bool
+
+Int
+
+String
+Bool Init(Int this)
+Bool Final(Int this)
+Int GetLength(Int this)
+Bool SetLength(Int this, Int value)
+Int Data
+Int Char(Int index)
+Bool Equal(String other)
+
+Console
+Bool Init()
+Bool Final()
+Bool Write(String text)
+
+Format
+Bool Init()
+Bool Final()
+String Base
+String String
+Int ArgCount
+Bool Open()
+Bool Close()
+FormatArg Arg(Int arg)
+Int Length()
+Bool Result()
+Int IntLength(Int n)
+Bool Int(Int result, Int n, Int length)
+Int HexIntLength()
+Bool HexInt(Int result, Int n)
+Int HexInt32Length()
+Bool HexInt32(Int result, Int n)
+
+FormatArg
+Bool Init()
+Bool Final()
+Int Index
+Int Type
+Int Value
+
+Time
+Bool Init()
+Bool Final()
+Bool Current()
+Int Tick
+Bool AddTime(Time other)
+Bool SubTime(Time other)
+Bool Date(Date date)
+
+Date
+Bool Init()
+Bool Final()
+Int Year
+Int Month
+Int Day
+Int Hour
+Int Minute
+Int Second
+Int Millisecond
+Bool Time(Time time)
+
+Storage
+Bool Init()
+Bool Final()
+String Name
+Int Mode
+Bool Status()
+Bool Open()
+Bool Close()
+
+Memory
+Bool Init()
+Bool Final()
+Int Data
+Int GetByte(Int index)
+Bool SetByte(Int index, Int value)
+Int GetInt(Int index)
+Bool SetInt(Int index, Int value)
+Int Alloc(Int size)
+Bool Free(Int o)
+Bool Copy(Int dest, Int source, Int count)

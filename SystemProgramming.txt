@@ -1,0 +1,176 @@
+Bool
+
+Int
+
+
+
+
+
+class H
+{
+
+
+public Bool Init()
+{
+    return true;
+}
+
+
+
+
+
+struct K
+{
+    #field
+    Int O;
+    Bool P;
+    J J1;
+
+    Int JI;
+}
+
+
+#struct
+
+
+struct J
+{
+    Int e1;
+    Int e2;
+    Int e3;
+
+
+    BjMethod Ff;
+}
+
+
+
+
+#delegate
+delegate BjMethod Int(Bool u, K o);
+
+
+
+
+
+
+#global
+
+Int a;
+
+    
+K K1;
+
+
+J JA;
+
+
+
+
+public bool Init()
+{
+    K1.JI = address(JA);
+
+
+    return true;
+}
+
+
+
+
+
+#method
+private Bool H()
+{
+    Int t;
+
+    t : GlobalK.J1.e1;
+
+
+
+    J j1;
+
+    j1 : GlobalK.J1;
+
+
+
+    Int ooo;
+
+    ooo = method H.Bj
+
+
+
+
+    Int y;
+
+    y : var GlobalK;
+    
+
+
+
+    j1.Ff : cast BjMethod(ooo);
+
+
+
+    H.Bj(false, GlobalK);
+
+
+
+    BjMethod oo;
+
+    oo : j1.Ff;
+
+
+
+    call oo(true, null);
+}
+
+
+
+
+public Bool NewK(Int address)
+{
+    Memory.Zero(Int address, size K);
+}
+
+
+
+public Int Bj(Bool u, K o)
+{
+    K t;
+
+    t : o;
+
+    t.P : u;
+
+
+    Int oe;
+
+    oe : cast Int(t);
+
+
+    Int ret;
+
+    ret : oe;
+
+
+    return ret;
+}
+
+
+
+
+private Bool P(Int a)
+{
+
+}
+
+
+
+
+}
+
+
+
+
+

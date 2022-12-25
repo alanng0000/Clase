@@ -1,0 +1,10 @@
+DeleteState
+{
+    Object = VariableExpress
+             {
+                 Variable = VariableName
+                            {
+                                Value = "a",
+                            },
+             },
+},

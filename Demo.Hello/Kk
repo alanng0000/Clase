@@ -1,0 +1,25 @@
+class Kk : Object
+{
+    public String F()
+    {
+        return "KKKK\n";
+    }
+
+
+
+    public Bool Bbbb()
+    {
+    }
+
+
+
+    public String Kbc
+    {
+        get
+        {
+        }
+        set
+        {
+        }
+    }
+}
