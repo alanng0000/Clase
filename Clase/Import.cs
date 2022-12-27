@@ -1,3 +1,6 @@
+global using Object = System.Infra.Object;
+global using Task = Class.Task;
+global using TaskKindList = Class.TaskKindList;
 global using ClassNodeCompile = Class.Node.Compile;
 global using ClassCheckCompile = Class.Check.Compile;
 global using ClassModuleCompile = Class.Module.Compile;
@@ -7,3 +10,4 @@ global using NodeCompile = Clase.Node.Compile;
 global using CheckCompile = Clase.Check.Compile;
 global using ModuleCompile = Clase.Module.Compile;
 global using Path = System.IO.Path;
+global using Console = System.Console;
