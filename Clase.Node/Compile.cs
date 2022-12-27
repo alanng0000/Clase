@@ -216,7 +216,7 @@ public class Compile : ClassCompile
         Token classToken;
 
 
-        classToken = this.Token(this.Keywords.Class, this.IndexRange(range.Start));
+        classToken = this.Token(this.Keyword.Class, this.IndexRange(range.Start));
 
 
 
@@ -1907,7 +1907,7 @@ public class Compile : ClassCompile
         Token castToken;
 
 
-        castToken = this.Token(this.Keywords.Cast, this.IndexRange(range.Start));
+        castToken = this.Token(this.Keyword.Cast, this.IndexRange(range.Start));
 
 
 
