@@ -1585,7 +1585,7 @@ public class Compile : ClassCompile
 
 
 
-        States call;
+        StateList call;
 
 
         call = this.States(this.Range(leftBrace.Range.End, rightBrace.Range.Start));
@@ -2151,7 +2151,7 @@ public class Compile : ClassCompile
 
 
 
-        Argues argues;
+        ArgueList argues;
 
 
 
@@ -2178,7 +2178,7 @@ public class Compile : ClassCompile
             
         ret.Method = method;
             
-        ret.Argues = argues;
+        ret.Argue = argues;
             
         this.NodeInfo(ret, range);
             
@@ -2314,7 +2314,7 @@ public class Compile : ClassCompile
             
 
 
-        Argues argues;
+        ArgueList argues;
 
 
 
@@ -2340,7 +2340,7 @@ public class Compile : ClassCompile
             
         ret.Variable = variable;
             
-        ret.Argues = argues;
+        ret.Argue = argues;
             
         this.NodeInfo(ret, range);
             
