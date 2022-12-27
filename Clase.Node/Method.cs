@@ -23,10 +23,10 @@ public class Method : Member
 
 
 
-    public Params Params { get; set; }
+    public ParamList Param { get; set; }
 
 
 
 
-    public States Call { get; set; }
+    public StateList Call { get; set; }
 }

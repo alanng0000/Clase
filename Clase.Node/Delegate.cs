@@ -17,5 +17,5 @@ public class Delegate : Member
 
 
 
-    public Params Params { get; set; }
+    public ParamList Param { get; set; }
 }

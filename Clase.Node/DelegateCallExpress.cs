@@ -13,5 +13,5 @@ public class DelegateCallExpress : Express
 
 
 
-    public Argues Argues { get; set; }
+    public ArgueList Argue { get; set; }
 }
