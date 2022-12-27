@@ -33,10 +33,10 @@ public class Compile : ClassCompile
 
     protected override ClassKeyword CreateKeyword()
     {
-        Keyword keywords;
+        Keyword keyword;
 
 
-        keywords = global::Clase.Infra.Keyword.Instance;
+        keyword = global::Clase.Infra.Keyword.Instance;
         
 
 
@@ -44,7 +44,7 @@ public class Compile : ClassCompile
 
         ClassKeyword ret;
 
-        ret = keywords;
+        ret = keyword;
 
 
         return ret;
