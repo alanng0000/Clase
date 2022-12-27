@@ -130,7 +130,7 @@ public class Compile : ClassCompile
 
 
 
-        this.SetNodeMethod(nameof(this.Params), this.ClaseParams);
+        this.SetNodeMethod(nameof(this.ParamList), this.ClaseParams);
 
 
 
@@ -933,15 +933,15 @@ public class Compile : ClassCompile
 
 
 
-        Params varParams;
+        ParamList varParam;
 
 
-        varParams = this.ClaseParams(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        varParam = this.ClaseParams(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
 
 
 
 
-        if (this.Null(varParams))
+        if (this.Null(varParam))
         {
             this.Error(this.ErrorKinds.ParamsInvalid, range);
         }
@@ -966,7 +966,7 @@ public class Compile : ClassCompile
         ret.Type = type;
 
 
-        ret.Params = varParams;
+        ret.Param = varParam;
 
 
 
@@ -986,13 +986,13 @@ public class Compile : ClassCompile
 
 
 
-    private Params ClaseParams(Range range)
+    private ParamList ClaseParams(Range range)
     {
-        NodeList list;
+        List list;
         
 
 
-        list = this.NodeList(this.ClaseParam, this.ClaseParamRange, range, this.Delimiter.PauseSign);
+        list = this.List(this.ClaseParam, this.ClaseParamRange, range, this.Delimiter.PauseSign);
 
 
 
@@ -1005,10 +1005,10 @@ public class Compile : ClassCompile
 
 
 
-        Params ret;
+        ParamList ret;
 
 
-        ret = new Params();
+        ret = new ParamList();
 
 
         ret.Init();
@@ -1028,7 +1028,7 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassParams Params(Range range)
+    protected override ClassParams ParamList(Range range)
     {
         return null;
     }
@@ -1567,15 +1567,15 @@ public class Compile : ClassCompile
 
 
 
-        Params varParams;
+        ParamList varParam;
 
 
-        varParams = this.ClaseParams(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        varParam = this.ClaseParams(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
 
 
 
 
-        if (this.Null(varParams))
+        if (this.Null(varParam))
         {
             this.Error(this.ErrorKinds.ParamsInvalid, range);
         }
@@ -1618,7 +1618,7 @@ public class Compile : ClassCompile
         ret.Type = type;
 
 
-        ret.Params = varParams;
+        ret.Param = varParam;
 
 
         ret.Call = call;

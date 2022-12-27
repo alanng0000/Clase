@@ -1,4 +1,5 @@
 global using Range = System.Infra.Range;
+global using List = System.List.List;
 global using ClassKeyword = Class.Infra.Keyword;
 global using ErrorKind = Class.Infra.ErrorKind;
 global using ClassCompile = Class.Node.Compile;
