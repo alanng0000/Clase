@@ -13,7 +13,7 @@ public class Compile : ClassCompile
 
 
 
-        this.ClaseKeywords = (Keyword)this.Keyword;
+        this.ClaseKeyword = (Keyword)this.Keyword;
 
 
 
@@ -107,7 +107,7 @@ public class Compile : ClassCompile
 
 
 
-        this.AddNodeMethod(nameof(this.StructFields), this.StructFields);
+        this.AddNodeMethod(nameof(this.StructFields), this.StructFieldList);
 
 
 
@@ -575,11 +575,11 @@ public class Compile : ClassCompile
 
 
 
-    private StructFields StructFields(Range range)
+    private StructFieldList StructFieldList(Range range)
     {
-        NodeList list;
+        List list;
         
-        list = this.NodeList(this.StructField, this.TypeFieldRange, range, null);
+        list = this.List(this.StructField, this.TypeFieldRange, range, null);
 
 
 
@@ -593,16 +593,16 @@ public class Compile : ClassCompile
 
 
 
-        StructFields ret;
+        StructFieldList ret;
 
 
-        ret = new StructFields();
+        ret = new StructFieldList();
 
 
         ret.Init();
 
         
-        ret.Values = list;
+        ret.Value = list;
         
 
         this.NodeInfo(ret, range);
@@ -2485,7 +2485,7 @@ public class Compile : ClassCompile
         Range variableRange;
 
 
-        variableRange = this.VariableNameRange(this.Range(varToken.Range.End, range.End));
+        variableRange = this.VarNameRange(this.Range(varToken.Range.End, range.End));
 
 
 
@@ -2512,7 +2512,7 @@ public class Compile : ClassCompile
         VariableName variable;
 
 
-        variable = this.VariableName(variableRange);
+        variable = this.VarName(variableRange);
 
 
 
@@ -2520,7 +2520,7 @@ public class Compile : ClassCompile
 
         if (this.Null(variable))
         {
-            this.Error(this.ClaseErrorKinds.VariableInvalid, range);
+            this.Error(this.ClaseErrorKinds.VarInvalid, range);
         }
 
 
@@ -2920,7 +2920,7 @@ public class Compile : ClassCompile
         Range nameRange;
 
 
-        nameRange = this.VariableNameRange(this.Range(typeRange.End, range.End));
+        nameRange = this.VarNameRange(this.Range(typeRange.End, range.End));
 
 
 
