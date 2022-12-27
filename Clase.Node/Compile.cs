@@ -527,14 +527,14 @@ public class Compile : ClassCompile
 
 
 
-        StructFields fields;
+        StructFieldList field;
 
 
-        fields = this.StructFields(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        field = this.StructFieldList(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
 
 
 
-        if (this.Null(fields))
+        if (this.Null(field))
         {
             this.Error(this.ClaseErrorKinds.FieldsInvalid, range);
         }
@@ -558,7 +558,7 @@ public class Compile : ClassCompile
         ret.Name = name;
 
 
-        ret.Fields = fields;
+        ret.Field = field;
         
 
         this.NodeInfo(ret, range);
@@ -1226,7 +1226,7 @@ public class Compile : ClassCompile
 
 
 
-        nameRange = this.VariableNameRange(this.Range(typeRange.End, range.End));
+        nameRange = this.VarNameRange(this.Range(typeRange.End, range.End));
 
 
 
@@ -1282,7 +1282,7 @@ public class Compile : ClassCompile
 
 
 
-        name = this.VariableName(nameRange);
+        name = this.VarName(nameRange);
 
 
 
@@ -1330,7 +1330,7 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassVariable Variable(Range range)
+    protected override ClassVariable Var(Range range)
     {
         return null;
     }
@@ -2151,16 +2151,16 @@ public class Compile : ClassCompile
 
 
 
-        ArgueList argues;
+        ArgueList argue;
 
 
 
-        argues = this.Argues(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        argue = this.ArgueList(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
             
 
 
 
-        if (this.Null(argues))
+        if (this.Null(argue))
         {
             this.Error(this.ErrorKinds.ArguesInvalid, range);
         }
@@ -2178,7 +2178,7 @@ public class Compile : ClassCompile
             
         ret.Method = method;
             
-        ret.Argue = argues;
+        ret.Argue = argue;
             
         this.NodeInfo(ret, range);
             
@@ -2233,7 +2233,7 @@ public class Compile : ClassCompile
         Range variableRange;
 
 
-        variableRange = this.VariableNameRange(this.Range(callToken.Range.End, range.End));
+        variableRange = this.VarNameRange(this.Range(callToken.Range.End, range.End));
 
 
 
@@ -2300,13 +2300,13 @@ public class Compile : ClassCompile
         VariableName variable;
 
 
-        variable = this.VariableName(variableRange);
+        variable = this.VarName(variableRange);
 
 
 
         if (this.Null(variable))
         {
-            this.Error(this.ErrorKinds.VariableInvalid, range);
+            this.Error(this.ErrorKinds.VarInvalid, range);
         }
 
 
@@ -2318,7 +2318,7 @@ public class Compile : ClassCompile
 
 
 
-        argues = this.Argues(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        argues = this.ArgueList(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
             
 
 
