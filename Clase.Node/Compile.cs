@@ -1014,7 +1014,7 @@ public class Compile : ClassCompile
         ret.Init();
 
         
-        ret.Values = list;
+        ret.Value = list;
         
 
         this.NodeInfo(ret, range);
@@ -1028,7 +1028,7 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassParams ParamList(Range range)
+    protected override ClassParamList ParamList(Range range)
     {
         return null;
     }
@@ -1164,7 +1164,7 @@ public class Compile : ClassCompile
 
         if (this.Null(variable))
         {
-            this.Error(this.ErrorKinds.VariableInvalid, range);
+            this.Error(this.ErrorKinds.VarInvalid, range);
         }
 
 
