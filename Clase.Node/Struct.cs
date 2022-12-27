@@ -12,5 +12,5 @@ public class Struct : Member
 
 
 
-    public StructFields Fields { get; set; }
+    public StructFieldList Field { get; set; }
 }

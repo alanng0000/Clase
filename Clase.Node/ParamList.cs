@@ -8,6 +8,6 @@ namespace Clase.Node;
 
 
 
-public class Params : Nodes
+public class ParamList : NodeList
 {
 }
