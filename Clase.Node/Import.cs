@@ -1,5 +1,5 @@
 global using Range = System.Infra.Range;
-global using ClassKeywords = Class.Infra.Keyword;
+global using ClassKeyword = Class.Infra.Keyword;
 global using ErrorKind = Class.Infra.ErrorKind;
 global using ClassCompile = Class.Node.Compile;
 global using ClassNode = Class.Node.Node;
@@ -32,4 +32,4 @@ global using VariableName = Class.Node.VarName;
 global using Token = Class.Node.Token;
 global using NodeList = Class.Node.NodeList;
 global using ClassErrorKinds = Class.Node.ErrorKinds;
-global using Keywords = Clase.Infra.Keyword;
+global using Keyword = Clase.Infra.Keyword;
