@@ -433,7 +433,7 @@ public class Compile : ClassCompile
         Token structToken;
 
 
-        structToken = this.Token(this.ClaseKeywords.Struct, this.IndexRange(range.Start));
+        structToken = this.Token(this.ClaseKeyword.Struct, this.IndexRange(range.Start));
 
 
 
@@ -776,7 +776,7 @@ public class Compile : ClassCompile
         Token delegateToken;
 
 
-        delegateToken = this.Token(this.ClaseKeywords.Delegate, this.IndexRange(range.Start));
+        delegateToken = this.Token(this.ClaseKeyword.Delegate, this.IndexRange(range.Start));
 
 
 
@@ -2206,7 +2206,7 @@ public class Compile : ClassCompile
         Token callToken;
 
 
-        callToken = this.Token(this.ClaseKeywords.Call, this.IndexRange(range.Start));
+        callToken = this.Token(this.ClaseKeyword.Call, this.IndexRange(range.Start));
 
 
 
@@ -2370,7 +2370,7 @@ public class Compile : ClassCompile
         Token sizeToken;
 
 
-        sizeToken = this.Token(this.ClaseKeywords.Size, this.IndexRange(range.Start));
+        sizeToken = this.Token(this.ClaseKeyword.Size, this.IndexRange(range.Start));
 
 
 
@@ -2467,7 +2467,7 @@ public class Compile : ClassCompile
         Token varToken;
 
 
-        varToken = this.Token(this.ClaseKeywords.Var, this.IndexRange(range.Start));
+        varToken = this.Token(this.ClaseKeyword.Var, this.IndexRange(range.Start));
 
 
 
@@ -2567,7 +2567,7 @@ public class Compile : ClassCompile
         Token methodToken;
 
 
-        methodToken = this.Token(this.ClaseKeywords.Method, this.IndexRange(range.Start));
+        methodToken = this.Token(this.ClaseKeyword.Method, this.IndexRange(range.Start));
 
 
 
@@ -3041,7 +3041,7 @@ public class Compile : ClassCompile
         Token structToken;
 
 
-        structToken = this.Token(this.ClaseKeywords.Struct, this.IndexRange(range.Start));
+        structToken = this.Token(this.ClaseKeyword.Struct, this.IndexRange(range.Start));
 
 
 
@@ -3145,7 +3145,7 @@ public class Compile : ClassCompile
         Token delegateToken;
 
 
-        delegateToken = this.Token(this.ClaseKeywords.Delegate, this.IndexRange(range.Start));
+        delegateToken = this.Token(this.ClaseKeyword.Delegate, this.IndexRange(range.Start));
 
 
 
