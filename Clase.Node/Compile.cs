@@ -107,7 +107,7 @@ public class Compile : ClassCompile
 
 
 
-        this.AddNodeMethod(nameof(this.StructFields), this.StructFieldList);
+        this.AddNodeMethod(nameof(this.StructFieldList), this.StructFieldList);
 
 
 
@@ -147,7 +147,7 @@ public class Compile : ClassCompile
 
 
 
-        this.SetNodeMethod(nameof(this.Variable), this.ClaseVariable);
+        this.SetNodeMethod(nameof(this.Var), this.ClaseVariable);
 
 
 
@@ -312,10 +312,10 @@ public class Compile : ClassCompile
 
 
 
-        Members members;
+        MemberList member;
 
 
-        members = this.Members(this.Range(leftBrace.Range.End, rightBrace.Range.Start));
+        member = this.MemberList(this.Range(leftBrace.Range.End, rightBrace.Range.Start));
 
 
 
@@ -341,7 +341,7 @@ public class Compile : ClassCompile
         ret.Name = name;
 
 
-        ret.Members = members;
+        ret.Member = member;
         
 
         this.NodeInfo(ret, range);
@@ -1588,7 +1588,7 @@ public class Compile : ClassCompile
         StateList call;
 
 
-        call = this.States(this.Range(leftBrace.Range.End, rightBrace.Range.Start));
+        call = this.StateList(this.Range(leftBrace.Range.End, rightBrace.Range.Start));
 
 
 
