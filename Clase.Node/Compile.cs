@@ -13,7 +13,7 @@ public class Compile : ClassCompile
 
 
 
-        this.ClaseKeywords = (Keywords)this.Keywords;
+        this.ClaseKeywords = (Keyword)this.Keyword;
 
 
 
@@ -31,18 +31,18 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassKeywords CreateKeywords()
+    protected override ClassKeyword CreateKeyword()
     {
-        Keywords keywords;
+        Keyword keywords;
 
 
-        keywords = global::Clase.Infra.Keywords.Instance;
+        keywords = global::Clase.Infra.Keyword.Instance;
         
 
 
 
 
-        ClassKeywords ret;
+        ClassKeyword ret;
 
         ret = keywords;
 
@@ -77,7 +77,7 @@ public class Compile : ClassCompile
 
 
 
-    private Keywords ClaseKeywords { get; set; }
+    private Keyword ClaseKeyword { get; set; }
 
 
 
@@ -89,9 +89,9 @@ public class Compile : ClassCompile
 
 
 
-    protected override bool InitNodeMethods()
+    protected override bool InitNodeMethodList()
     {
-        base.InitNodeMethods();
+        base.InitNodeMethodList();
 
 
 
@@ -258,7 +258,7 @@ public class Compile : ClassCompile
         Token leftBrace;
 
 
-        leftBrace = this.Token(this.Delimiters.LeftBrace, this.IndexRange(nameRange.End));
+        leftBrace = this.Token(this.Delimiter.LeftBrace, this.IndexRange(nameRange.End));
 
 
 
@@ -475,7 +475,7 @@ public class Compile : ClassCompile
         Token leftBracket;
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(nameRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(nameRange.End));
 
 
 
@@ -666,7 +666,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(nameRange.End));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(nameRange.End));
 
 
 
@@ -835,7 +835,7 @@ public class Compile : ClassCompile
         Token leftBracket;
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(typeRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(typeRange.End));
 
 
 
@@ -876,7 +876,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(rightBracket.Range.End));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(rightBracket.Range.End));
 
 
 
@@ -992,7 +992,7 @@ public class Compile : ClassCompile
         
 
 
-        list = this.NodeList(this.ClaseParam, this.ClaseParamRange, range, this.Delimiters.PauseSign);
+        list = this.NodeList(this.ClaseParam, this.ClaseParamRange, range, this.Delimiter.PauseSign);
 
 
 
@@ -1129,7 +1129,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(variableRange.End));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(variableRange.End));
 
 
 
@@ -1423,7 +1423,7 @@ public class Compile : ClassCompile
 
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(nameRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(nameRange.End));
 
 
 
@@ -1470,7 +1470,7 @@ public class Compile : ClassCompile
 
 
 
-        leftBrace = this.Token(this.Delimiters.LeftBrace, this.IndexRange(rightBracket.Range.End));
+        leftBrace = this.Token(this.Delimiter.LeftBrace, this.IndexRange(rightBracket.Range.End));
 
 
 
@@ -1750,7 +1750,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(lastIndex));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(lastIndex));
 
 
 
@@ -1951,7 +1951,7 @@ public class Compile : ClassCompile
         Token leftBracket;
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(typeRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(typeRange.End));
 
 
 
@@ -2066,7 +2066,7 @@ public class Compile : ClassCompile
         
 
 
-        rightBracket = this.Token(this.Delimiters.RightBracket, this.IndexRange(range.End - 1));
+        rightBracket = this.Token(this.Delimiter.RightBracket, this.IndexRange(range.End - 1));
 
 
 
@@ -2101,7 +2101,7 @@ public class Compile : ClassCompile
         
 
 
-        dot = this.TokenBackward(this.Delimiters.StopSign, this.Range(range.Start, leftBracket.Range.Start));
+        dot = this.TokenBackward(this.Delimiter.StopSign, this.Range(range.Start, leftBracket.Range.Start));
             
 
 
@@ -2257,7 +2257,7 @@ public class Compile : ClassCompile
         Token leftBracket;
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(variableRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(variableRange.End));
 
 
 
@@ -2611,7 +2611,7 @@ public class Compile : ClassCompile
         Token dot;
 
 
-        dot = this.Token(this.Delimiters.PauseSign, this.IndexRange(classRange.End));
+        dot = this.Token(this.Delimiter.PauseSign, this.IndexRange(classRange.End));
 
 
 
@@ -2877,7 +2877,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(nameRange.End));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(nameRange.End));
 
 
 
@@ -3083,7 +3083,7 @@ public class Compile : ClassCompile
         Token leftBracket;
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(nameRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(nameRange.End));
 
 
 
@@ -3204,7 +3204,7 @@ public class Compile : ClassCompile
         Token leftBracket;
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(typeRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(typeRange.End));
 
 
 
@@ -3245,7 +3245,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(rightBracket.Range.End));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(rightBracket.Range.End));
 
 
 
@@ -3313,7 +3313,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(variableRange.End));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(variableRange.End));
 
 
 
@@ -3435,7 +3435,7 @@ public class Compile : ClassCompile
 
 
 
-        leftBracket = this.Token(this.Delimiters.LeftBracket, this.IndexRange(nameRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(nameRange.End));
 
 
 
@@ -3482,7 +3482,7 @@ public class Compile : ClassCompile
 
 
 
-        leftBrace = this.Token(this.Delimiters.LeftBrace, this.IndexRange(rightBracket.Range.End));
+        leftBrace = this.Token(this.Delimiter.LeftBrace, this.IndexRange(rightBracket.Range.End));
 
 
 
@@ -3602,7 +3602,7 @@ public class Compile : ClassCompile
         Token semicolon;
 
 
-        semicolon = this.Token(this.Delimiters.StateSign, this.IndexRange(variableRange.End));
+        semicolon = this.Token(this.Delimiter.StateSign, this.IndexRange(variableRange.End));
 
 
 
