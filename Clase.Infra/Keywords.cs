@@ -5,19 +5,19 @@ namespace Clase.Infra;
 
 
 
-public class Keywords : ClassKeywords
+public class Keyword : ClassKeyword
 {
-    public new static Keywords Instance { get; } = CreateGlobal();
+    public new static Keyword Instance { get; } = CreateGlobal();
 
 
 
 
-    private static Keywords CreateGlobal()
+    private static Keyword CreateGlobal()
     {
-        Keywords global;
+        Keyword global;
 
 
-        global = new Keywords();
+        global = new Keyword();
 
 
         global.Init();
