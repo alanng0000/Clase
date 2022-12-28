@@ -18,7 +18,7 @@ public class Compile : ClassCompile
 
 
 
-        this.ClaseErrorKinds = (ErrorKinds)this.ErrorKinds;
+        this.ClaseErrorKind = (ErrorKindList)this.ErrorKind;
 
 
 
@@ -55,19 +55,19 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassErrorKinds CreateErrorKinds()
+    protected override ClassErrorKindList CreateErrorKind()
     {
-        ErrorKinds errorKinds;
+        ErrorKindList errorKind;
 
 
-        errorKinds = global::Clase.Node.ErrorKinds.This;
+        errorKind = ErrorKindList.This;
 
 
 
 
-        ClassErrorKinds ret;
+        ClassErrorKindList ret;
 
-        ret = errorKinds;
+        ret = errorKind;
 
 
         return ret;
@@ -82,7 +82,7 @@ public class Compile : ClassCompile
 
 
 
-    private ErrorKinds ClaseErrorKinds { get; set; }
+    private ErrorKindList ClaseErrorKind { get; set; }
 
 
 
