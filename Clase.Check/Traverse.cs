@@ -291,7 +291,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteClaseParams(nodeDelegate.Param);
+        this.ExecuteClaseParamList(nodeDelegate.Param);
 
 
 
@@ -325,7 +325,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteClaseVariable(global.Variable);
+        this.ExecuteClaseVar(global.Var);
 
 
 
@@ -462,7 +462,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteClaseParams(method.Param);
+        this.ExecuteClaseParamList(method.Param);
 
 
 
@@ -534,7 +534,7 @@ public class Traverse : ClassTraverse
         
 
 
-        this.ExecuteClaseVariable(declareState.Variable);
+        this.ExecuteClaseVar(declareState.Var);
         
 
 
@@ -596,9 +596,9 @@ public class Traverse : ClassTraverse
 
 
 
-        if (express is VariableAddressExpress)
+        if (express is VarAddressExpress)
         {
-            this.ExecuteVariableAddressExpress((VariableAddressExpress)express);
+            this.ExecuteVarAddressExpress((VarAddressExpress)express);
         }
 
 
@@ -703,7 +703,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteVarName(delegateCallExpress.Variable);
+        this.ExecuteVarName(delegateCallExpress.Var);
 
 
 
