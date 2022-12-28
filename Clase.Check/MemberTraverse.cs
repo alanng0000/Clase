@@ -26,6 +26,8 @@ class MemberTraverse : Traverse
 
     private Struct Struct { get; set; }
 
+    
+
 
 
 
