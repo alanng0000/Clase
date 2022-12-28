@@ -148,6 +148,93 @@ class MemberTraverse : Traverse
 
 
 
+
+
+        TypeName nodeType;
+
+
+        nodeType = nodeStructField.Type;
+
+
+
+
+        FieldName name;
+
+
+        name = nodeStructField.Name;
+
+
+
+
+
+
+        string fieldName;
+
+
+
+        fieldName = name.Value;
+
+
+
+
+
+        string typeName;
+
+
+        
+        typeName = nodeType.Value;
+        
+
+
+
+
+        
+        if (!this.Null(this.StructFieldList.Get(fieldName)))
+        {
+            this.Error(this.ErrorKind.NameUnavailable, nodeStructField);
+
+
+
+            return true;
+        }
+
+
+
+
+
+
+        Type type;
+
+
+
+        
+        type = this.Type(this.CurrentClass, typeName);
+        
+
+
+
+
+        if (this.Null(type))
+        {
+            this.Error(this.ClaseErrorKind.TypeUndefined, nodeStructField);
+
+
+
+            return true;
+        }
+
+
+
+
+
+
+        
+
+
+
+
+
+
         return true;
     }
 
