@@ -130,7 +130,7 @@ public class Compile : ClassCompile
 
 
 
-        this.SetNodeMethod(nameof(this.ParamList), this.ClaseParams);
+        this.SetNodeMethod(nameof(this.ParamList), this.ClaseParamList);
 
 
 
@@ -936,7 +936,7 @@ public class Compile : ClassCompile
         ParamList varParam;
 
 
-        varParam = this.ClaseParams(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        varParam = this.ClaseParamList(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
 
 
 
@@ -986,7 +986,7 @@ public class Compile : ClassCompile
 
 
 
-    private ParamList ClaseParams(Range range)
+    private ParamList ClaseParamList(Range range)
     {
         List list;
         
@@ -1570,7 +1570,7 @@ public class Compile : ClassCompile
         ParamList varParam;
 
 
-        varParam = this.ClaseParams(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        varParam = this.ClaseParamList(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
 
 
 
