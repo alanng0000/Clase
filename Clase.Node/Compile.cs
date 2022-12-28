@@ -2453,7 +2453,7 @@ public class Compile : ClassCompile
 
 
 
-    private VariableAddressExpress VariableAddressExpress(Range range)
+    private VarAddressExpress VariableAddressExpress(Range range)
     {
         if (this.Zero(this.Count(range)))
         {
@@ -2482,15 +2482,15 @@ public class Compile : ClassCompile
 
 
 
-        Range variableRange;
+        Range varRange;
 
 
-        variableRange = this.VarNameRange(this.Range(varToken.Range.End, range.End));
+        varRange = this.VarNameRange(this.Range(varToken.Range.End, range.End));
 
 
 
 
-        if (this.NullRange(variableRange))
+        if (this.NullRange(varRange))
         {
             return null;
         }
@@ -2499,7 +2499,7 @@ public class Compile : ClassCompile
 
 
 
-        if (!this.Zero(this.Count(this.Range(variableRange.End, range.End))))
+        if (!this.Zero(this.Count(this.Range(varRange.End, range.End))))
         {
             return null;
         }
@@ -2509,16 +2509,16 @@ public class Compile : ClassCompile
 
 
 
-        VariableName variable;
+        VarName varVar;
 
 
-        variable = this.VarName(variableRange);
+        varVar = this.VarName(varRange);
 
 
 
 
 
-        if (this.Null(variable))
+        if (this.Null(varVar))
         {
             this.Error(this.ClaseErrorKind.VarInvalid, range);
         }
@@ -2530,13 +2530,13 @@ public class Compile : ClassCompile
 
 
 
-        VariableAddressExpress ret;
+        VarAddressExpress ret;
 
-        ret = new VariableAddressExpress();
+        ret = new VarAddressExpress();
 
         ret.Init();
 
-        ret.Variable = variable;
+        ret.Var = varVar;
 
 
         this.NodeInfo(ret, range);
