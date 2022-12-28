@@ -326,4 +326,110 @@ class ClassTraverse : Traverse
 
         return true;
     }
+
+
+
+
+
+
+
+    public override bool ExecuteDelegate(NodeDelegate nodeDelegate)
+    {
+        if (this.Null(nodeDelegate))
+        {
+            return true;
+        }
+
+
+
+        TypeName name;
+
+
+        name = nodeDelegate.Name;
+
+
+
+
+
+
+        string typeName;
+
+
+        
+        typeName = name.Value;
+        
+
+
+
+
+        if (!this.Null(this.Compile.Type(this.CurrentClass, typeName)))
+        {
+            this.Error(this.ErrorKind.NameUnavailable, nodeDelegate);
+
+
+            return true;
+        }
+
+
+
+
+
+
+        Delegate varDelegate;
+
+
+
+        varDelegate = new Delegate();
+
+
+
+        varDelegate.Init();
+
+
+
+        varDelegate.Name = typeName;
+
+
+
+        varDelegate.Parent = this.CurrentClass;
+
+
+
+        varDelegate.Node = nodeDelegate;
+
+
+
+
+
+
+        Pair pair;
+
+
+        pair = new Pair();
+
+
+        pair.Init();
+
+
+        pair.Key = varDelegate.Name;
+
+
+        pair.Value = varDelegate;
+
+
+
+        this.CurrentClass.Delegate.Add(pair);
+
+
+
+
+
+        this.Check(nodeDelegate).Delegate = varDelegate;
+
+
+
+
+
+        return true;
+    }
 }
