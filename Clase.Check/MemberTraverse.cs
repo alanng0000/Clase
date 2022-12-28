@@ -15,8 +15,6 @@ class MemberTraverse : Traverse
 
 
 
-    private Var Var { get; set; }
-
 
 
     private VarMap ParamVarList { get; set; }
@@ -80,7 +78,7 @@ class MemberTraverse : Traverse
 
 
         
-        
+
         Struct varStruct;
         
 
@@ -332,7 +330,7 @@ class MemberTraverse : Traverse
         Var varVar;
 
 
-        varVar = this.Var;
+        varVar = this.Check(nodeVar).Var;
 
 
 
@@ -655,12 +653,22 @@ class MemberTraverse : Traverse
 
 
 
+
         base.ExecuteClaseParam(param);
 
 
 
 
-        this.VarMapAdd(this.ParamVarList, this.Var);
+
+        Var varVar;
+
+
+        varVar = this.Check(param.Var).Var;
+
+
+
+
+        this.VarMapAdd(this.ParamVarList, varVar);
 
 
 
@@ -780,11 +788,6 @@ class MemberTraverse : Traverse
 
         this.Check(nodeVar).Var = varVar;
 
-
-
-
-
-        this.Var = varVar;
 
 
 
