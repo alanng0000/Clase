@@ -6,6 +6,12 @@ namespace Clase.Check;
 
 class ClassTraverse : Traverse
 {
+    private Class CurrentClass { get; set; }
+
+
+
+
+
     public override bool ExecuteClass(NodeClass nodeClass)
     {
         if (this.Null(nodeClass))
@@ -190,6 +196,88 @@ class ClassTraverse : Traverse
 
 
         this.Check(nodeClass).Class = varClass;
+
+
+
+
+
+
+        this.CurrentClass = varClass;
+
+
+
+
+
+        base.ExecuteClass(nodeClass);
+
+
+
+
+        return true;
+    }
+
+
+
+
+
+
+    public override bool ExecuteStruct(NodeStruct nodeStruct)
+    {
+        if (this.Null(nodeStruct))
+        {
+            return true;
+        }
+
+
+
+        TypeName name;
+
+
+        name = nodeStruct.Name;
+
+
+
+
+
+
+        string typeName;
+
+
+        
+        typeName = name.Value;
+        
+
+
+
+        if (!this.Null(this.Compile.Type(this.CurrentClass, typeName)))
+        {
+            this.Error(this.ErrorKind.NameUnavailable, nodeStruct);
+
+
+            return true;
+        }
+
+
+
+
+
+
+        Struct varStruct;
+
+
+        varStruct = new Struct();
+
+
+        varStruct.Init();
+
+
+        varStruct.Field = new StructFieldMap();
+
+
+        varStruct.Field.Init();
+
+
+
 
 
 

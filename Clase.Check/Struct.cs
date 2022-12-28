@@ -22,10 +22,4 @@ public class Struct : Type
 
 
     public NodeStruct Node { get; set; }
-
-
-
-
-
-    public int Index { get; set; }
 }

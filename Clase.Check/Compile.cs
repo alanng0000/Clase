@@ -276,4 +276,70 @@ public class Compile : ClassCompile
 
         return traverse;
     }
+
+
+
+
+
+
+    public Type Type(Class varClass, string name)
+    {
+        Type h;
+
+
+        h = null;
+
+
+
+        if (this.Null(h))
+        {
+            object o;
+            
+            
+            o = varClass.Struct.Get(name);
+
+
+
+            if (!this.Null(o))
+            {
+                h = (Type)o;
+            }
+        }
+
+
+
+
+        if (this.Null(h))
+        {
+            object o;
+            
+            
+            o = varClass.Delegate.Get(name);
+
+
+
+            if (!this.Null(o))
+            {
+                h = (Type)o;
+            }
+        }
+
+
+
+        Type ret;
+
+        ret = h;
+
+
+        return ret;
+    }
+
+
+
+
+
+    private bool Null(object o)
+    {
+        return o == null;
+    }
 }
