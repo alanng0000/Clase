@@ -180,7 +180,7 @@ public class Compile : ClassCompile
 
 
 
-        this.AddNodeMethod(nameof(this.VariableAddressExpress), this.VariableAddressExpress);
+        this.AddNodeMethod(nameof(this.VarAddressExpress), this.VarAddressExpress);
 
 
 
@@ -1862,7 +1862,7 @@ public class Compile : ClassCompile
 
         if (this.Null(ret))
         {
-            ret = this.VariableAddressExpress(range);
+            ret = this.VarAddressExpress(range);
         }
 
 
@@ -2453,7 +2453,7 @@ public class Compile : ClassCompile
 
 
 
-    private VarAddressExpress VariableAddressExpress(Range range)
+    private VarAddressExpress VarAddressExpress(Range range)
     {
         if (this.Zero(this.Count(range)))
         {
