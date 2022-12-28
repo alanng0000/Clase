@@ -11,6 +11,11 @@ public class Compile : ClassCompile
 
 
 
+    public ConstantType ConstantType { get; set; }
+
+
+
+
 
     public override bool Init()
     {
@@ -22,6 +27,12 @@ public class Compile : ClassCompile
         this.ClaseErrorKind = (ErrorKindList)this.ErrorKind;
 
 
+
+
+        this.ConstantType = new ConstantType();
+
+
+        this.ConstantType.Init();
 
 
 
@@ -262,12 +273,85 @@ public class Compile : ClassCompile
 
 
 
+    public Type GetConstantType(string name)
+    {
+        Type type;
+
+        type = null;
+
+
+
+        Type a;
+
+        a = null;
+
+
+
+        if (this.Null(type))
+        {
+            a = this.ConstantType.Bool;
+
+
+
+            if (this.IsSameName(a, name))
+            {
+                type = a;
+            }
+        }
+
+
+
+        if (this.Null(type))
+        {
+            a = this.ConstantType.Int;
+
+
+
+            if (this.IsSameName(a, name))
+            {
+                type = a;
+            }
+        }
+
+
+
+
+        Type ret;
+
+        ret = type;
+
+
+        return ret;
+    }
+
+
+
+
+
+    private bool IsSameName(Type type, string name)
+    {
+        return type.Name == name;
+    }
+
+
+
+
+
     public Type Type(Class varClass, string name)
     {
         Type h;
 
 
         h = null;
+
+
+
+
+        if (this.Null(h))
+        {
+            h = this.GetConstantType(name);
+        }
+
 
 
 
@@ -303,6 +387,7 @@ public class Compile : ClassCompile
                 h = (Type)o;
             }
         }
+
 
 
 

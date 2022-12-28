@@ -5,7 +5,7 @@ namespace Clase.Check;
 
 
 
-class ConstantType : Object
+public class ConstantType : Object
 {
     public override bool Init()
     {
@@ -27,7 +27,7 @@ class ConstantType : Object
 
         return true;
     }
-    
+
 
 
 
