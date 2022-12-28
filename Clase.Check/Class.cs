@@ -9,23 +9,27 @@ public class Class : Object
 
 
 
-    public StructMap Structs { get; set; }
+    public StructMap Struct { get; set; }
 
 
 
-    public DelegateMap Delegates { get; set; }
+    public DelegateMap Delegate { get; set; }
 
 
 
-    public VariableMap Globals { get; set; }
+    public VarMap Global { get; set; }
 
 
 
-    public MethodMap Methods { get; set; }
+    public MethodMap Method { get; set; }
+
+
 
 
 
     public Module Module { get; set; }
+
+
 
 
 

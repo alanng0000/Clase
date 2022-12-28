@@ -16,11 +16,11 @@ public class Method : Object
 
 
 
-    public VariableMap Params { get; set; }
+    public VarMap Param { get; set; }
 
 
 
-    public VariableMap Call { get; set; }
+    public VarMap Call { get; set; }
 
 
 
