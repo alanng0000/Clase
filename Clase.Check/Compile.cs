@@ -82,7 +82,17 @@ public class Compile : ClassCompile
         
 
 
-        m.Class = this.Create.ExecuteClassMap();
+
+
+        ClassMap k = new ClassMap();
+
+
+        k.Init();
+
+
+
+        m.Class = k;
+
 
 
 
@@ -148,8 +158,11 @@ public class Compile : ClassCompile
         
         
 
-        t = this.Create.ExecuteModuleMap();
+        t = new ModuleMap();
 
+
+        t.Init();
+        
 
 
         t.Add(pair);
@@ -188,11 +201,6 @@ public class Compile : ClassCompile
 
         return true;
     }
-
-
-
-
-
 
 
 
