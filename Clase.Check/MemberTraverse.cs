@@ -25,6 +25,13 @@ class MemberTraverse : Traverse
 
 
 
+
+    private StructFieldMap StructFieldList { get; set; }
+
+
+
+
+
     public override bool ExecuteClass(NodeClass nodeClass)
     {
         if (this.Null(nodeClass))
@@ -60,9 +67,11 @@ class MemberTraverse : Traverse
 
 
 
-    public override bool ExecuteField(NodeField nodeField)
+
+
+    public override bool ExecuteStruct(NodeStruct nodeStruct)
     {
-        if (this.Null(nodeField))
+        if (this.Null(nodeStruct))
         {
             return true;
         }
@@ -70,213 +79,79 @@ class MemberTraverse : Traverse
 
 
 
-        FieldName name;
-
-        name = nodeField.Name;
-
-
-
-
-        ClassName nodeClass;
-            
-        nodeClass = nodeField.Class;
-
-
-
-
-        NodeAccess nodeAccess;
-
-        nodeAccess = nodeField.Access;
-
-
-
-
-        StateList nodeGet;
-
-        nodeGet = nodeField.Get;
-
-
-
-
-        StateList nodeSet;
-
-        nodeSet = nodeField.Set;
-
-
-
-
-
-
-        string fieldName;
-
-
-        fieldName = name.Value;
-
-
-
-
-
-        string className;
-
-        
-        className = nodeClass.Value;
-               
-
-
-
-
-
-
-        if (this.IsMemberNameDefined(fieldName))
-        {
-            this.Error(this.ErrorKind.NameUnavailable, nodeField);
-
-
-            return true;
-        }
         
 
 
 
 
 
-        Class varClass;
-
-
-
-        
-        varClass = this.Class(className);
+        Struct varStruct;
         
 
+        varStruct = this.Check(nodeStruct).Struct;
 
 
 
-        if (this.Null(varClass))
-        {
-            this.Error(this.ErrorKind.ClassUndefined, nodeField);
 
 
-            return true;
-        }
 
+        StructFieldMap m;
 
 
+        m = new StructFieldMap();
 
 
-        Access access;
+        m.Init();
 
 
 
-        access = this.GetAccess(nodeAccess);
 
+        varStruct.Field = m;
 
 
 
 
 
 
-        VarMap varGet;
+        this.StructFieldList = varStruct.Field;
 
 
-        
 
-        varGet = new VarMap();
 
 
+        base.ExecuteStruct(nodeStruct);
 
 
-        varGet.Init();
-        
 
 
 
-
-
-        VarMap varSet;
-
-
-        
-        
-        varSet = new VarMap();
-
-
-
-
-        varSet.Init();
-
-
-
-
-
-
-
-        Field field;
-            
-
-        field = new Field();
-
-
-        field.Init();
-            
-
-        field.Name = fieldName;
-            
-
-        field.Class = varClass;
-
-
-        field.Access = access;
-
-
-        field.Get = varGet;
-
-
-        field.Set = varSet;
-
-
-        field.Parent = this.CurrentClass;
-
-
-        field.Node = nodeField;
-
-
-
-
-        field.Index = this.CurrentClass.Field.Count;
-
-
-
-
-
-        Pair pair;
-
-
-        pair = new Pair();
-
-
-        pair.Init();
-
-
-        pair.Key = fieldName;
-
-
-        pair.Value = field;
-
-
-
-        this.CurrentClass.Field.Add(pair);
-
-
-
-
-
-        this.Check(nodeField).Field = field;
+        this.StructFieldList = null;
 
 
 
 
         return true;
     }
+
+
+
+
+
+
+
+    public override bool ExecuteStructField(NodeStructField nodeStructField)
+    {
+        if (this.Null(nodeStructField))
+        {
+            return true;
+        }
+
+
+
+        return true;
+    }
+
+
 
 
 
