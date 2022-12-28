@@ -13,7 +13,7 @@ public class Delegate : Type
 
 
 
-    public VariableMap Param { get; set; }
+    public VarMap Param { get; set; }
 
 
 
