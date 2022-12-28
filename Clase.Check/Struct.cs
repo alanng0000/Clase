@@ -9,7 +9,7 @@ namespace Clase.Check;
 
 public class Struct : Type
 {
-    public StructFieldMap Fields { get; set; }
+    public StructFieldMap Field { get; set; }
 
 
 

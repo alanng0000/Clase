@@ -4,7 +4,7 @@ namespace Clase.Check;
 
 
 
-public class VariableMap : Map
+public class VarMap : Map
 {
     public override bool Init()
     {
