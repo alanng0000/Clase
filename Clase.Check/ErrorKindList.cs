@@ -6,7 +6,7 @@ namespace Clase.Check;
 
 public class ErrorKindList : ClassErrorKindList
 {
-   public new static ErrorKindList This { get; } = CreateGlobal();
+    public new static ErrorKindList This { get; } = CreateGlobal();
 
 
 
@@ -23,5 +23,32 @@ public class ErrorKindList : ClassErrorKindList
 
 
         return global;
+    }
+
+
+
+
+
+    public ErrorKind TypeUndefined { get; private set; }
+
+
+
+
+
+    public override bool Init()
+    {
+        base.Init();
+
+
+
+
+        this.TypeUndefined = this.AddKind("TypeUndefined");
+
+
+
+
+
+
+        return true;
     }
 }
