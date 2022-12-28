@@ -321,7 +321,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKind.MembersInvalid, range);
+            this.Error(this.ErrorKind.MemberInvalid, range);
         }
 
 
@@ -943,7 +943,7 @@ public class Compile : ClassCompile
 
         if (this.Null(varParam))
         {
-            this.Error(this.ErrorKind.ParamsInvalid, range);
+            this.Error(this.ErrorKind.ParamInvalid, range);
         }
 
 
@@ -1577,7 +1577,7 @@ public class Compile : ClassCompile
 
         if (this.Null(varParam))
         {
-            this.Error(this.ErrorKind.ParamsInvalid, range);
+            this.Error(this.ErrorKind.ParamInvalid, range);
         }
 
 
