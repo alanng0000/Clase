@@ -80,11 +80,7 @@ class MemberTraverse : Traverse
 
 
         
-
-
-
-
-
+        
         Struct varStruct;
         
 
@@ -249,7 +245,7 @@ class MemberTraverse : Traverse
 
 
         structField.Index = this.Struct.Field.Count;
-        
+
 
 
 
@@ -268,6 +264,7 @@ class MemberTraverse : Traverse
 
 
         pair.Value = structField;
+
 
 
 
