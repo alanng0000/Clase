@@ -291,6 +291,10 @@ class ClassTraverse : Traverse
 
 
 
+        varStruct.Index = this.CurrentClass.Struct.Count;
+
+
+
 
 
         Pair pair;
@@ -403,6 +407,10 @@ class ClassTraverse : Traverse
 
 
         varDelegate.Node = nodeDelegate;
+
+
+
+        varDelegate.Index = this.CurrentClass.Delegate.Count;
 
 
 
