@@ -371,7 +371,7 @@ class MemberTraverse : Traverse
 
         if (this.Null(type))
         {
-            this.Error(this.ErrorKind.ClassUndefined, nodeMethod);
+            this.Error(this.ClaseErrorKind.TypeUndefined, nodeMethod);
 
 
 
