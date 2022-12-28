@@ -295,10 +295,17 @@ class MemberTraverse : Traverse
 
         NodeVar nodeVar;
 
+
         nodeVar = nodeGlobal.Var;
 
 
 
+        base.ExecuteGlobal(nodeGlobal);
+
+
+
+
+        
         
 
 
@@ -466,9 +473,19 @@ class MemberTraverse : Traverse
 
 
 
+        this.Vars = this.ParamVars;
+
+
+
+
 
         this.ExecuteClaseParamList(nodeParam);
 
+
+
+
+        this.Vars = null;
+        
 
 
 
