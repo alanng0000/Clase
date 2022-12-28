@@ -45,45 +45,21 @@ public class StateTraverse : Traverse
 
     private bool InitNullClass()
     {
-        Class c;
+        Type a;
 
 
-        c = new Class();
+        a = new Type();
 
 
-        c.Init();
+        a.Init();
 
 
-        c.Name = null;
-
-
-        c.Struct = null;
-
-
-        c.Delegate = null;
-
-
-        c.Global = null;
-
-
-        c.Method = null;
-
-
-        c.Module = null;
-
-
-        c.Node = null;
-
-
-        c.Source = null;
-
-
-        c.Id = 0;
+        a.Name = null;
 
 
 
 
-        this.NullClass = c;
+        this.NullType = a;
 
 
 
@@ -91,6 +67,11 @@ public class StateTraverse : Traverse
         return true;
     }
 
+
+
+
+
+    public Type NullType { get; set; }
 
 
 
@@ -508,90 +489,6 @@ public class StateTraverse : Traverse
 
 
 
-    public override bool ExecuteThisExpress(ThisExpress thisExpress)
-    {
-        if (this.Null(thisExpress))
-        {
-            return true;
-        }
-
-
-
-
-
-        this.Check(thisExpress).ExpressClass = this.CurrentClass;
-
-
-
-
-        return true;
-    }
-
-
-
-
-
-    public override bool ExecuteBaseExpress(BaseExpress baseExpress)
-    {
-        if (this.Null(baseExpress))
-        {
-            return true;
-        }
-
-
-
-
-        Class baseClass;
-
-
-
-        baseClass = this.CurrentClass.Base;
-
-
-
-
-        this.Check(baseExpress).ExpressClass = baseClass;
-
-
-
-
-        return true;
-    }
-
-
-
-
-
-
-    public override bool ExecuteDeclareState(DeclareState declareState)
-    {
-        if (this.Null(declareState))
-        {
-            return true;
-        }
-
-
-
-
-
-        NodeVar nodeVar;
-        
-
-        nodeVar = declareState.Var;
-
-
-
-
-
-        base.ExecuteDeclareState(declareState);
-
-
-
-
-
-        return true;
-    }
-
 
 
 
@@ -625,42 +522,42 @@ public class StateTraverse : Traverse
 
 
 
-        Class targetClass;
+        Type targetType;
 
 
-        targetClass = null;
+        targetType = null;
 
 
-        if (! this.Null(target))
+        if (!this.Null(target))
         {
-            targetClass = this.Check(target).TargetClass;
+            targetType = this.Check(target).TargetType;
         }
 
 
 
 
-        Class valueClass;
+        Type valueType;
 
 
-        valueClass = null;
+        valueType = null;
 
 
-        if (! this.Null(value))
+        if (!this.Null(value))
         {
-            valueClass = this.Check(value).ExpressClass;
+            valueType = this.Check(value).ExpressType;
         }
 
 
 
 
-        if (this.Null(targetClass))
+        if (this.Null(targetType))
         {
             this.Error(this.ErrorKind.TargetUndefined, assignState);
         }
 
 
 
-        if (this.Null(valueClass))
+        if (this.Null(valueType))
         {
             this.Error(this.ErrorKind.ValueUndefined, assignState);
         }
@@ -669,9 +566,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(targetClass) & ! this.Null(valueClass))
+        if (!this.Null(targetType) & !this.Null(valueType))
         {
-            if (! this.CheckClass(valueClass, targetClass))
+            if (!this.CheckClass(valueType, targetType))
             {
                 this.Error(this.ErrorKind.ValueUnassignable, assignState);
             }
@@ -3089,45 +2986,26 @@ public class StateTraverse : Traverse
 
 
 
-    protected bool CheckClass(Class varClass, Class requiredClass)
+    protected bool CheckType(Type varType, Type requiredType)
     {
-        Class currentClass;
-
-
-
-        currentClass = varClass;
-
-
-
-
         bool b;
-
 
 
         b = false;
 
+    
 
 
-        while (!b & !this.Null(currentClass))
+        if (varType == this.NullClass)
         {
-
-
-            if (currentClass == this.NullClass)
-            {
-                b = true;
-            }
+            b = true;
+        }
 
 
 
-            if (currentClass == requiredClass)
-            {
-                b = true;
-            }
-
-
-
-
-            currentClass = currentClass.Base;
+        if (varType == requiredType)
+        {
+            b = true;
         }
 
 
@@ -3550,12 +3428,4 @@ public class StateTraverse : Traverse
 
         return null;
     }
-
-
-
-
-
-
-
-    public Class NullClass { get; set; }
 }
