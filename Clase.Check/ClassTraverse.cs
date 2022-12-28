@@ -249,6 +249,7 @@ class ClassTraverse : Traverse
 
 
 
+
         if (!this.Null(this.Compile.Type(this.CurrentClass, typeName)))
         {
             this.Error(this.ErrorKind.NameUnavailable, nodeStruct);
@@ -271,12 +272,45 @@ class ClassTraverse : Traverse
         varStruct.Init();
 
 
+
+        varStruct.Name = typeName;
+
+
+
         varStruct.Field = new StructFieldMap();
 
 
         varStruct.Field.Init();
 
 
+
+        varStruct.Parent = this.CurrentClass;
+
+
+
+        varStruct.Node = nodeStruct;
+
+
+
+
+
+        Pair pair;
+
+
+        pair = new Pair();
+
+
+        pair.Init();
+
+
+        pair.Key = varStruct.Name;
+
+
+        pair.Value = varStruct;
+
+
+
+        this.CurrentClass.Struct.Add(pair);
 
 
 
