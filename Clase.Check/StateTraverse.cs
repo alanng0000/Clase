@@ -174,66 +174,6 @@ public class StateTraverse : Traverse
 
 
 
-    public override bool ExecuteField(NodeField nodeField)
-    {
-        if (this.Null(nodeField))
-        {
-            return true;
-        }
-
-
-
-
-        StateList nodeGet;
-
-        nodeGet = nodeField.Get;
-
-
-
-
-        StateList nodeSet;
-
-        nodeSet = nodeField.Set;
-
-
-
-
-
-        Field field;
-
-
-        field = this.Check(nodeField).Field;
-
-
-
-
-        if (this.Null(field))
-        {
-            return true;
-        }
-
-
-
-
-
-        this.FieldGet(field, nodeGet);
-            
-
-
-
-
-        this.FieldSet(field, nodeSet);
-
-
-
-
-        return true;
-    }
-
-
-
-
-
 
 
         
