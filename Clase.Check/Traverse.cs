@@ -875,6 +875,16 @@ public class Traverse : ClassBaseTraverse
 
 
 
+    protected Type Type(Class varClass, string name)
+    {
+        return this.Compile.Type(varClass, name);
+    }
+
+
+
+
+
+
     protected new Check Check(NodeNode node)
     {
         return (Check)this.Compile.Check.Get(node);
