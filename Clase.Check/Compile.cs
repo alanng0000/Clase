@@ -98,46 +98,6 @@ public class Compile : ClassCompile
 
 
 
-        ClassClass objectClass;
-
-
-        objectClass = this.CreateObjectClass();
-
-
-        objectClass.Module = m;
-
-
-        objectClass.Index = 0;
-
-        
-
-
-
-
-        Pair u;
-
-
-        u = new Pair();
-
-
-        u.Init();
-
-
-        u.Key = objectClass.Name;
-
-
-        u.Value = objectClass;
-
-
-
-
-        m.Class.Add(u);
-
-
-
-
-
-
         Pair pair;
 
 
