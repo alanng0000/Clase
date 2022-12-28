@@ -28,6 +28,7 @@ global using ClassDeclareState = Class.Node.DeclareState;
 global using AssignState = Class.Node.AssignState;
 global using NewExpress = Class.Node.NewExpress;
 global using GlobalExpress = Class.Node.GlobalExpress;
+global using BracketExpress = Class.Node.BracketExpress;
 global using AndExpress = Class.Node.AndExpress;
 global using OrnExpress = Class.Node.OrnExpress;
 global using NotExpress = Class.Node.NotExpress;

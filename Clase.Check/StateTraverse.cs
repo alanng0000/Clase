@@ -586,158 +586,6 @@ public class StateTraverse : Traverse
 
 
 
-    public override bool ExecuteNewExpress(NewExpress newExpress)
-    {
-        if (this.Null(newExpress))
-        {
-            return true;
-        }
-
-
-
-
-        ClassName nodeClass;
-        
-
-        nodeClass = newExpress.Class;
-
-
-
-
-
-        string className;
-
-
-        className = null;
-
-
-
-
-        if (! this.Null(nodeClass))
-        {
-            className = nodeClass.Value;
-        }
-
-
-
-
-        Class varClass;
-
-
-
-        varClass = null;
-
-
-
-
-        if (! this.Null(className))
-        {
-            varClass = this.Class(className);
-        }
-
-
-
-
-
-        if (this.Null(varClass))
-        {
-            this.Error(this.ErrorKind.ClassUndefined, newExpress);
-        }
-
-
-
-
-
-        this.Check(newExpress).NewClass = varClass;
-
-
-
-        this.Check(newExpress).ExpressClass = varClass;
-
-
-
-
-        return true;
-    }
-
-
-
-
-
-    public override bool ExecuteGlobalExpress(GlobalExpress globalExpress)
-    {
-        if (this.Null(globalExpress))
-        {
-            return true;
-        }
-
-
-
-
-        ClassName nodeClass;
-        
-
-        nodeClass = globalExpress.Class;
-
-
-
-
-
-        string className;
-
-
-        className = null;
-
-
-
-
-        if (! this.Null(nodeClass))
-        {
-            className = nodeClass.Value;
-        }
-
-
-
-
-        Class varClass;
-
-
-
-        varClass = null;
-
-
-
-
-        if (! this.Null(className))
-        {
-            varClass = this.Class(className);
-        }
-
-
-
-
-
-        if (this.Null(varClass))
-        {
-            this.Error(this.ErrorKind.ClassUndefined, globalExpress);
-        }
-
-
-
-
-
-        this.Check(globalExpress).GlobalClass = varClass;
-
-
-
-        this.Check(globalExpress).ExpressClass = varClass;
-
-
-
-
-        return true;
-    }
-
 
 
 
@@ -768,22 +616,22 @@ public class StateTraverse : Traverse
 
 
 
-        Class expressClass;
+        Type expressType;
 
-        expressClass = null;
+        expressType = null;
 
 
 
-        if (! this.Null(express))
+        if (!this.Null(express))
         {
-            expressClass = this.Check(express).ExpressClass;
+            expressType = this.Check(express).ExpressType;
         }
 
 
 
             
 
-        this.Check(bracketExpress).ExpressClass = expressClass;
+        this.Check(bracketExpress).ExpressType = expressType;
 
 
 
