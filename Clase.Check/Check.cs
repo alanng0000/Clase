@@ -9,7 +9,11 @@ public class Check : Object
 
 
 
-    public Field Field { get; set; }
+    public Struct Struct { get; set; }
+
+
+
+    public Delegate Delegate { get; set; }
 
 
 

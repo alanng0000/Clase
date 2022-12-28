@@ -266,7 +266,9 @@ class ClassTraverse : Traverse
         Struct varStruct;
 
 
+
         varStruct = new Struct();
+
 
 
         varStruct.Init();

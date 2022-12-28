@@ -17,7 +17,7 @@ public class Class : Object
 
 
 
-    public VarMap Global { get; set; }
+    public GlobalMap Global { get; set; }
 
 
 
