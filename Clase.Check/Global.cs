@@ -13,7 +13,7 @@ public class Global : Object
 
 
 
-    public NodeClass Node { get; set; }
+    public NodeGlobal Node { get; set; }
 
 
 
