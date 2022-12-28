@@ -568,7 +568,7 @@ public class StateTraverse : Traverse
 
         if (!this.Null(targetType) & !this.Null(valueType))
         {
-            if (!this.CheckClass(valueType, targetType))
+            if (!this.CheckType(valueType, targetType))
             {
                 this.Error(this.ErrorKind.ValueUnassignable, assignState);
             }
@@ -2996,7 +2996,7 @@ public class StateTraverse : Traverse
     
 
 
-        if (varType == this.NullClass)
+        if (varType == this.NullType)
         {
             b = true;
         }
