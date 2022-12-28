@@ -32,7 +32,7 @@ public class Traverse : ClassTraverse
 
 
 
-    public ErrorKinds ClaseErrorKinds { get; set; }
+    public ErrorKindList ClaseErrorKinds { get; set; }
 
 
 
@@ -62,7 +62,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteMembers(nodeClass.Members);
+        this.ExecuteMemberList(nodeClass.Member);
 
 
 
@@ -165,7 +165,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteStructFields(nodeStruct.Fields);
+        this.ExecuteStructFields(nodeStruct.Field);
 
 
 
@@ -195,10 +195,10 @@ public class Traverse : ClassTraverse
 
 
 
-        NodeListIter iter;
+        ListIter iter;
 
 
-        iter = structFields.Values.Iter();
+        iter = structFields.Value.Iter();
 
 
 
@@ -291,7 +291,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteClaseParams(nodeDelegate.Params);
+        this.ExecuteClaseParams(nodeDelegate.Param);
 
 
 
@@ -361,10 +361,10 @@ public class Traverse : ClassTraverse
 
 
 
-        NodeListIter iter;
+        ListIter iter;
 
 
-        iter = nodeParams.Values.Iter();
+        iter = nodeParams.Value.Iter();
 
 
 
@@ -462,12 +462,12 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteClaseParams(method.Params);
+        this.ExecuteClaseParams(method.Param);
 
 
 
 
-        this.ExecuteStates(method.Call);
+        this.ExecuteStateList(method.Call);
 
 
 
