@@ -26,4 +26,9 @@ public class Delegate : Type
 
 
     public NodeDelegate Node { get; set; }
+
+
+
+
+    public int Index { get; set; }
 }
