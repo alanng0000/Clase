@@ -17,6 +17,10 @@ public class Check : Object
 
 
 
+    public Global Global { get; set; }
+
+
+
     public Method Method { get; set; }
 
 

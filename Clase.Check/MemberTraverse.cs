@@ -301,7 +301,8 @@ class MemberTraverse : Traverse
 
 
 
-        
+
+        this.VarNameKeyList = this.CurrentClass.Global;
 
 
 
@@ -311,9 +312,68 @@ class MemberTraverse : Traverse
 
 
 
-        
+        this.VarNameKeyList = null;
+
         
 
+
+
+
+        Var varVar;
+
+
+        varVar = this.Var;
+
+
+
+
+
+
+        Global varGlobal;
+
+
+        varGlobal = new Global();
+
+
+        varGlobal.Init();
+
+
+        varGlobal.Var = varVar;
+
+
+        varGlobal.Parent = this.CurrentClass;
+
+
+        varGlobal.Node = nodeGlobal;
+
+
+        varGlobal.Index = this.CurrentClass.Global.Count;
+        
+
+
+
+        Pair pair;
+
+
+        pair = new Pair();
+
+
+        pair.Init();
+
+
+        pair.Key = varGlobal.Var.Name;
+
+
+        pair.Value = varGlobal;
+
+
+
+        this.CurrentClass.Global.Add(pair);
+
+
+
+
+        this.Check(nodeGlobal).Global = varGlobal;
 
 
 
@@ -696,10 +756,10 @@ class MemberTraverse : Traverse
         varVar.Init();
 
 
-        varVar.Name = varName;
-
-
         varVar.Type = varType;
+
+
+        varVar.Name = varName;
 
 
         varVar.Node = nodeVar;
@@ -708,9 +768,8 @@ class MemberTraverse : Traverse
 
 
 
-
-
         this.Check(nodeVar).Var = varVar;
+
 
 
 
