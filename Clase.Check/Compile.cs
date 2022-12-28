@@ -6,7 +6,7 @@ namespace Clase.Check;
 
 public class Compile : ClassCompile
 {
-    public ErrorKinds ClaseErrorKinds { get; set; }
+    public ErrorKindList ClaseErrorKinds { get; set; }
 
 
 
@@ -19,7 +19,7 @@ public class Compile : ClassCompile
 
 
 
-        this.ClaseErrorKinds = (ErrorKinds)this.ErrorKinds;
+        this.ClaseErrorKinds = (ErrorKindList)this.ErrorKind;
 
 
 
