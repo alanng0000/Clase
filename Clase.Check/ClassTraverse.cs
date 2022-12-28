@@ -106,7 +106,7 @@ class ClassTraverse : Traverse
 
 
 
-        varClass.Global = new VarMap();
+        varClass.Global = new GlobalMap();
 
 
 
