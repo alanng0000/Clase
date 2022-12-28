@@ -15,7 +15,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ClaseErrorKinds = this.Compile.ClaseErrorKinds;
+        this.ClaseErrorKind = this.Compile.ClaseErrorKind;
 
 
 
@@ -32,7 +32,7 @@ public class Traverse : ClassTraverse
 
 
 
-    public ErrorKindList ClaseErrorKinds { get; set; }
+    public ErrorKindList ClaseErrorKind { get; set; }
 
 
 
