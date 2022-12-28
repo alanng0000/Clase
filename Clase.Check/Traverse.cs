@@ -677,7 +677,7 @@ public class Traverse : ClassTraverse
         this.ExecuteMethodName(callExpress.Method);
 
 
-        this.ExecuteArgues(callExpress.Argues);
+        this.ExecuteArgueList(callExpress.Argue);
 
 
 
@@ -703,11 +703,11 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteVariableName(delegateCallExpress.Variable);
+        this.ExecuteVarName(delegateCallExpress.Variable);
 
 
 
-        this.ExecuteArgues(delegateCallExpress.Argues);
+        this.ExecuteArgueList(delegateCallExpress.Argue);
 
 
 
@@ -765,7 +765,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteVariableName(variableAddressExpress.Variable);
+        this.ExecuteVarName(variableAddressExpress.Variable);
 
 
 
@@ -838,7 +838,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteVariableName(variable.Name);
+        this.ExecuteVarName(variable.Name);
 
 
 
