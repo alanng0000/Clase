@@ -318,6 +318,12 @@ class ClassTraverse : Traverse
 
 
 
+        this.Check(nodeStruct).Struct = varStruct;
+
+
+
+
+
         return true;
     }
 }
