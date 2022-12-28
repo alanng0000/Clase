@@ -17,7 +17,7 @@ public class Check : Object
 
 
 
-    public Variable Variable { get; set; }
+    public Var Variable { get; set; }
 
 
 
