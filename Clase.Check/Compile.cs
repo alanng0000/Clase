@@ -240,7 +240,7 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassTraverse InitTraverse()
+    protected override ClassBaseTraverse InitTraverse()
     {
         InitTraverse traverse;
 
@@ -269,7 +269,7 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassTraverse StateTraverse()
+    protected override ClassBaseTraverse StateTraverse()
     {
         StateTraverse traverse;
 
