@@ -11,7 +11,7 @@ class MemberTraverse : Traverse
 
 
 
-    private Map Vars { get; set; }
+    private Map VarNameKeyList { get; set; }
 
 
 
@@ -19,7 +19,7 @@ class MemberTraverse : Traverse
 
 
 
-    private VarMap ParamVars { get; set; }
+    private VarMap ParamVarList { get; set; }
 
 
 
@@ -300,6 +300,12 @@ class MemberTraverse : Traverse
 
 
 
+
+        
+
+
+
+
         base.ExecuteGlobal(nodeGlobal);
 
 
@@ -468,12 +474,12 @@ class MemberTraverse : Traverse
 
 
 
-        this.ParamVars = o;
+        this.ParamVarList = o;
 
 
 
 
-        this.Vars = this.ParamVars;
+        this.VarNameKeyList = this.ParamVarList;
 
 
 
@@ -484,12 +490,12 @@ class MemberTraverse : Traverse
 
 
 
-        this.Vars = null;
-        
+        this.VarNameKeyList = null;
 
 
 
-        this.ParamVars = null;
+
+        this.ParamVarList = null;
 
         
 
@@ -584,7 +590,7 @@ class MemberTraverse : Traverse
 
 
 
-        this.VarMapAdd(this.ParamVars, this.Var);
+        this.VarMapAdd(this.ParamVarList, this.Var);
 
 
 
@@ -648,7 +654,7 @@ class MemberTraverse : Traverse
 
 
 
-        if (!this.Null(this.Vars.Get(varName)))
+        if (!this.Null(this.VarNameKeyList.Get(varName)))
         {
             this.Error(this.ErrorKind.NameUnavailable, nodeVar);
 
