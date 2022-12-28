@@ -26,7 +26,7 @@ class MemberTraverse : Traverse
 
     private Struct Struct { get; set; }
 
-    
+
 
 
 
@@ -130,161 +130,6 @@ class MemberTraverse : Traverse
     }
 
 
-
-
-
-
-
-    public override bool ExecuteStructField(NodeStructField nodeStructField)
-    {
-        if (this.Null(nodeStructField))
-        {
-            return true;
-        }
-
-
-
-
-
-        TypeName nodeType;
-
-
-        nodeType = nodeStructField.Type;
-
-
-
-
-        FieldName name;
-
-
-        name = nodeStructField.Name;
-
-
-
-
-
-
-        string fieldName;
-
-
-
-        fieldName = name.Value;
-
-
-
-
-
-        string typeName;
-
-
-        
-        typeName = nodeType.Value;
-        
-
-
-
-
-        
-        if (!this.Null(this.Struct.Field.Get(fieldName)))
-        {
-            this.Error(this.ErrorKind.NameUnavailable, nodeStructField);
-
-
-
-            return true;
-        }
-
-
-
-
-
-
-        Type type;
-
-
-
-        
-        type = this.Type(this.CurrentClass, typeName);
-        
-
-
-
-
-        if (this.Null(type))
-        {
-            this.Error(this.ClaseErrorKind.TypeUndefined, nodeStructField);
-
-
-
-            return true;
-        }
-
-
-
-
-
-        StructField structField;
-
-
-        structField = new StructField();
-
-
-        structField.Init();
-
-
-        structField.Type = type;
-
-
-        structField.Name = fieldName;
-
-
-        structField.Parent = this.Struct;
-
-
-        structField.Node = nodeStructField;
-
-
-        structField.Index = this.Struct.Field.Count;
-
-
-
-
-
-
-        Pair pair;
-
-
-        pair = new Pair();
-
-
-        pair.Init();
-
-
-        pair.Key = structField.Name;
-
-
-        pair.Value = structField;
-
-
-
-
-        this.Struct.Field.Add(pair);
-
-
-
-
-
-
-        this.Check(nodeStructField).StructField = structField;
-
-
-
-
-
-
-
-        return true;
-    }
 
 
 
@@ -639,6 +484,170 @@ class MemberTraverse : Traverse
 
         return true;
     }
+
+
+
+
+
+
+
+
+
+    public override bool ExecuteStructField(NodeStructField nodeStructField)
+    {
+        if (this.Null(nodeStructField))
+        {
+            return true;
+        }
+
+
+
+
+
+        TypeName nodeType;
+
+
+        nodeType = nodeStructField.Type;
+
+
+
+
+        FieldName name;
+
+
+        name = nodeStructField.Name;
+
+
+
+
+
+
+        string fieldName;
+
+
+
+        fieldName = name.Value;
+
+
+
+
+
+        string typeName;
+
+
+        
+        typeName = nodeType.Value;
+        
+
+
+
+
+        
+        if (!this.Null(this.Struct.Field.Get(fieldName)))
+        {
+            this.Error(this.ErrorKind.NameUnavailable, nodeStructField);
+
+
+
+            return true;
+        }
+
+
+
+
+
+
+        Type type;
+
+
+
+        
+        type = this.Type(this.CurrentClass, typeName);
+        
+
+
+
+
+        if (this.Null(type))
+        {
+            this.Error(this.ClaseErrorKind.TypeUndefined, nodeStructField);
+
+
+
+            return true;
+        }
+
+
+
+
+
+        StructField structField;
+
+
+        structField = new StructField();
+
+
+        structField.Init();
+
+
+        structField.Type = type;
+
+
+        structField.Name = fieldName;
+
+
+        structField.Parent = this.Struct;
+
+
+        structField.Node = nodeStructField;
+
+
+        structField.Index = this.Struct.Field.Count;
+
+
+
+
+
+
+        Pair pair;
+
+
+        pair = new Pair();
+
+
+        pair.Init();
+
+
+        pair.Key = structField.Name;
+
+
+        pair.Value = structField;
+
+
+
+
+        this.Struct.Field.Add(pair);
+
+
+
+
+
+
+        this.Check(nodeStructField).StructField = structField;
+
+
+
+
+
+
+
+        return true;
+    }
+
+
+
+
+
 
 
 
