@@ -1883,6 +1883,7 @@ public class Compile : ClassCompile
 
 
 
+
     private CastExpress ClaseCastExpress(Range range)
     {
         if (this.Zero(this.Count(range)))
@@ -2707,6 +2708,23 @@ public class Compile : ClassCompile
 
 
 
+    protected override ThisExpress ThisExpress(Range range)
+    {
+        return null;
+    }
+
+
+
+
+    protected override BaseExpress BaseExpress(Range range)
+    {
+        return null;
+    }
+
+
+
+
+
 
 
     protected override NewExpress NewExpress(Range range)
@@ -2721,6 +2739,8 @@ public class Compile : ClassCompile
     {
         return null;
     }
+
+    
 
 
 
