@@ -177,24 +177,6 @@ class MemberTraverse : Traverse
 
 
 
-        VarMap m;
-
-
-        m = new VarMap();
-
-
-        m.Init();
-
-
-
-
-        varDelegate.Param = m;
-
-
-
-
-
-
 
         string typeName;
 
@@ -228,6 +210,27 @@ class MemberTraverse : Traverse
         }
 
 
+
+
+
+        varDelegate.Type = type;
+
+
+
+
+        VarMap m;
+
+
+        m = new VarMap();
+
+
+        m.Init();
+
+
+
+
+        varDelegate.Param = m;
+        
 
 
 
