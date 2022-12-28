@@ -165,7 +165,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteStructFields(nodeStruct.Field);
+        this.ExecuteStructFieldList(nodeStruct.Field);
 
 
 
@@ -180,9 +180,9 @@ public class Traverse : ClassTraverse
 
 
 
-    public virtual bool ExecuteStructFields(StructFields structFields)
+    public virtual bool ExecuteStructFieldList(StructFieldList structFieldList)
     {
-        if (this.Null(structFields))
+        if (this.Null(structFieldList))
         {
             return true;
         }
@@ -190,7 +190,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteNode(structFields);
+        this.ExecuteNode(structFieldList);
 
 
 
@@ -198,7 +198,7 @@ public class Traverse : ClassTraverse
         ListIter iter;
 
 
-        iter = structFields.Value.Iter();
+        iter = structFieldList.Value.Iter();
 
 
 
@@ -345,9 +345,9 @@ public class Traverse : ClassTraverse
 
 
 
-    public virtual bool ExecuteClaseParams(Params nodeParams)
+    public virtual bool ExecuteClaseParamList(ParamList nodeParamList)
     {
-        if (this.Null(nodeParams))
+        if (this.Null(nodeParamList))
         {
             return true;
         }
@@ -355,7 +355,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteNode(nodeParams);
+        this.ExecuteNode(nodeParamList);
 
 
 
@@ -364,7 +364,7 @@ public class Traverse : ClassTraverse
         ListIter iter;
 
 
-        iter = nodeParams.Value.Iter();
+        iter = nodeParamList.Value.Iter();
 
 
 
@@ -410,7 +410,7 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteClaseVariable(param.Variable);
+        this.ExecuteClaseVar(param.Var);
 
 
 
@@ -750,9 +750,9 @@ public class Traverse : ClassTraverse
 
 
 
-    public virtual bool ExecuteVariableAddressExpress(VariableAddressExpress variableAddressExpress)
+    public virtual bool ExecuteVarAddressExpress(VarAddressExpress varAddressExpress)
     {
-        if (this.Null(variableAddressExpress))
+        if (this.Null(varAddressExpress))
         {
             return true;
         }
@@ -760,12 +760,12 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteNode(variableAddressExpress);
+        this.ExecuteNode(varAddressExpress);
 
 
 
 
-        this.ExecuteVarName(variableAddressExpress.Variable);
+        this.ExecuteVarName(varAddressExpress.Var);
 
 
 
@@ -817,9 +817,9 @@ public class Traverse : ClassTraverse
 
 
 
-    public virtual bool ExecuteClaseVariable(NodeVariable variable)
+    public virtual bool ExecuteClaseVar(NodeVar nodeVar)
     {
-        if (this.Null(variable))
+        if (this.Null(nodeVar))
         {
             return true;
         }
@@ -827,18 +827,18 @@ public class Traverse : ClassTraverse
 
 
 
-        this.ExecuteNode(variable);
+        this.ExecuteNode(nodeVar);
 
 
 
 
 
-        this.ExecuteTypeName(variable.Type);
+        this.ExecuteTypeName(nodeVar.Type);
 
 
 
 
-        this.ExecuteVarName(variable.Name);
+        this.ExecuteVarName(nodeVar.Name);
 
 
 
