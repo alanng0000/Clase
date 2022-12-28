@@ -869,4 +869,14 @@ public class Traverse : ClassBaseTraverse
 
         return true;
     }
+
+
+
+
+
+
+    protected new Check Check(NodeNode node)
+    {
+        return (Check)this.Compile.Check.Get(node);
+    }
 }
