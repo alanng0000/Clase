@@ -462,9 +462,7 @@ class MemberTraverse : Traverse
         method.Parent = this.CurrentClass;
 
 
-
         method.Node = nodeMethod;
-
 
 
         method.Index = this.CurrentClass.Method.Count;
@@ -483,7 +481,7 @@ class MemberTraverse : Traverse
         pair.Init();
 
 
-        pair.Key = methodName;
+        pair.Key = method.Name;
 
 
         pair.Value = method;
@@ -508,12 +506,21 @@ class MemberTraverse : Traverse
 
 
 
-    public override bool ExecuteVar(NodeVar nodeVar)
+    public override bool ExecuteClaseVar(NodeVar nodeVar)
     {
         if (this.Null(nodeVar))
         {
             return true;
         }
+
+
+
+
+
+
+        TypeName type;
+
+        type = nodeVar.Type;
 
 
 
@@ -526,34 +533,21 @@ class MemberTraverse : Traverse
 
 
 
-        ClassName nodeClass;
-
-        nodeClass = nodeVar.Class;
-            
-
-
 
 
         string varName;
 
 
         varName = name.Value;
-            
+        
 
 
 
 
-        string className;
+        string typeName;
 
 
-        className = null;
-
-
-
-        if (!this.Null(nodeClass))
-        {
-            className = nodeClass.Value;
-        }
+        typeName = type.Value;
 
 
 
@@ -572,25 +566,18 @@ class MemberTraverse : Traverse
 
 
 
-        Class varClass;
+        Type varType;
 
 
-        varClass = null;
+        varType = this.Type(this.CurrentClass, typeName);
 
-
-
-
-        if (!this.Null(className))
-        {
-            varClass = this.Class(className);
-        }
 
         
 
 
-        if (this.Null(varClass))
+        if (this.Null(varType))
         {
-            this.Error(this.ErrorKind.ClassUndefined, nodeVar);
+            this.Error(this.ClaseErrorKind.TypeUndefined, nodeVar);
 
 
             return true;
@@ -612,7 +599,7 @@ class MemberTraverse : Traverse
         varVar.Name = varName;
 
 
-        varVar.Class = varClass;
+        varVar.Type = varType;
 
 
         varVar.Node = nodeVar;
