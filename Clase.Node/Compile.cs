@@ -305,7 +305,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKinds.NameInvalid, range);
+            this.Error(this.ErrorKind.NameInvalid, range);
         }
 
 
@@ -321,7 +321,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKinds.MembersInvalid, range);
+            this.Error(this.ErrorKind.MembersInvalid, range);
         }
 
 
@@ -521,7 +521,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKinds.NameInvalid, range);
+            this.Error(this.ErrorKind.NameInvalid, range);
         }
 
 
@@ -536,7 +536,7 @@ public class Compile : ClassCompile
 
         if (this.Null(field))
         {
-            this.Error(this.ClaseErrorKinds.FieldsInvalid, range);
+            this.Error(this.ClaseErrorKind.FieldsInvalid, range);
         }
 
 
@@ -703,7 +703,7 @@ public class Compile : ClassCompile
 
         if (this.Null(type))
         {
-            this.Error(this.ClaseErrorKinds.TypeInvalid, range);
+            this.Error(this.ClaseErrorKind.TypeInvalid, range);
         }
 
 
@@ -724,7 +724,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKinds.NameInvalid, range);
+            this.Error(this.ErrorKind.NameInvalid, range);
         }
         
 
@@ -909,7 +909,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKinds.NameInvalid, range);
+            this.Error(this.ErrorKind.NameInvalid, range);
         }
 
 
@@ -925,7 +925,7 @@ public class Compile : ClassCompile
 
         if (this.Null(type))
         {
-            this.Error(this.ClaseErrorKinds.TypeInvalid, range);
+            this.Error(this.ClaseErrorKind.TypeInvalid, range);
         }
 
 
@@ -943,7 +943,7 @@ public class Compile : ClassCompile
 
         if (this.Null(varParam))
         {
-            this.Error(this.ErrorKinds.ParamsInvalid, range);
+            this.Error(this.ErrorKind.ParamsInvalid, range);
         }
 
 
@@ -1164,7 +1164,7 @@ public class Compile : ClassCompile
 
         if (this.Null(variable))
         {
-            this.Error(this.ErrorKinds.VarInvalid, range);
+            this.Error(this.ErrorKind.VarInvalid, range);
         }
 
 
@@ -1269,7 +1269,7 @@ public class Compile : ClassCompile
 
         if (this.Null(type))
         {
-            this.Error(this.ClaseErrorKinds.TypeInvalid, range);
+            this.Error(this.ClaseErrorKind.TypeInvalid, range);
         }
 
 
@@ -1290,7 +1290,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKinds.NameInvalid, range);
+            this.Error(this.ErrorKind.NameInvalid, range);
         }
         
 
@@ -1523,7 +1523,7 @@ public class Compile : ClassCompile
 
         if (this.Null(access))
         {
-            this.Error(this.ErrorKinds.AccessInvalid, range);
+            this.Error(this.ErrorKind.AccessInvalid, range);
         }
 
 
@@ -1541,7 +1541,7 @@ public class Compile : ClassCompile
 
         if (this.Null(type))
         {
-            this.Error(this.ClaseErrorKinds.TypeInvalid, range);
+            this.Error(this.ClaseErrorKind.TypeInvalid, range);
         }
 
 
@@ -1559,7 +1559,7 @@ public class Compile : ClassCompile
 
         if (this.Null(name))
         {
-            this.Error(this.ErrorKinds.NameInvalid, range);
+            this.Error(this.ErrorKind.NameInvalid, range);
         }
 
 
@@ -1577,7 +1577,7 @@ public class Compile : ClassCompile
 
         if (this.Null(varParam))
         {
-            this.Error(this.ErrorKinds.ParamsInvalid, range);
+            this.Error(this.ErrorKind.ParamsInvalid, range);
         }
 
 
@@ -1595,7 +1595,7 @@ public class Compile : ClassCompile
 
         if (this.Null(call))
         {
-            this.Error(this.ErrorKinds.CallInvalid, range);
+            this.Error(this.ErrorKind.CallInvalid, range);
         }
 
 
@@ -2002,7 +2002,7 @@ public class Compile : ClassCompile
 
         if (this.Null(type))
         {
-            this.Error(this.ClaseErrorKinds.TypeInvalid, range);
+            this.Error(this.ClaseErrorKind.TypeInvalid, range);
         }
 
 
@@ -2019,7 +2019,7 @@ public class Compile : ClassCompile
 
         if (this.Null(varObject))
         {
-            this.Error(this.ErrorKinds.ObjectInvalid, range);
+            this.Error(this.ErrorKind.ObjectInvalid, range);
         }
 
 
@@ -2126,7 +2126,7 @@ public class Compile : ClassCompile
 
         if (this.Null(varClass))
         {
-            this.Error(this.ErrorKinds.ClassInvalid, range);
+            this.Error(this.ErrorKind.ClassInvalid, range);
         }
 
             
@@ -2144,7 +2144,7 @@ public class Compile : ClassCompile
 
         if (this.Null(method))
         {
-            this.Error(this.ErrorKinds.MethodInvalid, range);
+            this.Error(this.ErrorKind.MethodInvalid, range);
         }
 
             
@@ -2162,7 +2162,7 @@ public class Compile : ClassCompile
 
         if (this.Null(argue))
         {
-            this.Error(this.ErrorKinds.ArguesInvalid, range);
+            this.Error(this.ErrorKind.ArgueInvalid, range);
         }
 
 
@@ -2173,15 +2173,15 @@ public class Compile : ClassCompile
         ret = new CallExpress();
 
         ret.Init();
-            
+        
         ret.Class = varClass;
-            
+        
         ret.Method = method;
-            
+        
         ret.Argue = argue;
-            
+        
         this.NodeInfo(ret, range);
-            
+        
         return ret;
     }
 
@@ -2306,7 +2306,7 @@ public class Compile : ClassCompile
 
         if (this.Null(variable))
         {
-            this.Error(this.ErrorKinds.VarInvalid, range);
+            this.Error(this.ErrorKind.VarInvalid, range);
         }
 
 
@@ -2314,18 +2314,18 @@ public class Compile : ClassCompile
             
 
 
-        ArgueList argues;
+        ArgueList argue;
 
 
 
-        argues = this.ArgueList(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
+        argue = this.ArgueList(this.Range(leftBracket.Range.End, rightBracket.Range.Start));
             
 
 
 
-        if (this.Null(argues))
+        if (this.Null(argue))
         {
-            this.Error(this.ErrorKinds.ArguesInvalid, range);
+            this.Error(this.ErrorKind.ArgueInvalid, range);
         }
 
 
@@ -2337,13 +2337,13 @@ public class Compile : ClassCompile
         ret = new DelegateCallExpress();
 
         ret.Init();
-            
+        
         ret.Variable = variable;
-            
-        ret.Argue = argues;
-            
+        
+        ret.Argue = argue;
+        
         this.NodeInfo(ret, range);
-            
+        
         return ret;
     }
 
@@ -2424,7 +2424,7 @@ public class Compile : ClassCompile
 
         if (this.Null(type))
         {
-            this.Error(this.ClaseErrorKinds.TypeInvalid, range);
+            this.Error(this.ClaseErrorKind.TypeInvalid, range);
         }
 
 
@@ -2520,7 +2520,7 @@ public class Compile : ClassCompile
 
         if (this.Null(variable))
         {
-            this.Error(this.ClaseErrorKinds.VarInvalid, range);
+            this.Error(this.ClaseErrorKind.VarInvalid, range);
         }
 
 
@@ -2664,7 +2664,7 @@ public class Compile : ClassCompile
 
         if (this.Null(varClass))
         {
-            this.Error(this.ClaseErrorKinds.ClassInvalid, range);
+            this.Error(this.ClaseErrorKind.ClassInvalid, range);
         }
 
 
@@ -2683,7 +2683,7 @@ public class Compile : ClassCompile
 
         if (this.Null(method))
         {
-            this.Error(this.ClaseErrorKinds.MethodInvalid, range);
+            this.Error(this.ClaseErrorKind.MethodInvalid, range);
         }
 
 
