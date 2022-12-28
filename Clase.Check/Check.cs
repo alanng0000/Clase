@@ -25,31 +25,27 @@ public class Check : Object
 
 
 
-    public Class ExpressClass { get; set; }
+    public StructField StructField { get; set; }
 
 
 
-    public Class NewClass { get; set; }
+    public Type ExpressType { get; set; }
 
 
 
-    public Class TargetClass { get; set; }
+    public Type TargetType { get; set; }
 
 
 
-    public Class CastClass { get; set; }
+    public Type CastType { get; set; }
 
 
 
-    public Class GlobalClass { get; set; }
+    public StructField GetField { get; set; }
 
 
 
-    public Field GetField { get; set; }
-
-
-
-    public Field SetField { get; set; }
+    public StructField SetField { get; set; }
 
 
 
