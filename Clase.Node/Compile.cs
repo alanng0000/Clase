@@ -147,7 +147,7 @@ public class Compile : ClassCompile
 
 
 
-        this.SetNodeMethod(nameof(this.Var), this.ClaseVariable);
+        this.SetNodeMethod(nameof(this.Var), this.ClaseVar);
 
 
 
@@ -1042,14 +1042,14 @@ public class Compile : ClassCompile
 
     private Param ClaseParam(Range range)
     {
-        Variable variable;
+        Var varVar;
 
 
-        variable = this.ClaseVariable(range);
+        varVar = this.ClaseVar(range);
 
 
 
-        if (this.Null(variable))
+        if (this.Null(varVar))
         {
             return null;
         }
@@ -1067,7 +1067,7 @@ public class Compile : ClassCompile
         ret.Init();
         
         
-        ret.Variable = variable;
+        ret.Var = varVar;
         
         
         this.NodeInfo(ret, range);
@@ -1154,15 +1154,15 @@ public class Compile : ClassCompile
 
 
 
-        Variable variable;
+        Var varVar;
 
 
-        variable = this.ClaseVariable(variableRange);
+        varVar = this.ClaseVar(variableRange);
 
 
 
 
-        if (this.Null(variable))
+        if (this.Null(varVar))
         {
             this.Error(this.ErrorKind.VarInvalid, range);
         }
@@ -1179,7 +1179,7 @@ public class Compile : ClassCompile
 
         ret.Init();
 
-        ret.Variable = variable;
+        ret.Var = varVar;
 
 
         this.NodeInfo(ret, range);
@@ -1199,7 +1199,7 @@ public class Compile : ClassCompile
 
 
 
-    private Variable ClaseVariable(Range range)
+    private Var ClaseVar(Range range)
     {
         Range typeRange;
 
@@ -1278,7 +1278,7 @@ public class Compile : ClassCompile
 
 
 
-        VariableName name;
+        VarName name;
 
 
 
@@ -1302,10 +1302,10 @@ public class Compile : ClassCompile
 
 
 
-        Variable ret;
+        Var ret;
 
 
-        ret = new Variable();
+        ret = new Var();
 
 
         ret.Init();
@@ -1330,7 +1330,7 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassVariable Var(Range range)
+    protected override ClassVar Var(Range range)
     {
         return null;
     }
@@ -1762,16 +1762,16 @@ public class Compile : ClassCompile
 
 
 
-        Variable variable;
+        Var varVar;
         
 
 
-        variable = this.ClaseVariable(this.Range(range.Start, semicolon.Range.Start));
+        varVar = this.ClaseVar(this.Range(range.Start, semicolon.Range.Start));
         
 
 
 
-        if (this.Null(variable))
+        if (this.Null(varVar))
         {
             return null;
         }
@@ -1789,7 +1789,7 @@ public class Compile : ClassCompile
         ret.Init();
 
         
-        ret.Variable = variable;
+        ret.Var = varVar;
         
         
         this.NodeInfo(ret, range);
