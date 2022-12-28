@@ -4,19 +4,19 @@ namespace Clase.Node;
 
 
 
-public class ErrorKinds : ClassErrorKinds
+public class ErrorKindList : ClassErrorKindList
 {
-   public new static ErrorKinds This { get; } = CreateGlobal();
+   public new static ErrorKindList This { get; } = CreateGlobal();
 
 
 
 
-    private static ErrorKinds CreateGlobal()
+    private static ErrorKindList CreateGlobal()
     {
-        ErrorKinds global;
+        ErrorKindList global;
 
 
-        global = new ErrorKinds();
+        global = new ErrorKindList();
 
 
         global.Init();

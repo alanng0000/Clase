@@ -32,5 +32,5 @@ global using MethodName = Class.Node.MethodName;
 global using VariableName = Class.Node.VarName;
 global using Token = Class.Node.Token;
 global using NodeList = Class.Node.NodeList;
-global using ClassErrorKinds = Class.Node.ErrorKinds;
+global using ClassErrorKindList = Class.Node.ErrorKindList;
 global using Keyword = Clase.Infra.Keyword;
