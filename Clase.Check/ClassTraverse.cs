@@ -312,6 +312,8 @@ class ClassTraverse : Traverse
 
 
 
+
+
         this.CurrentClass.Struct.Add(pair);
 
 
@@ -415,6 +417,8 @@ class ClassTraverse : Traverse
 
 
         pair.Value = varDelegate;
+
+
 
 
 
