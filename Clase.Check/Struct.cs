@@ -26,5 +26,7 @@ public class Struct : Type
 
 
 
+
+
     public int Index { get; set; }
 }
