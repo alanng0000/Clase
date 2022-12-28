@@ -285,9 +285,10 @@ class MemberTraverse : Traverse
 
 
 
-        MethodName name;
 
-        name = nodeMethod.Name;
+        NodeAccess nodeAccess;
+
+        nodeAccess = nodeMethod.Access;
 
 
 
@@ -299,9 +300,9 @@ class MemberTraverse : Traverse
 
 
 
-        NodeAccess nodeAccess;
+        MethodName name;
 
-        nodeAccess = nodeMethod.Access;
+        name = nodeMethod.Name;
 
 
 
@@ -351,24 +352,24 @@ class MemberTraverse : Traverse
 
             return true;
         }
+
+
+
+
+
+
+        Type type;
+
+
+
+        
+        type = this.Type(this.CurrentClass, typeName);
         
 
 
 
 
-
-        Class varClass;
-
-
-
-        
-        varClass = this.Class(className);
-        
-
-
-
-
-        if (this.Null(varClass))
+        if (this.Null(type))
         {
             this.Error(this.ErrorKind.ClassUndefined, nodeMethod);
 
