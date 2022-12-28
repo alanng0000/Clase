@@ -136,6 +136,148 @@ class MemberTraverse : Traverse
 
 
 
+    public override bool ExecuteDelegate(NodeDelegate nodeDelegate)
+    {
+        if (this.Null(nodeDelegate))
+        {
+            return true;
+        }
+
+
+
+
+
+
+        TypeName nodeType;
+
+
+        nodeType = nodeDelegate.Type;
+
+
+
+
+
+        ParamList nodeParam;
+
+
+        nodeParam = nodeDelegate.Param;
+
+
+
+
+        
+
+        Delegate varDelegate;
+        
+
+        varDelegate = this.Check(nodeDelegate).Delegate;
+
+
+
+
+
+
+        VarMap m;
+
+
+        m = new VarMap();
+
+
+        m.Init();
+
+
+
+
+        varDelegate.Param = m;
+
+
+
+
+
+
+
+        string typeName;
+
+
+        
+        typeName = nodeType.Value;
+
+
+
+
+
+
+        Type type;
+
+
+
+        
+        type = this.Type(this.CurrentClass, typeName);
+        
+
+
+
+
+        if (this.Null(type))
+        {
+            this.Error(this.ClaseErrorKind.TypeUndefined, nodeDelegate);
+
+
+
+            return true;
+        }
+
+
+
+
+
+
+
+        this.ParamVarList = varDelegate.Param;
+
+
+
+
+
+
+
+        this.VarNameKeyList = this.ParamVarList;
+
+
+
+
+
+        this.ExecuteClaseParamList(nodeParam);
+
+
+
+
+        this.VarNameKeyList = null;
+
+
+
+
+
+
+
+        this.ParamVarList = null;
+
+
+
+
+
+
+
+        return true;
+    }
+
+
+
+
+
+
+
+
 
 
     public override bool ExecuteGlobal(NodeGlobal nodeGlobal)
@@ -144,6 +286,7 @@ class MemberTraverse : Traverse
         {
             return true;
         }
+
 
 
 
