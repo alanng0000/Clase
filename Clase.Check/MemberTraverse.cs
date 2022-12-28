@@ -521,7 +521,7 @@ class MemberTraverse : Traverse
         method.Access = access;
 
 
-        method.Param = this.ParamVars;
+        method.Param = this.ParamVarList;
 
 
         method.Call = u;
