@@ -677,32 +677,32 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
-        leftClass = null;
-
-
+        leftType = null;
 
 
-        if (! this.Null(left))
+
+
+        if (!this.Null(left))
         {
-            leftClass = this.Check(left).ExpressClass;
+            leftType = this.Check(left).ExpressType;
         }
 
 
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
-
-
+        rightType = null;
 
 
-        if (! this.Null(right))
+
+
+        if (!this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -748,7 +748,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(rightClass))
+        if (this.Null(rightType))
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, andExpress, ref hasOperandUndefined);
         }
@@ -756,9 +756,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightClass))
+        if (! this.Null(rightType))
         {
-            if (!this.CheckClass(rightClass, this.System.Bool))
+            if (!this.CheckClass(rightType, this.System.Bool))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, andExpress, ref hasOperandUnassignable);
             }
@@ -810,7 +810,7 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
         leftClass = null;
 
@@ -823,15 +823,15 @@ public class StateTraverse : Traverse
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
+        rightType = null;
 
 
 
         if (! this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -876,7 +876,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(rightClass))
+        if (this.Null(rightType))
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, ornExpress, ref hasOperandUndefined);
         }
@@ -884,9 +884,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightClass))
+        if (! this.Null(rightType))
         {
-            if (! this.CheckClass(rightClass, this.System.Bool))
+            if (! this.CheckClass(rightType, this.System.Bool))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, ornExpress, ref hasOperandUnassignable);
             }
@@ -1010,7 +1010,7 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
         leftClass = null;
 
@@ -1023,15 +1023,15 @@ public class StateTraverse : Traverse
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
+        rightType = null;
 
 
 
         if (! this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -1076,7 +1076,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(rightClass))
+        if (this.Null(rightType))
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, addExpress, ref hasOperandUndefined);
         }
@@ -1084,9 +1084,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightClass))
+        if (! this.Null(rightType))
         {
-            if (! this.CheckClass(rightClass, this.System.Int))
+            if (! this.CheckClass(rightType, this.System.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, addExpress, ref hasOperandUnassignable);
             }
@@ -1140,7 +1140,7 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
         leftClass = null;
 
@@ -1153,15 +1153,15 @@ public class StateTraverse : Traverse
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
+        rightType = null;
 
 
 
         if (! this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -1206,7 +1206,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(rightClass))
+        if (this.Null(rightType))
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, subExpress, ref hasOperandUndefined);
         }
@@ -1214,9 +1214,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightClass))
+        if (! this.Null(rightType))
         {
-            if (! this.CheckClass(rightClass, this.System.Int))
+            if (! this.CheckClass(rightType, this.System.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, subExpress, ref hasOperandUnassignable);
             }
@@ -1269,7 +1269,7 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
         leftClass = null;
 
@@ -1282,15 +1282,15 @@ public class StateTraverse : Traverse
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
+        rightType = null;
 
 
 
         if (! this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -1335,7 +1335,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (rightClass == null)
+        if (rightType == null)
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, mulExpress, ref hasOperandUndefined);
         }
@@ -1343,9 +1343,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightClass))
+        if (! this.Null(rightType))
         {
-            if (! this.CheckClass(rightClass, this.System.Int))
+            if (! this.CheckClass(rightType, this.System.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, mulExpress, ref hasOperandUnassignable);
             }
@@ -1398,7 +1398,7 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
         leftClass = null;
 
@@ -1411,15 +1411,15 @@ public class StateTraverse : Traverse
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
+        rightType = null;
 
 
 
         if (! this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -1464,7 +1464,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(rightClass))
+        if (this.Null(rightType))
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, divExpress, ref hasOperandUndefined);
         }
@@ -1472,9 +1472,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightClass))
+        if (! this.Null(rightType))
         {
-            if (! this.CheckClass(rightClass, this.System.Int))
+            if (! this.CheckClass(rightType, this.System.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, divExpress, ref hasOperandUnassignable);
             }
@@ -1527,7 +1527,7 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
         leftClass = null;
 
@@ -1541,15 +1541,15 @@ public class StateTraverse : Traverse
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
+        rightType = null;
 
 
 
         if (! this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -1577,7 +1577,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(rightClass))
+        if (this.Null(rightType))
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, equalExpress, ref hasOperandUndefined);
         }
@@ -1630,7 +1630,7 @@ public class StateTraverse : Traverse
 
 
 
-        Class leftClass;
+        Type leftType;
 
         leftClass = null;
 
@@ -1643,15 +1643,15 @@ public class StateTraverse : Traverse
 
 
 
-        Class rightClass;
+        Type rightType;
 
-        rightClass = null;
+        rightType = null;
 
 
 
         if (! this.Null(right))
         {
-            rightClass = this.Check(right).ExpressClass;
+            rightType = this.Check(right).ExpressClass;
         }
 
 
@@ -1697,7 +1697,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(rightClass))
+        if (this.Null(rightType))
         {
             this.UniqueError(this.ErrorKind.OperandUndefined, lessExpress, ref hasOperandUndefined);
         }
@@ -1705,9 +1705,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightClass))
+        if (! this.Null(rightType))
         {
-            if (! this.CheckClass(rightClass, this.System.Int))
+            if (! this.CheckClass(rightType, this.System.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, lessExpress, ref hasOperandUnassignable);
             }
@@ -1728,131 +1728,6 @@ public class StateTraverse : Traverse
 
 
 
-
-    public override bool ExecuteJoinExpress(JoinExpress joinExpress)
-    {
-        if (this.Null(joinExpress))
-        {
-            return true;
-        }
-
-
-
-
-
-        Express left;
-
-        left = joinExpress.Left;
-
-
-
-        Express right;
-
-        right = joinExpress.Right;
-
-
-
-
-
-        base.ExecuteJoinExpress(joinExpress);
-
-
-
-
-
-        Class leftClass;
-
-        leftClass = null;
-
-
-
-        if (! this.Null(left))
-        {
-            leftClass = this.Check(left).ExpressClass;
-        }
-
-
-
-        Class rightClass;
-
-        rightClass = null;
-
-
-
-        if (! this.Null(right))
-        {
-            rightClass = this.Check(right).ExpressClass;
-        }
-
-
-
-
-
-        bool hasOperandUndefined;
-
-
-        hasOperandUndefined = false;
-
-
-
-
-
-        bool hasOperandUnassignable;
-
-
-        hasOperandUnassignable = false;
-
-
-
-
-
-        if (this.Null(leftClass))
-        {
-            this.UniqueError(this.ErrorKind.OperandUndefined, joinExpress, ref hasOperandUndefined);
-        }
-
-
-
-
-        if (! this.Null(leftClass))
-        {
-            if (! this.CheckClass(leftClass, this.System.String))
-            {
-                this.UniqueError(this.ErrorKind.OperandUnassignable, joinExpress, ref hasOperandUnassignable);
-            }
-        }
-
-
-
-
-
-        if (this.Null(rightClass))
-        {
-            this.UniqueError(this.ErrorKind.OperandUndefined, joinExpress, ref hasOperandUndefined);
-        }
-
-
-
-
-        if (! this.Null(rightClass))
-        {
-            if (! this.CheckClass(rightClass, this.System.String))
-            {
-                this.UniqueError(this.ErrorKind.OperandUnassignable, joinExpress, ref hasOperandUnassignable);
-            }
-        }
-
-
-
-
-
-        this.Check(joinExpress).ExpressClass = this.System.String;
-
-
-
-
-        return true;
-    }
 
 
 
@@ -2139,7 +2014,7 @@ public class StateTraverse : Traverse
 
 
 
-    public override bool ExecuteCastExpress(CastExpress castExpress)
+    public override bool ExecuteClaseCastExpress(CastExpress castExpress)
     {
         if (this.Null(castExpress))
         {
@@ -2929,55 +2804,6 @@ public class StateTraverse : Traverse
 
 
 
-    private Field Field(Class varClass, string name)
-    {
-        Field field;
-
-
-        field = (Field)varClass.Field.Get(name);
-
-
-
-        if (!this.Null(field))
-        {
-            if (!this.CheckAcccess(varClass, field.Access))
-            {
-                return null;
-            }
-
-
-            return field;
-        }
-
-
-
-
-        Class baseClass;
-
-
-        baseClass = varClass.Base;
-
-
-
-        if (!this.Null(baseClass))
-        {
-            field = this.Field(baseClass, name);
-
-
-
-            if (!this.Null(field))
-            {
-                return field;
-            }
-        }
-
-
-
-        return null;
-    }
-
-
-
 
 
     protected Method Method(Class varClass, string name)
@@ -3037,7 +2863,7 @@ public class StateTraverse : Traverse
 
 
 
-        count = method.Params.Count;
+        count = method.Param.Count;
 
 
 
@@ -3063,7 +2889,7 @@ public class StateTraverse : Traverse
         MapIter varIter;
 
 
-        varIter = method.Params.Iter();
+        varIter = method.Param.Iter();
 
 
 
