@@ -2230,14 +2230,14 @@ public class Compile : ClassCompile
 
 
 
-        Range variableRange;
+        Range varRange;
 
 
-        variableRange = this.VarNameRange(this.Range(callToken.Range.End, range.End));
+        varRange = this.VarNameRange(this.Range(callToken.Range.End, range.End));
 
 
 
-        if (this.NullRange(variableRange))
+        if (this.NullRange(varRange))
         {
             return null;
         }
@@ -2245,7 +2245,7 @@ public class Compile : ClassCompile
 
 
 
-        if (this.Zero(this.Count(this.Range(variableRange.End, range.End))))
+        if (this.Zero(this.Count(this.Range(varRange.End, range.End))))
         {
             return null;
         }
@@ -2257,7 +2257,7 @@ public class Compile : ClassCompile
         Token leftBracket;
 
 
-        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(variableRange.End));
+        leftBracket = this.Token(this.Delimiter.LeftBracket, this.IndexRange(varRange.End));
 
 
 
@@ -2297,14 +2297,14 @@ public class Compile : ClassCompile
 
 
 
-        VariableName variable;
+        VarName varVar;
 
 
-        variable = this.VarName(variableRange);
+        varVar = this.VarName(varRange);
 
 
 
-        if (this.Null(variable))
+        if (this.Null(varVar))
         {
             this.Error(this.ErrorKind.VarInvalid, range);
         }
@@ -2338,7 +2338,7 @@ public class Compile : ClassCompile
 
         ret.Init();
         
-        ret.Variable = variable;
+        ret.Var = varVar;
         
         ret.Argue = argue;
         
