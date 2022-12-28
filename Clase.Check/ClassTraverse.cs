@@ -72,21 +72,41 @@ class ClassTraverse : Traverse
 
         varClass.Init();
 
+        
+
 
 
         varClass.Name = className;
 
 
 
-        varClass.Base = null;
+
+        varClass.Struct = new StructMap();
 
 
 
-        varClass.Field = new FieldMap();
+        varClass.Struct.Init();
 
 
 
-        varClass.Field.Init();
+
+        varClass.Delegate = new DelegateMap();
+
+
+
+        varClass.Delegate.Init();
+
+
+
+
+
+        varClass.Global = new VarMap();
+
+
+
+        varClass.Global.Init();
+
+
 
 
 
@@ -95,6 +115,9 @@ class ClassTraverse : Traverse
 
 
         varClass.Method.Init();
+
+
+
 
 
 
@@ -110,7 +133,7 @@ class ClassTraverse : Traverse
 
 
 
-        varClass.Index = this.Compile.ClassIndex(this.Source);
+        varClass.Index = this.Source.Index;
 
 
 
