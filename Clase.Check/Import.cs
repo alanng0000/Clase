@@ -71,6 +71,7 @@ global using SystemModule = Class.Check.SystemModule;
 global using ClassMap = Class.Check.ClassMap;
 global using ModuleMap = Class.Check.ModuleMap;
 global using VariableStack = Class.Check.VarStack;
+global using NodeCompare = Class.Check.NodeCompare;
 global using ClassErrorKindList = Class.Check.ErrorKindList;
 global using NodeClass = Clase.Node.Class;
 global using NodeStruct = Clase.Node.Struct;
