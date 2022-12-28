@@ -1664,16 +1664,6 @@ public class Compile : ClassCompile
 
 
 
-
-    protected override LocalAccess LocalAccess(Range range)
-    {
-        return null;
-    }
-
-
-
-
-
     protected override DeriveAccess DeriveAccess(Range range)
     {
         return null;
