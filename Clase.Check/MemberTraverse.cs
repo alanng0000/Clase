@@ -343,7 +343,7 @@ class MemberTraverse : Traverse
 
 
         
-        if (this.IsMethodNameDefined(methodName))
+        if (!this.Null(this.Method(this.CurrentClass, methodName)))
         {
             this.Error(this.ErrorKind.NameUnavailable, nodeMethod);
 
@@ -351,6 +351,7 @@ class MemberTraverse : Traverse
 
             return true;
         }
+        
 
 
 
@@ -706,19 +707,36 @@ class MemberTraverse : Traverse
 
 
 
-    private bool IsMethodNameDefined(string name)
+    private Method Method(Class varClass, string name)
     {
-        bool b;
-
-        b = !this.Null(this.CurrentClass.Method.Get(name));
+        object o;
 
 
+        o = varClass.Method.Get(name);
 
 
-        bool ret;
+
+        if (this.Null(o))
+        {
+            return null;
+        }
 
 
-        ret = b;
+
+
+        Method m;
+
+
+        m = (Method)o;
+
+
+
+
+
+        Method ret;
+
+
+        ret = m;
 
 
         return ret;
