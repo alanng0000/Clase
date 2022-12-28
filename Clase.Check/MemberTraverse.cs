@@ -11,7 +11,7 @@ class MemberTraverse : Traverse
 
 
 
-    private VarMap ParamVars { get; set; }
+    private Map Vars { get; set; }
 
 
 
@@ -274,6 +274,37 @@ class MemberTraverse : Traverse
 
 
 
+
+    public override bool ExecuteGlobal(NodeGlobal nodeGlobal)
+    {
+        if (this.Null(nodeGlobal))
+        {
+            return true;
+        }
+
+
+
+
+        NodeVar nodeVar;
+
+        nodeVar = nodeGlobal.Var;
+
+
+
+        
+
+
+
+
+
+        return true;
+    }
+
+
+
+
+
+
     public override bool ExecuteClaseMethod(NodeMethod nodeMethod)
     {
         if (this.Null(nodeMethod))
@@ -422,7 +453,7 @@ class MemberTraverse : Traverse
 
 
 
-        this.ParamVars = o;
+        this.Vars = o;
 
 
 
@@ -430,6 +461,11 @@ class MemberTraverse : Traverse
 
         this.ExecuteClaseParamList(nodeParam);
 
+
+
+
+        this.VarMapAdd(this.Vars, varVar);
+        
 
 
 
@@ -554,7 +590,7 @@ class MemberTraverse : Traverse
 
 
 
-        if (!this.Null(this.ParamVars.Get(varName)))
+        if (!this.Null(this.Vars.Get(varName)))
         {
             this.Error(this.ErrorKind.NameUnavailable, nodeVar);
 
@@ -606,10 +642,6 @@ class MemberTraverse : Traverse
 
 
 
-
-
-        this.VarMapAdd(this.ParamVars, varVar);
-        
 
 
 
