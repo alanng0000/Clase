@@ -198,23 +198,6 @@ public class Compile : ClassCompile
 
 
 
-    protected override bool SetObjectClassMembers()
-    {
-        base.SetObjectClassMembers();
-
-
-
-        this.AddObjectClassMethod("Final");
-        
-
-
-
-        return true;
-    }
-    
-
-
-
 
 
     protected override ClassErrorKindList CreateErrorKind()
