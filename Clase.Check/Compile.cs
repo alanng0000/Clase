@@ -249,23 +249,20 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassErrorKinds CreateErrorKinds()
+    protected override ClassErrorKindList CreateErrorKind()
     {
-        ErrorKinds errorKinds;
+        ErrorKindList errorKind;
 
 
-        errorKinds = new ErrorKinds();
-
-
-        errorKinds.Init();
+        errorKind = ErrorKindList.This;
 
 
         
         
-        ClassErrorKinds ret;
+        ClassErrorKindList ret;
 
 
-        ret = errorKinds;
+        ret = errorKind;
 
 
         return ret;
