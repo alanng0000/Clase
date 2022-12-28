@@ -36,7 +36,7 @@ class InitTraverse : Traverse
 
 
 
-        this.Compile.Checks.Add(pair);
+        this.Compile.Check.Add(pair);
 
 
 
