@@ -13,7 +13,7 @@ class StateTraverse : ClassStateTraverse
 
 
 
-        this.ClaseErrorKinds = (ErrorKinds)this.ErrorKinds;
+        this.ClaseErrorKind = (ErrorKindList)this.ErrorKind;
 
 
 
@@ -25,7 +25,7 @@ class StateTraverse : ClassStateTraverse
 
 
 
-    public ErrorKinds ClaseErrorKinds { get; set; }
+    public ErrorKindList ClaseErrorKind { get; set; }
 
 
 
