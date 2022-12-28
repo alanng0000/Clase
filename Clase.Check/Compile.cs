@@ -168,31 +168,11 @@ public class Compile : ClassCompile
 
 
 
-
-
-    protected override bool CheckBase(ClassClass varClass)
+    protected override bool ExecuteClassBase()
     {
-        bool b;
-
-
-        b =        
-        (
-            varClass == this.SystemModule.Bool |
-            varClass == this.SystemModule.Int |
-            varClass == this.SystemModule.String
-        );
-
-
-
-        if (b)
-        {
-            return false;
-        }
-        
-
-
         return true;
     }
+
 
 
 
