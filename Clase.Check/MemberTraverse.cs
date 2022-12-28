@@ -26,7 +26,7 @@ class MemberTraverse : Traverse
 
 
 
-    private StructFieldMap StructFieldList { get; set; }
+    private Struct Struct { get; set; }
 
 
 
@@ -113,7 +113,7 @@ class MemberTraverse : Traverse
 
 
 
-        this.StructFieldList = varStruct.Field;
+        this.Struct = varStruct;
 
 
 
@@ -125,7 +125,7 @@ class MemberTraverse : Traverse
 
 
 
-        this.StructFieldList = null;
+        this.Struct = null;
 
 
 
@@ -189,7 +189,7 @@ class MemberTraverse : Traverse
 
 
         
-        if (!this.Null(this.StructFieldList.Get(fieldName)))
+        if (!this.Null(this.Struct.Field.Get(fieldName)))
         {
             this.Error(this.ErrorKind.NameUnavailable, nodeStructField);
 
@@ -227,8 +227,59 @@ class MemberTraverse : Traverse
 
 
 
+        StructField structField;
 
+
+        structField = new StructField();
+
+
+        structField.Init();
+
+
+        structField.Type = type;
+
+
+        structField.Name = fieldName;
+
+
+        structField.Parent = this.Struct;
+
+
+        structField.Node = nodeStructField;
+
+
+        structField.Index = this.Struct.Field.Count;
         
+
+
+
+
+
+        Pair pair;
+
+
+        pair = new Pair();
+
+
+        pair.Init();
+
+
+        pair.Key = structField.Name;
+
+
+        pair.Value = structField;
+
+
+
+        this.Struct.Field.Add(pair);
+
+
+
+
+
+
+        this.Check(nodeStructField).StructField = structField;
+
 
 
 
