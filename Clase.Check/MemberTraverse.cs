@@ -15,6 +15,14 @@ class MemberTraverse : Traverse
 
 
 
+    private Var Var { get; set; }
+
+
+
+    private VarMap ParamVars { get; set; }
+
+
+
 
 
     public override bool ExecuteClass(NodeClass nodeClass)
@@ -453,7 +461,7 @@ class MemberTraverse : Traverse
 
 
 
-        this.Vars = o;
+        this.ParamVars = o;
 
 
 
@@ -464,7 +472,8 @@ class MemberTraverse : Traverse
 
 
 
-        this.VarMapAdd(this.Vars, varVar);
+        this.ParamVars = null;
+
         
 
 
@@ -537,6 +546,38 @@ class MemberTraverse : Traverse
 
         return true;
     }
+
+
+
+
+
+
+
+    public override bool ExecuteClaseParam(Param param)
+    {
+        if (this.Null(param))
+        {
+            return true;
+        }
+
+
+
+        base.ExecuteClaseParam(param);
+
+
+
+
+        this.VarMapAdd(this.ParamVars, this.Var);
+
+
+
+
+
+        return true;
+    }
+
+
+
 
 
 
@@ -647,6 +688,11 @@ class MemberTraverse : Traverse
 
 
         this.Check(nodeVar).Var = varVar;
+
+
+
+
+        this.Var = varVar;
 
 
 
