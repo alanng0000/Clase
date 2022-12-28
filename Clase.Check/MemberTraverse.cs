@@ -428,7 +428,7 @@ class MemberTraverse : Traverse
 
 
 
-        this.ExecuteParamList(paramList);
+        this.ExecuteClaseParamList(nodeParam);
 
 
 
@@ -447,19 +447,20 @@ class MemberTraverse : Traverse
         method.Name = methodName;
 
 
-        method.Class = varClass;
+        method.Type = type;
 
 
         method.Access = access;
 
 
-        method.Params = this.ParamVars;
+        method.Param = this.ParamVars;
 
 
         method.Call = u;
 
 
         method.Parent = this.CurrentClass;
+
 
 
         method.Node = nodeMethod;
