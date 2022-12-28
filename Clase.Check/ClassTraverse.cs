@@ -279,10 +279,7 @@ class ClassTraverse : Traverse
 
 
 
-        varStruct.Field = new StructFieldMap();
-
-
-        varStruct.Field.Init();
+        varStruct.Field = null;
 
 
 
@@ -390,6 +387,14 @@ class ClassTraverse : Traverse
 
 
         varDelegate.Name = typeName;
+
+
+
+        varDelegate.Type = null;
+
+
+        
+        varDelegate.Param = null;
 
 
 
