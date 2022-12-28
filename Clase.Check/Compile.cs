@@ -245,27 +245,7 @@ public class Compile : ClassCompile
 
     protected override ClassBaseTraverse StateTraverse()
     {
-        StateTraverse traverse;
-
-
-
-
-        traverse = new StateTraverse();
-
-
-
-
-        traverse.Compile = this;
-
-
-
-
-        traverse.Init();
-
-
-
-
-        return traverse;
+        return null;
     }
 
 
@@ -281,37 +261,19 @@ public class Compile : ClassCompile
 
 
 
-        Type a;
 
-        a = null;
+        ConstantType a;
 
-
-
-        if (this.Null(type))
-        {
-            a = this.ConstantType.Bool;
+        a = this.ConstantType;
 
 
 
-            if (this.IsSameName(a, name))
-            {
-                type = a;
-            }
-        }
+
+        type = this.ConstantTypeName(type, a.Bool, name);
 
 
 
-        if (this.Null(type))
-        {
-            a = this.ConstantType.Int;
-
-
-
-            if (this.IsSameName(a, name))
-            {
-                type = a;
-            }
-        }
+        type = this.ConstantTypeName(type, a.Int, name);
 
 
 
@@ -328,9 +290,24 @@ public class Compile : ClassCompile
 
 
 
-    private bool IsSameName(Type type, string name)
+    private Type ConstantTypeName(Type type, Type constantType, string name)
     {
-        return type.Name == name;
+        if (this.Null(type))
+        {
+            if (constantType.Name == name)
+            {
+                type = constantType;
+            }
+        }
+
+
+
+        Type ret;
+
+        ret = type;
+
+
+        return ret;
     }
 
 
