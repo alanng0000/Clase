@@ -5,7 +5,7 @@ namespace Clase.Check;
 
 
 
-public class Traverse : ClassTraverse
+public class Traverse : ClassBaseTraverse
 {
     public override bool Init()
     {
