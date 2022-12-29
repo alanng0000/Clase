@@ -2067,9 +2067,9 @@ public class StateTraverse : Traverse
 
 
 
-        ClassName nodeClass;
+        TypeName nodeType;
 
-        nodeClass = castExpress.Class;
+        nodeType = castExpress.Type;
 
 
 
@@ -2084,27 +2084,72 @@ public class StateTraverse : Traverse
 
 
 
-        base.ExecuteCastExpress(castExpress);
+        base.ExecuteClaseCastExpress(castExpress);
 
 
 
 
 
-        Class objectClass;
+
+        string typeName;
 
 
-        objectClass = null;
+        typeName = null;
 
 
 
-        if (! this.Null(nodeObject))
+        if (!this.Null(nodeType))
         {
-            objectClass = this.Check(nodeObject).ExpressType;
+            typeName = nodeType.Value;
         }
 
 
 
-        if (this.Null(objectClass))
+
+
+
+
+        Type type;
+
+
+        type = null;
+
+
+
+        if (!this.Null(typeName))
+        {
+            type = this.Type(this.CurrentClass, typeName);
+        }
+
+
+
+
+        if (this.Null(type))
+        {
+            this.Error(this.ClaseErrorKind.TypeUndefined, castExpress);
+        }
+
+
+
+
+
+
+        Type objectType;
+
+
+        objectType = null;
+
+
+
+        if (!this.Null(nodeObject))
+        {
+            objectType = this.Check(nodeObject).ExpressType;
+        }
+
+
+
+
+        if (this.Null(objectType))
         {
             this.Error(this.ErrorKind.ObjectUndefined, castExpress);
         }
@@ -2112,46 +2157,14 @@ public class StateTraverse : Traverse
 
 
 
-        string className;
-
-        className = null;
 
 
 
-        if (! this.Null(nodeClass))
-        {
-            className = nodeClass.Value;
-        }
+        this.Check(castExpress).CastType = type;
 
 
 
-
-        Class varClass;
-
-        varClass = null;
-
-
-        if (! this.Null(className))
-        {
-            varClass = this.Class(className);
-        }
-
-
-
-        if (this.Null(varClass))
-        {
-            this.Error(this.ErrorKind.ClassUndefined, castExpress);
-        }
-
-
-
-
-
-        this.Check(castExpress).CastClass = varClass;
-
-
-
-        this.Check(castExpress).ExpressType = varClass;
+        this.Check(castExpress).ExpressType = type;
 
 
 
