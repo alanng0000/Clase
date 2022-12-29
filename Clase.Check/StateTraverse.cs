@@ -2425,10 +2425,10 @@ public class StateTraverse : Traverse
 
 
 
-        VarName name;
+        VarName nodeVar;
 
 
-        name = varExpress.Var;
+        nodeVar = varExpress.Var;
 
 
 
@@ -2436,7 +2436,7 @@ public class StateTraverse : Traverse
         string varName;
 
 
-        varName = name.Value;
+        varName = nodeVar.Value;
 
 
 
@@ -2457,14 +2457,14 @@ public class StateTraverse : Traverse
 
 
 
-        Class varClass;
+        Type varType;
 
-        varClass = null;
-            
+        varType = null;
+        
 
-        if (! this.Null(varVar))
+        if (!this.Null(varVar))
         {
-            varClass = varVar.Class;
+            varType = varVar.Type;
         }
 
 
@@ -2474,12 +2474,13 @@ public class StateTraverse : Traverse
 
 
 
-        this.Check(varExpress).ExpressType = varClass;
+        this.Check(varExpress).ExpressType = varType;
 
 
 
         return true;
     }
+    
 
 
 
