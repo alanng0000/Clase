@@ -2990,29 +2990,29 @@ public class StateTraverse : Traverse
 
 
 
-            Class varClass;
+            Type type;
 
 
-            varClass = varVar.Class;
-
-
-
-
-            Class expressClass;
-
-
-            expressClass = this.Check(argue.Express).ExpressType;
+            type = varVar.Type;
 
 
 
-            if (this.Null(expressClass))
+
+            Type expressType;
+
+
+            expressType = this.Check(argue.Express).ExpressType;
+
+
+
+            if (this.Null(expressType))
             {
                 return false;
             }
 
 
 
-            if (!this.CheckType(expressClass, varClass))
+            if (!this.CheckType(expressType, type))
             {
                 return false;
             }
