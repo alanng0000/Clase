@@ -2531,6 +2531,11 @@ public class StateTraverse : Traverse
             {
                 constantType = this.Constant.Int;
             }
+            
+            if (constant is StringConstant)
+            {
+                constantType = this.Constant.Int;
+            }
         }
 
 
