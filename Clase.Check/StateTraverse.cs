@@ -1196,7 +1196,7 @@ public class StateTraverse : Traverse
 
         if (!this.Null(leftType))
         {
-            if (! this.CheckType(leftType, this.Constant.Int))
+            if (!this.CheckType(leftType, this.Constant.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, subExpress, ref hasOperandUnassignable);
             }
@@ -1216,7 +1216,7 @@ public class StateTraverse : Traverse
 
         if (!this.Null(rightType))
         {
-            if (! this.CheckType(rightType, this.Constant.Int))
+            if (!this.CheckType(rightType, this.Constant.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, subExpress, ref hasOperandUnassignable);
             }
