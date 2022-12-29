@@ -273,6 +273,18 @@ public class Compile : ClassCompile
 
 
 
+    internal RangeInfra Range
+    {
+        get
+        {
+            return this.RangeInfra;
+        }
+    }
+
+
+
+
+
 
 
     public Type GetConstantType(string name)

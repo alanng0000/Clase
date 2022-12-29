@@ -16,6 +16,10 @@ class GenSystem : Object
 
 
 
+        this.Range = this.Compile.Range;
+
+
+
 
 
         return true;
@@ -52,6 +56,8 @@ class GenSystem : Object
 
 
 
+
+    private RangeInfra Range { get; set; }
 
 
 
@@ -394,35 +400,57 @@ class GenSystem : Object
 
         if (isMethod)
         {
-            int paramsStart;
+            int start;
 
-            paramsStart = nameEnd + 1;
-
-
-            int paramsEnd;
-
-            paramsEnd = memberString.Length - 1;
+            start = nameEnd + 1;
 
 
 
-            int paramsLength;
+            int end;
 
-            paramsLength = paramsEnd - paramsStart;
-
-
-
-            string paramsString;
-
-
-            paramsString = memberString.Substring(paramsStart, paramsLength);
+            end = memberString.Length - 1;
 
 
 
-            paramList = this.Create.ExecuteVariableMap();
+
+            Range uRange;
+
+            uRange = new Range();
+
+            uRange.Init();
+
+            uRange.Start = start;
+
+            uRange.End = end;
 
 
 
-            this.AddParamListToMap(paramList, paramsString);
+
+            int count;
+
+
+            count = this.Range.Count(uRange);
+
+
+
+
+            string paramListString;
+
+
+            paramListString = memberString.Substring(uRange.Start, count);
+
+
+
+
+            paramList = new VarMap();
+
+            
+            paramList.Init();
+
+
+
+
+            this.AddParamListToMap(paramList, paramListString);
         }
 
 
