@@ -207,11 +207,18 @@ class GenSystem : Object
 
             Pair d;
 
+
             d = new Pair();
+
+
+            d.Init();
+
 
             d.Key = varClass.Name;
 
+
             d.Value = varClass;
+
 
 
 
