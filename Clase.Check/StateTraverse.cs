@@ -2375,7 +2375,7 @@ public class StateTraverse : Traverse
 
         if (!this.Null(resultType))
         {
-            if (! this.CheckType(resultClass, this.CurrentResultClass))
+            if (!this.CheckType(resultType, this.CurrentResultType))
             {
                 this.Error(this.ErrorKind.ResultUnassignable, returnState);
             }
