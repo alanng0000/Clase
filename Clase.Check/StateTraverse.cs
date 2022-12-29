@@ -2756,7 +2756,7 @@ public class StateTraverse : Traverse
         {
             return true;
         }
-        
+
 
 
 
@@ -2794,49 +2794,34 @@ public class StateTraverse : Traverse
 
     protected Method Method(Class varClass, string name)
     {
-        Method method;
-
-
-        method = (Method)varClass.Method.Get(name);
+        Method h;
 
 
 
-        if (!this.Null(method))
+        h = (Method)varClass.Method.Get(name);
+
+
+
+
+
+        if (!this.Null(h))
         {
-            if (!this.CheckAccess(varClass, method.Access))
+            if (!this.CheckAccess(varClass, h.Access))
             {
-                return null;
-            }
-
-
-            return method;
-        }
-
-
-
-
-        Class baseClass;
-
-
-        baseClass = varClass.Base;
-
-
-
-        if (!this.Null(baseClass))
-        {
-            method = this.Method(baseClass, name);
-
-
-
-            if (!this.Null(method))
-            {
-                return method;
+                h = null;
             }
         }
 
 
 
-        return null;
+
+        Method ret;
+
+
+        ret = h;
+
+
+        return ret;
     }
 
 
