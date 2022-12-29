@@ -12,7 +12,7 @@ class GenSystem : Object
 
 
 
-        this.ClassMap = this.Module.Class;
+        this.ClassList = this.Module.Class;
 
 
 
@@ -52,7 +52,7 @@ class GenSystem : Object
 
 
 
-    private ClassMap ClassMap { get; set; }
+    private ClassMap ClassList { get; set; }
 
 
 
@@ -199,7 +199,7 @@ class GenSystem : Object
 
 
 
-            varClass.Index = this.ClassMap.Count;
+            varClass.Index = this.ClassList.Count;
 
 
 
@@ -222,7 +222,7 @@ class GenSystem : Object
 
 
 
-            this.ClassMap.Add(d);
+            this.ClassList.Add(d);
         }
 
 
@@ -267,7 +267,7 @@ class GenSystem : Object
 
             Class varClass;
 
-            varClass = (Class)this.ClassMap.Get(className);
+            varClass = (Class)this.ClassList.Get(className);
 
 
 
