@@ -2812,7 +2812,7 @@ public class StateTraverse : Traverse
 
         if (!this.Null(method))
         {
-            if (!this.CheckAcccess(varClass, method.Access))
+            if (!this.CheckAccess(varClass, method.Access))
             {
                 return null;
             }
