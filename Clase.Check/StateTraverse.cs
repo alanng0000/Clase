@@ -2206,23 +2206,23 @@ public class StateTraverse : Traverse
 
 
 
-        Class condClass;
+        Type condType;
 
 
-        condClass = null;
+        condType = null;
 
 
 
         if (!this.Null(cond))
         {
-            condClass = this.Check(cond).ExpressType;
+            condType = this.Check(cond).ExpressType;
         }
 
 
 
 
 
-        if (this.Null(condClass))
+        if (this.Null(condType))
         {
             this.Error(this.ErrorKind.CondUndefined, ifState);
         }
@@ -2231,9 +2231,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (!this.Null(condClass))
+        if (!this.Null(condType))
         {
-            if (!this.CheckType(condClass, this.Constant.Bool))
+            if (!this.CheckType(condType, this.Constant.Bool))
             {
                 this.Error(this.ErrorKind.CondUnassignable, ifState);
             }
@@ -2282,23 +2282,23 @@ public class StateTraverse : Traverse
 
 
 
-        Class condClass;
+        Type condType;
 
 
-        condClass = null;
+        condType = null;
 
 
 
         if (!this.Null(cond))
         {
-            condClass = this.Check(cond).ExpressType;
+            condType = this.Check(cond).ExpressType;
         }
 
 
 
 
 
-        if (this.Null(condClass))
+        if (this.Null(condType))
         {
             this.Error(this.ErrorKind.CondUndefined, whileState);
         }
@@ -2307,9 +2307,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (!this.Null(condClass))
+        if (!this.Null(condType))
         {
-            if (!this.CheckType(condClass, this.Constant.Bool))
+            if (!this.CheckType(condType, this.Constant.Bool))
             {
                 this.Error(this.ErrorKind.CondUnassignable, whileState);
             }
