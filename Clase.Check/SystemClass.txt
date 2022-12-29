@@ -41,7 +41,7 @@ Int Hour
 Int Min
 Int Sec
 Int Millisec
-Bool Time(Time time)
+Bool Time(Int time)
 
 Storage
 Int Name
