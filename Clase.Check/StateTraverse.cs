@@ -2742,7 +2742,7 @@ public class StateTraverse : Traverse
 
 
 
-    private bool CheckAcccess(Class varClass, Access access)
+    private bool CheckAccess(Class varClass, Access access)
     {
         if (this.CurrentClass == varClass)
         {
@@ -2751,10 +2751,12 @@ public class StateTraverse : Traverse
 
 
 
+
         if (access == this.Access.Public)
         {
             return true;
         }
+        
 
 
 
@@ -2770,17 +2772,6 @@ public class StateTraverse : Traverse
         }
 
 
- 
-        if (access == this.Access.Derive)
-        {
-            if (this.CheckType(this.CurrentClass, varClass))
-            {
-                return true;
-            }
-
-
-            return false;
-        }
 
 
 
