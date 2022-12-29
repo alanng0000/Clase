@@ -736,7 +736,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(leftType))
+        if (!this.Null(leftType))
         {
             if (!this.CheckType(leftType, this.Constant.Bool))
             {
@@ -756,7 +756,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightType))
+        if (!this.Null(rightType))
         {
             if (!this.CheckType(rightType, this.Constant.Bool))
             {
@@ -816,7 +816,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(left))
+        if (!this.Null(left))
         {
             leftType = this.Check(left).ExpressType;
         }
@@ -829,7 +829,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(right))
+        if (!this.Null(right))
         {
             rightType = this.Check(right).ExpressType;
         }
@@ -864,9 +864,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(leftType))
+        if (!this.Null(leftType))
         {
-            if (! this.CheckType(leftType, this.Constant.Bool))
+            if (!this.CheckType(leftType, this.Constant.Bool))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, ornExpress, ref hasOperandUnassignable);
             }
@@ -884,9 +884,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightType))
+        if (!this.Null(rightType))
         {
-            if (! this.CheckType(rightType, this.Constant.Bool))
+            if (!this.CheckType(rightType, this.Constant.Bool))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, ornExpress, ref hasOperandUnassignable);
             }
