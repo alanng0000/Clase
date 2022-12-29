@@ -1636,7 +1636,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(left))
+        if (!this.Null(left))
         {
             leftType = this.Check(left).ExpressType;
         }
@@ -1649,7 +1649,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(right))
+        if (!this.Null(right))
         {
             rightType = this.Check(right).ExpressType;
         }
@@ -1685,9 +1685,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(leftType))
+        if (!this.Null(leftType))
         {
-            if (! this.CheckType(leftType, this.Constant.Int))
+            if (!this.CheckType(leftType, this.Constant.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, lessExpress, ref hasOperandUnassignable);
             }
@@ -1705,9 +1705,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(rightType))
+        if (!this.Null(rightType))
         {
-            if (! this.CheckType(rightType, this.Constant.Int))
+            if (!this.CheckType(rightType, this.Constant.Int))
             {
                 this.UniqueError(this.ErrorKind.OperandUnassignable, lessExpress, ref hasOperandUnassignable);
             }
@@ -1764,16 +1764,16 @@ public class StateTraverse : Traverse
 
 
 
-        Class thisClass;
+        Type thisType;
 
 
-        thisClass = null;
+        thisType = null;
 
 
 
-        if (! this.Null(varThis))
+        if (!this.Null(varThis))
         {
-            thisClass = this.Check(varThis).ExpressType;
+            thisType = this.Check(varThis).ExpressType;
         }
 
 
@@ -1786,7 +1786,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(nodeField))
+        if (!this.Null(nodeField))
         {
             fieldName = nodeField.Value;
         }
@@ -1794,7 +1794,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(thisClass))
+        if (this.Null(thisType))
         {
             this.Error(this.ErrorKind.ThisUndefined, getExpress);
         }
@@ -1811,9 +1811,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(thisClass))
+        if (!this.Null(thisType))
         {
-            if (! this.Null(fieldName))
+            if (!this.Null(fieldName))
             {
                 field = this.Field(thisClass, fieldName);
             }
