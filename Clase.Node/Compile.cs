@@ -2776,14 +2776,6 @@ public class Compile : ClassCompile
 
 
 
-    protected override StringConstant StringConstant(Range range)
-    {
-        return null;
-    }
-
-
-
-
 
 
     private TypeName TypeName(Range range)
