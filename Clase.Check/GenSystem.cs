@@ -11,17 +11,9 @@ class GenSystem : Object
 
 
 
-        this.Create = this.Compile.Create;
-
-
-
 
         this.ClassMap = this.Module.Class;
 
-
-
-
-        this.BaseClass = this.ClassMap.Get("Object");
 
 
 
@@ -45,16 +37,13 @@ class GenSystem : Object
 
 
 
-    private CreateInfra Create { get; set; }
+
+    private Map ClassMemberStringList { get; set; }
 
 
 
 
-    private Map StringMap { get; set; }
-
-
-
-    private List CurrentMemberStrings { get; set; }
+    private List CurrentMemberStringList { get; set; }
 
 
 
@@ -62,10 +51,6 @@ class GenSystem : Object
     private ClassMap ClassMap { get; set; }
 
 
-
-
-
-    private ClassClass BaseClass { get; set; }
 
 
 
@@ -85,13 +70,13 @@ class GenSystem : Object
 
 
 
-        this.StringMap = new Map();
+        this.ClassMemberStringList = new Map();
 
 
-        this.StringMap.Compare = compare;
+        this.ClassMemberStringList.Compare = compare;
 
 
-        this.StringMap.Init();
+        this.ClassMemberStringList.Init();
 
 
 
@@ -121,7 +106,7 @@ class GenSystem : Object
 
 
 
-        this.AddMembers();
+        this.AddMemberList();
 
 
 
@@ -137,7 +122,7 @@ class GenSystem : Object
         MapIter iter;
 
 
-        iter = this.StringMap.Iter();
+        iter = this.ClassMemberStringList.Iter();
 
 
 
@@ -156,15 +141,51 @@ class GenSystem : Object
 
 
 
-            ClassClass varClass;
+            Class varClass;
 
 
 
-            varClass = this.Create.ExecuteClass(className);
+            varClass = new Class();
 
 
 
-            varClass.Base = this.BaseClass;
+            varClass.Init();
+
+
+
+            varClass.Name = className;
+
+
+            
+            varClass.Struct = new StructMap();
+
+
+
+            varClass.Struct.Init();
+
+
+
+            varClass.Delegate = new DelegateMap();
+
+
+
+            varClass.Delegate.Init();
+
+
+
+            varClass.Global = new GlobalMap();
+
+
+
+            varClass.Global.Init();
+
+
+
+            varClass.Method = new MethodMap();
+
+
+
+            varClass.Method.Init();
 
 
 
@@ -187,6 +208,7 @@ class GenSystem : Object
             d.Value = varClass;
 
 
+
             this.ClassMap.Add(d);
         }
 
@@ -200,12 +222,12 @@ class GenSystem : Object
 
 
 
-    private bool AddMembers()
+    private bool AddMemberList()
     {
         MapIter iter;
 
 
-        iter = this.StringMap.Iter();
+        iter = this.ClassMemberStringList.Iter();
 
 
 
@@ -223,20 +245,20 @@ class GenSystem : Object
 
 
 
-            List memberStrings;
+            List memberStringList;
 
-            memberStrings = (List)pair.Value;
-
-
-
-
-            ClassClass varClass;
-
-            varClass = this.ClassMap.Get(className);
+            memberStringList = (List)pair.Value;
 
 
 
-            this.AddClassMembers(varClass, memberStrings);
+
+            Class varClass;
+
+            varClass = (Class)this.ClassMap.Get(className);
+
+
+
+            this.AddClassMembers(varClass, memberStringList);
         }
 
 
@@ -247,12 +269,12 @@ class GenSystem : Object
 
 
 
-    private bool AddClassMembers(ClassClass varClass, List memberStrings)
+    private bool AddClassMembers(Class varClass, List memberStringList)
     {
         ListIter iter;
 
 
-        iter = memberStrings.Iter();
+        iter = memberStringList.Iter();
 
 
         while (iter.Next())
@@ -274,7 +296,7 @@ class GenSystem : Object
 
 
 
-    private bool AddClassMember(ClassClass varClass, string memberString)
+    private bool AddClassMember(Class varClass, string memberString)
     {
         int u;
 
@@ -333,10 +355,10 @@ class GenSystem : Object
 
 
 
-        ClassClass resultClass;
+        Class resultClass;
 
 
-        resultClass = this.ClassMap.Get(s);
+        resultClass = (Class)this.ClassMap.Get(s);
         
 
 
@@ -364,10 +386,10 @@ class GenSystem : Object
 
 
 
-        VariableMap varParams;
+        VarMap paramList;
 
 
-        varParams = null;
+        paramList = null;
 
 
         if (isMethod)
@@ -396,11 +418,11 @@ class GenSystem : Object
 
 
 
-            varParams = this.Create.ExecuteVariableMap();
+            paramList = this.Create.ExecuteVariableMap();
 
 
 
-            this.AddParamsToMap(varParams, paramsString);
+            this.AddParamListToMap(paramList, paramsString);
         }
 
 
@@ -416,7 +438,7 @@ class GenSystem : Object
 
         if (isMethod)
         {
-            this.AddMethod(varClass, resultClass, name, varParams);
+            this.AddMethod(varClass, resultClass, name, paramList);
         }
 
 
@@ -427,7 +449,7 @@ class GenSystem : Object
 
 
 
-    private bool AddParamsToMap(VariableMap map, string paramsString)
+    private bool AddParamListToMap(VarMap map, string paramListString)
     {
         int paramStart;
 
@@ -435,12 +457,12 @@ class GenSystem : Object
 
 
 
-        while (paramStart < paramsString.Length)
+        while (paramStart < paramListString.Length)
         {
             int u;
 
 
-            u = paramsString.IndexOf(',', paramStart);
+            u = paramListString.IndexOf(',', paramStart);
 
 
 
@@ -459,7 +481,7 @@ class GenSystem : Object
 
             if (b)
             {
-                paramEnd = paramsString.Length;
+                paramEnd = paramListString.Length;
             }
 
 
@@ -480,7 +502,7 @@ class GenSystem : Object
             string paramString;
 
 
-            paramString = paramsString.Substring(paramStart, paramLength);
+            paramString = paramListString.Substring(paramStart, paramLength);
 
 
 
@@ -501,7 +523,10 @@ class GenSystem : Object
 
 
 
-    private bool AddParamToMap(VariableMap map, string paramString)
+
+
+
+    private bool AddParamToMap(VarMap map, string paramString)
     {
         int u;
 
@@ -553,31 +578,42 @@ class GenSystem : Object
 
 
 
-        string variableName;
+        string varName;
 
 
-        variableName = paramString.Substring(nameStart, nameLength);
-
-
-
-
-
-        ClassClass varClass;
-
-
-        varClass = this.ClassMap.Get(className);
+        varName = paramString.Substring(nameStart, nameLength);
 
 
 
 
 
-        Variable variable;
+        Type type;
 
 
-        variable = this.Create.ExecuteVariable(varClass, variableName);
+        type = this.Compile.GetConstantType(className);
+
+
+
+        if (this.Null(type))
+        {
+            return false;
+        }
+
+
+
+
+
+        Var varVar;
+
+        varVar = new Var();
+
+        varVar.Init();
+
+        varVar.Name = varName;
+
+        varVar.Type = type;
+
         
-
-
 
 
 
@@ -585,9 +621,12 @@ class GenSystem : Object
 
         pair = new Pair();
 
-        pair.Key = variable.Name;
+        pair.Init();
 
-        pair.Value = variable;
+        pair.Key = varVar.Name;
+
+        pair.Value = varVar;
+
 
 
 
@@ -774,14 +813,6 @@ class GenSystem : Object
 
     private bool AddClassString(string className)
     {
-        Pair pair;
-
-        pair = new Pair();
-
-        pair.Key = className;
-
-
-
         List list;
 
         list = new List();
@@ -789,30 +820,43 @@ class GenSystem : Object
         list.Init();
 
 
+
+
+        Pair pair;
+
+        pair = new Pair();
+
+        pair.Init();
+
+        pair.Key = className;
+
         pair.Value = list;
 
 
 
-        this.StringMap.Add(pair);
+        this.ClassMemberStringList.Add(pair);
 
 
 
-        this.CurrentMemberStrings = list;
+        this.CurrentMemberStringList = list;
 
 
 
         return true;
     }
+
+
 
 
 
     private bool AddMemberString(string memberString)
     {
-        this.CurrentMemberStrings.Add(memberString);
+        this.CurrentMemberStringList.Add(memberString);
 
 
         return true;
     }
+
 
 
 
