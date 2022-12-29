@@ -243,10 +243,32 @@ public class Compile : ClassCompile
 
 
 
+
     protected override ClassBaseTraverse StateTraverse()
     {
-        return null;
+        StateTraverse traverse;
+
+
+
+
+        traverse = new StateTraverse();
+
+
+
+
+        traverse.Compile = this;
+
+
+
+
+        traverse.Init();
+
+
+
+
+        return traverse;
     }
+
 
 
 
