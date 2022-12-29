@@ -264,7 +264,8 @@ class GenSystem : Object
 
 
 
-            this.AddClassMembers(varClass, memberStringList);
+
+            this.AddClassMemberList(varClass, memberStringList);
         }
 
 
@@ -275,7 +276,7 @@ class GenSystem : Object
 
 
 
-    private bool AddClassMembers(Class varClass, List memberStringList)
+    private bool AddClassMemberList(Class varClass, List memberStringList)
     {
         ListIter iter;
 
@@ -317,27 +318,39 @@ class GenSystem : Object
         
 
 
-        int nameEnd;
+        Range nameRange;
 
-        nameEnd = 0;
+        nameRange = new Range();
+
+        nameRange.Init();
+
+
+
+        int o;
+
+        o = 0;
 
 
 
         if (isMethod)
         {
-            nameEnd = u;
+            o = u;
         }
 
 
         if (!isMethod)
         {
-            nameEnd = memberString.Length;
+            o = memberString.Length;
         }
+
+
+
+        nameRange.End = o;
 
 
         
 
-        u = memberString.IndexOf(' ', 0, nameEnd);
+        u = memberString.IndexOf(' ', 0, nameRange.End);
         
 
         if (u < 0)
@@ -348,38 +361,52 @@ class GenSystem : Object
 
 
 
-        int classEnd;
+        int typeEnd;
 
-        classEnd = u;
+        typeEnd = u;
+
 
 
 
         string s;
 
-        s = memberString.Substring(0, classEnd);
+
+        s = memberString.Substring(0, typeEnd);
 
 
 
 
-        Class resultClass;
+
+        Type resultType;
 
 
-        resultClass = (Class)this.ClassMap.Get(s);
+        resultType = this.Compile.GetConstantType(s);
+
+
+
+        if (this.Null(resultType))
+        {
+            return false;
+        }
+
         
 
 
 
-        int nameStart;
-
-        nameStart = classEnd + 1;
+        o = typeEnd + 1;
 
 
 
+        nameRange.Start = o;
 
-        int nameLength;
 
 
-        nameLength = nameEnd - nameStart;
+
+
+        int k;
+
+
+        k = this.Range.Count(nameRange);
 
 
 
@@ -387,7 +414,7 @@ class GenSystem : Object
         string name;
 
 
-        name = memberString.Substring(nameStart, nameLength);
+        name = memberString.Substring(nameRange.Start, k);
 
 
 
@@ -398,11 +425,12 @@ class GenSystem : Object
         paramList = null;
 
 
+
         if (isMethod)
         {
             int start;
 
-            start = nameEnd + 1;
+            start = nameRange.End + 1;
 
 
 
@@ -442,10 +470,8 @@ class GenSystem : Object
 
 
 
-            paramList = new VarMap();
+            paramList = this.CreateParam();
 
-            
-            paramList.Init();
 
 
 
@@ -459,14 +485,14 @@ class GenSystem : Object
         
         if (!isMethod)
         {
-            this.AddField(varClass, resultClass, name);
+            this.AddField(varClass, resultType, name);
         }
 
 
 
         if (isMethod)
         {
-            this.AddMethod(varClass, resultClass, name, paramList);
+            this.AddMethod(varClass, resultType, name, paramList);
         }
 
 
@@ -479,18 +505,25 @@ class GenSystem : Object
 
     private bool AddParamListToMap(VarMap map, string paramListString)
     {
-        int paramStart;
-
-        paramStart = 0;
+        Range range;
 
 
+        range = new Range();
 
-        while (paramStart < paramListString.Length)
+
+        range.Init();
+
+
+        range.Start = 0;
+
+
+
+        while (range.Start < paramListString.Length)
         {
             int u;
 
 
-            u = paramListString.IndexOf(',', paramStart);
+            u = paramListString.IndexOf(',', range.Start);
 
 
 
@@ -501,46 +534,51 @@ class GenSystem : Object
 
 
 
-            int paramEnd;
+            int o;
 
-            paramEnd = 0;
+            o = 0;
 
 
 
             if (b)
             {
-                paramEnd = paramListString.Length;
+                o = paramListString.Length;
             }
 
 
             if (!b)
             {
-                paramEnd = u;
+                o = u;
             }
 
 
 
-            int paramLength;
-
-            paramLength = paramEnd - paramStart;
+            range.End = o;
 
 
 
 
-            string paramString;
+            int k;
+
+            k = this.Range.Count(range);
 
 
-            paramString = paramListString.Substring(paramStart, paramLength);
+
+
+            string s;
+
+
+            s = paramListString.Substring(range.Start, k);
 
 
 
 
-            this.AddParamToMap(map, paramString);
+            this.AddParamToMap(map, s);
 
             
 
-            paramStart = paramEnd + 2;
 
+            range.Start = range.End + 2;
         }
 
 
@@ -562,6 +600,7 @@ class GenSystem : Object
         u = paramString.IndexOf(' ');
 
 
+
         if (u < 0)
         {
             return false;
@@ -570,46 +609,18 @@ class GenSystem : Object
 
 
 
-        int classEnd;
+        int typeEnd;
 
 
-        classEnd = u;
-
-
-
-
-        string className;
-
-
-        className = paramString.Substring(0, classEnd);
+        typeEnd = u;
 
 
 
 
-        int nameStart;
-
-        nameStart = classEnd + 1;
+        string typeName;
 
 
-
-        int nameEnd;
-
-
-        nameEnd = paramString.Length;
-
-
-
-        int nameLength;
-
-        nameLength = nameEnd - nameStart;
-
-
-
-
-        string varName;
-
-
-        varName = paramString.Substring(nameStart, nameLength);
+        typeName = paramString.Substring(0, typeEnd);
 
 
 
@@ -618,7 +629,7 @@ class GenSystem : Object
         Type type;
 
 
-        type = this.Compile.GetConstantType(className);
+        type = this.Compile.GetConstantType(typeName);
 
 
 
@@ -626,6 +637,42 @@ class GenSystem : Object
         {
             return false;
         }
+
+
+
+
+
+        Range nameRange;
+
+
+        nameRange = new Range();
+
+
+        nameRange.Init();
+
+
+        nameRange.Start = typeEnd + 1;
+
+
+
+        nameRange.End = paramString.Length;
+
+
+
+
+        int k;
+
+
+        k = this.Range.Count(nameRange);
+
+
+
+
+        string varName;
+
+
+        varName = paramString.Substring(nameRange.Start, k);
+
 
 
 
@@ -661,46 +708,6 @@ class GenSystem : Object
         map.Add(pair);
 
 
-        return true;
-    }
-
-
-
-
-
-    private bool AddField(ClassClass parent, ClassClass varClass, string name)
-    {
-        Field field;
-
-
-        field = this.Create.ExecuteField(Accesss.This.Public, varClass, name);
-
-
-        field.Parent = parent;
-
-
-        field.Index = parent.Fields.Count;
-
-
-
-
-
-        Pair pair;
-
-
-        pair = new Pair();
-
-
-        pair.Key = field.Name;
-
-
-        pair.Value = field;
-
-
-
-        parent.Fields.Add(pair);
-
-
 
         return true;
     }
@@ -709,18 +716,49 @@ class GenSystem : Object
 
 
 
-    private bool AddMethod(ClassClass parent, ClassClass varClass, string name, VariableMap varParams)
+    private bool AddClassMethod(Class varClass, Type resultType, string name, VarMap param)
     {
         Method method;
 
 
-        method = this.Create.ExecuteMethod(Accesss.This.Public, varClass, name, varParams);
+
+        method = new Method();
+        
+        
+
+        method.Init();
 
 
-        method.Parent = parent;
+
+        method.Name = name;
 
 
-        method.Index = parent.Methods.Count;
+
+        method.Access = this.Compile.Access.Public;
+
+
+
+        method.Type = resultType;
+
+
+
+        method.Param = param;
+
+
+
+        method.Call = new VarMap();
+
+
+
+        method.Call.Init();
+
+
+
+        method.Parent = varClass;
+
+
+
+        method.Index = varClass.Method.Count;
 
 
 
@@ -739,7 +777,92 @@ class GenSystem : Object
 
 
 
-        parent.Methods.Add(pair);
+        varClass.Method.Add(pair);
+
+
+
+
+        return true;
+    }
+
+
+
+
+
+
+    private bool AddField(Class varClass, Type resultType, string name)
+    {
+        string getName;
+
+        getName = "Get" + name;
+
+
+
+        string setName;
+
+        setName = "Set" + name;
+
+
+
+
+
+        VarMap param;
+
+
+
+
+        param = this.CreateParam();
+
+
+
+        this.AddClassMethod(varClass, resultType, getName, param);
+
+
+
+
+        param = this.CreateParam();
+
+
+
+        this.AddClassMethod(varClass, resultType, setName, param);
+
+
+
+
+        return true;
+    }
+
+
+
+
+
+
+    private VarMap CreateParam()
+    {
+        VarMap param;
+
+        param = new VarMap();
+
+        param.Init();
+
+
+
+        VarMap ret;
+
+        ret = param;
+
+
+        return ret;
+    }
+
+
+
+
+
+
+    private bool AddMethod(Class varClass, Type resultType, string name, VarMap param)
+    {
+        this.AddClassMethod(varClass, resultType, name, param);
 
 
 
