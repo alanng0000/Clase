@@ -1896,9 +1896,9 @@ public class StateTraverse : Traverse
 
 
 
-        ClassName varClass;
+        ClassName nodeClass;
 
-        varClass = callExpress.Class;
+        nodeClass = callExpress.Class;
 
 
 
@@ -1924,16 +1924,16 @@ public class StateTraverse : Traverse
 
 
 
-        Class c;
+        string className;
 
 
-        c = null;
+        className = null;
 
 
-            
-        if (!this.Null(varClass))
+
+        if (!this.Null(nodeClass))
         {
-            c = this.Check(varThis).ExpressType;
+            className = nodeClass.Value;
         }
 
 
@@ -1946,7 +1946,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(nodeMethod))
+        if (!this.Null(nodeMethod))
         {
             methodName = nodeMethod.Value;
         }
@@ -1954,9 +1954,26 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(thisClass))
+
+
+        Class varClass;
+
+
+        varClass = null;
+
+
+            
+        if (!this.Null(className))
         {
-            this.Error(this.ErrorKind.ThisUndefined, callExpress);
+            varClass = this.Class(className);
+        }
+
+
+
+
+        if (this.Null(varClass))
+        {
+            this.Error(this.ErrorKind.ClassUndefined, callExpress);
         }
 
 
@@ -1971,11 +1988,11 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(thisClass))
+        if (!this.Null(varClass))
         {
-            if (! this.Null(methodName))
+            if (!this.Null(methodName))
             {
-                method = this.Method(thisClass, methodName);
+                method = this.Method(varClass, methodName);
             }
 
 
@@ -2003,17 +2020,17 @@ public class StateTraverse : Traverse
 
 
 
-        Class expressClass;
+        Type expressType;
 
 
-        expressClass = null;
+        expressType = null;
 
 
 
 
-        if (! this.Null(method))
+        if (!this.Null(method))
         {
-            expressClass = method.Class;
+            expressType = method.Type;
         }
 
 
@@ -2023,7 +2040,7 @@ public class StateTraverse : Traverse
 
 
 
-        this.Check(callExpress).ExpressType = expressClass;
+        this.Check(callExpress).ExpressType = expressType;
 
 
 
