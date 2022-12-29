@@ -777,6 +777,9 @@ class GenSystem : Object
         pair = new Pair();
 
 
+        pair.Init();
+
+
         pair.Key = method.Name;
 
 
