@@ -2791,6 +2791,28 @@ public class StateTraverse : Traverse
 
 
 
+    private StructField StructField(Struct varStruct, string name)
+    {
+        StructField a;
+
+        a = (StructField)varStruct.Field.Get(name);
+
+
+
+        StructField ret;
+
+        ret = a;
+
+
+        return ret;
+    }
+
+
+
+
+
+
+
 
     protected Method Method(Class varClass, string name)
     {
