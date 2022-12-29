@@ -1794,7 +1794,28 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(thisType))
+
+
+        Struct thisStruct;
+
+
+        thisStruct = null;
+
+
+
+
+        if (!this.Null(thisType))
+        {
+            if (thisType is Struct)
+            {
+                thisStruct = (Struct)thisType;
+            }
+        }
+
+
+
+
+        if (this.Null(thisStruct))
         {
             this.Error(this.ErrorKind.ThisUndefined, getExpress);
         }
@@ -1803,7 +1824,8 @@ public class StateTraverse : Traverse
 
 
 
-        Field field;
+
+        StructField field;
 
 
         field = null;
@@ -1811,11 +1833,11 @@ public class StateTraverse : Traverse
 
 
 
-        if (!this.Null(thisType))
+        if (!this.Null(thisStruct))
         {
             if (!this.Null(fieldName))
             {
-                field = this.Field(thisClass, fieldName);
+                field = this.StructField(thisStruct, fieldName);
             }
 
 
@@ -1830,17 +1852,17 @@ public class StateTraverse : Traverse
 
 
 
-        Class expressClass;
+        Type expressType;
 
 
-        expressClass = null;
+        expressType = null;
 
 
 
 
-        if (! this.Null(field))
+        if (!this.Null(field))
         {
-            expressClass = field.Class;
+            expressType = field.Type;
         }
 
 
@@ -1850,13 +1872,15 @@ public class StateTraverse : Traverse
 
 
 
-        this.Check(getExpress).ExpressType = expressClass;
+        this.Check(getExpress).ExpressType = expressType;
 
 
 
 
         return true;
     }
+
+    
 
 
 
