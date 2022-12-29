@@ -30,6 +30,11 @@ class MemberTraverse : Traverse
 
 
 
+    private Access MethodAccess { get; set; }
+    
+
+
+
 
 
     public override bool ExecuteClass(NodeClass nodeClass)
@@ -456,6 +461,18 @@ class MemberTraverse : Traverse
 
 
 
+
+
+        Access access;
+
+
+
+        access = this.GetAccess(nodeAccess);
+
+
+
+
+
         
         if (!this.Null(this.Method(this.CurrentClass, methodName)))
         {
@@ -470,13 +487,18 @@ class MemberTraverse : Traverse
 
 
 
+        this.MethodAccess = access;
+
+
+
+
 
         Type type;
 
 
 
         
-        type = this.Type(this.CurrentClass, typeName);
+        type = this.AccessType(this.CurrentClass, typeName, this.MethodAccess);
         
 
 
@@ -492,14 +514,6 @@ class MemberTraverse : Traverse
         }
 
 
-
-
-
-        Access access;
-
-
-
-        access = this.GetAccess(nodeAccess);
 
 
 
@@ -564,6 +578,8 @@ class MemberTraverse : Traverse
 
 
 
+
+
         Method method;
 
 
@@ -579,7 +595,7 @@ class MemberTraverse : Traverse
         method.Type = type;
 
 
-        method.Access = access;
+        method.Access = this.MethodAccess;
 
 
         method.Param = this.ParamVarList;
@@ -596,6 +612,12 @@ class MemberTraverse : Traverse
 
         method.Index = this.CurrentClass.Method.Count;
         
+
+
+
+
+        this.MethodAccess = null;
+
 
 
 
@@ -904,7 +926,7 @@ class MemberTraverse : Traverse
         Type varType;
 
 
-        varType = this.Type(this.CurrentClass, typeName);
+        varType = this.AccessType(this.CurrentClass, typeName, this.MethodAccess);
 
 
         
@@ -950,6 +972,30 @@ class MemberTraverse : Traverse
 
 
         return true;
+    }
+
+
+
+
+
+    private Type AccessType(Class varClass, string name, Access access)
+    {
+        if (!this.Null(access))
+        {
+            if (!(access == this.Access.Private))
+            {
+                Type k;
+                
+                k = this.Compile.GetConstantType(name);
+
+
+                return k;
+            }
+        }
+
+
+
+        return this.Type(varClass, name);
     }
 
 
