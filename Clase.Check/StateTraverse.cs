@@ -87,12 +87,6 @@ public class StateTraverse : Traverse
 
 
 
-    private bool IsFieldSet { get; set; }
-
-
-
-
-
     public ConstantType Constant { get; set; }
 
 
@@ -2353,17 +2347,17 @@ public class StateTraverse : Traverse
 
 
             
-        Class resultClass;
+        Type resultType;
 
 
-        resultClass = null;
+        resultType = null;
 
 
 
 
-        if (! this.Null(result))
+        if (!this.Null(result))
         {
-            resultClass = this.Check(result).ExpressType;
+            resultType = this.Check(result).ExpressType;
         }
 
 
@@ -2371,7 +2365,7 @@ public class StateTraverse : Traverse
 
         
         
-        if (this.Null(resultClass))
+        if (this.Null(resultType))
         {
             this.Error(this.ErrorKind.ResultUndefined, returnState);
         }
@@ -2379,14 +2373,11 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(resultClass))
+        if (!this.Null(resultType))
         {
-            if (!this.IsFieldSet)
+            if (! this.CheckType(resultClass, this.CurrentResultClass))
             {
-                if (! this.CheckType(resultClass, this.CurrentResultClass))
-                {
-                    this.Error(this.ErrorKind.ResultUnassignable, returnState);
-                }
+                this.Error(this.ErrorKind.ResultUnassignable, returnState);
             }
         }
 
