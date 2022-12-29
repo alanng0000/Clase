@@ -875,6 +875,21 @@ public class Traverse : ClassBaseTraverse
 
 
 
+    protected new Class Class(string name)
+    {
+        Class ret;
+
+
+        ret = this.Compile.Class(name);
+
+
+        return ret;
+    }
+
+
+
+
+
     protected Type Type(Class varClass, string name)
     {
         return this.Compile.Type(varClass, name);

@@ -314,6 +314,31 @@ public class Compile : ClassCompile
 
 
 
+
+    public new Class Class(string name)
+    {
+        Class varClass;
+
+
+        
+        varClass = (Class)this.Refer.Class.Get(name);
+        
+
+
+
+        Class ret;
+
+
+        ret = varClass;
+
+
+        return ret;
+    }
+
+
+
+
+
     public Type Type(Class varClass, string name)
     {
         Type h;

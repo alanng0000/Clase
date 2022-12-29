@@ -1885,7 +1885,7 @@ public class StateTraverse : Traverse
 
 
 
-    public override bool ExecuteCallExpress(CallExpress callExpress)
+    public override bool ExecuteClaseCallExpress(CallExpress callExpress)
     {
         if (this.Null(callExpress))
         {
@@ -1896,9 +1896,9 @@ public class StateTraverse : Traverse
 
 
 
-        Express varThis;
+        ClassName varClass;
 
-        varThis = callExpress.This;
+        varClass = callExpress.Class;
 
 
 
@@ -1918,22 +1918,22 @@ public class StateTraverse : Traverse
 
 
 
-        base.ExecuteCallExpress(callExpress);
+        base.ExecuteClaseCallExpress(callExpress);
 
 
 
 
 
-        Class thisClass;
+        Class c;
 
 
-        thisClass = null;
+        c = null;
 
 
             
-        if (! this.Null(varThis))
+        if (!this.Null(varClass))
         {
-            thisClass = this.Check(varThis).ExpressType;
+            c = this.Check(varThis).ExpressType;
         }
 
 
