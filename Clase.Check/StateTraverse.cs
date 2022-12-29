@@ -2402,7 +2402,7 @@ public class StateTraverse : Traverse
         
 
 
-        this.Check(nullExpress).ExpressType = this.NullClass;
+        this.Check(nullExpress).ExpressType = this.NullType;
 
 
 
