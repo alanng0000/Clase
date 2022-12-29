@@ -1,7 +1,3 @@
-Bool
-
-Int
-
 String
 Bool Init(Int this)
 Bool Final(Int this)
