@@ -1880,7 +1880,7 @@ public class StateTraverse : Traverse
         return true;
     }
 
-    
+
 
 
 
@@ -2629,16 +2629,16 @@ public class StateTraverse : Traverse
 
 
 
-        Class thisClass;
+        Type thisType;
 
 
-        thisClass = null;
+        thisType = null;
 
 
 
-        if (! this.Null(varThis))
+        if (!this.Null(varThis))
         {
-            thisClass = this.Check(varThis).ExpressType;
+            thisType = this.Check(varThis).ExpressType;
         }
 
 
@@ -2651,7 +2651,7 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(nodeField))
+        if (!this.Null(nodeField))
         {
             fieldName = nodeField.Value;
         }
@@ -2659,7 +2659,28 @@ public class StateTraverse : Traverse
 
 
 
-        if (this.Null(thisClass))
+
+
+        Struct thisStruct;
+
+
+        thisStruct = null;
+
+
+
+
+        if (!this.Null(thisType))
+        {
+            if (thisType is Struct)
+            {
+                thisStruct = (Struct)thisType;
+            }
+        }
+
+
+
+
+        if (this.Null(thisStruct))
         {
             this.Error(this.ErrorKind.ThisUndefined, setTarget);
         }
@@ -2668,7 +2689,8 @@ public class StateTraverse : Traverse
 
 
 
-        Field field;
+
+        StructField field;
 
 
         field = null;
@@ -2676,11 +2698,11 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(thisClass))
+        if (!this.Null(thisStruct))
         {
-            if (! this.Null(fieldName))
+            if (!this.Null(fieldName))
             {
-                field = this.Field(thisClass, fieldName);
+                field = this.StructField(thisStruct, fieldName);
             }
 
 
@@ -2695,17 +2717,17 @@ public class StateTraverse : Traverse
 
 
 
-        Class targetClass;
+        Type targetType;
 
 
-        targetClass = null;
+        targetType = null;
 
 
 
 
-        if (! this.Null(field))
+        if (!this.Null(field))
         {
-            targetClass = field.Class;
+            targetType = field.Type;
         }
 
 
@@ -2715,7 +2737,7 @@ public class StateTraverse : Traverse
 
 
 
-        this.Check(setTarget).TargetClass = targetClass;
+        this.Check(setTarget).TargetType = targetType;
 
 
 
