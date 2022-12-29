@@ -932,22 +932,22 @@ public class StateTraverse : Traverse
 
 
 
-        Class boolClass;
+        Type boolType;
 
-        boolClass = null;
+        boolType = null;
 
 
 
-        if (! this.Null(nodeBool))
+        if (!this.Null(nodeBool))
         {
-            boolClass = this.Check(nodeBool).ExpressType;
+            boolType = this.Check(nodeBool).ExpressType;
         }
 
 
 
 
 
-        if (this.Null(boolClass))
+        if (this.Null(boolType))
         {
             this.Error(this.ErrorKind.OperandUndefined, notExpress);
         }
@@ -955,9 +955,9 @@ public class StateTraverse : Traverse
 
 
 
-        if (! this.Null(boolClass))
+        if (!this.Null(boolType))
         {
-            if (! this.CheckType(boolClass, this.Constant.Bool))
+            if (!this.CheckType(boolType, this.Constant.Bool))
             {
                 this.Error(this.ErrorKind.OperandUnassignable, notExpress);
             }
