@@ -90,7 +90,6 @@ global using CastExpress = Clase.Node.CastExpress;
 global using CallExpress = Clase.Node.CallExpress;
 global using DelegateCallExpress = Clase.Node.DelegateCallExpress;
 global using SizeExpress = Clase.Node.SizeExpress;
-global using VarAddressExpress = Clase.Node.VarAddressExpress;
 global using MethodAddressExpress = Clase.Node.MethodAddressExpress;
 global using NodeVar = Clase.Node.Var;
 global using TypeName = Clase.Node.TypeName;

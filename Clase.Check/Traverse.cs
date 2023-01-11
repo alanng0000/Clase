@@ -596,14 +596,6 @@ public class Traverse : ClassBaseTraverse
 
 
 
-        if (express is VarAddressExpress)
-        {
-            this.ExecuteVarAddressExpress((VarAddressExpress)express);
-        }
-
-
-
-
         if (express is MethodAddressExpress)
         {
             this.ExecuteMethodAddressExpress((MethodAddressExpress)express);
@@ -742,37 +734,6 @@ public class Traverse : ClassBaseTraverse
 
         return true;
     }
-
-
-
-
-
-
-
-
-    public virtual bool ExecuteVarAddressExpress(VarAddressExpress varAddressExpress)
-    {
-        if (this.Null(varAddressExpress))
-        {
-            return true;
-        }
-
-
-
-
-        this.ExecuteNode(varAddressExpress);
-
-
-
-
-        this.ExecuteVarName(varAddressExpress.Var);
-
-
-
-
-        return true;
-    }
-
 
 
 
