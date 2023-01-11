@@ -596,9 +596,9 @@ public class Traverse : ClassBaseTraverse
 
 
 
-        if (express is MethodAddressExpress)
+        if (express is MethodExpress)
         {
-            this.ExecuteMethodAddressExpress((MethodAddressExpress)express);
+            this.ExecuteMethodExpress((MethodExpress)express);
         }
 
 
@@ -742,9 +742,9 @@ public class Traverse : ClassBaseTraverse
 
 
 
-    public virtual bool ExecuteMethodAddressExpress(MethodAddressExpress methodAddressExpress)
+    public virtual bool ExecuteMethodExpress(MethodExpress methodExpress)
     {
-        if (this.Null(methodAddressExpress))
+        if (this.Null(methodExpress))
         {
             return true;
         }
@@ -752,17 +752,17 @@ public class Traverse : ClassBaseTraverse
 
 
 
-        this.ExecuteNode(methodAddressExpress);
+        this.ExecuteNode(methodExpress);
 
 
 
 
-        this.ExecuteClassName(methodAddressExpress.Class);
+        this.ExecuteClassName(methodExpress.Class);
 
 
 
 
-        this.ExecuteMethodName(methodAddressExpress.Method);
+        this.ExecuteMethodName(methodExpress.Method);
 
 
 
