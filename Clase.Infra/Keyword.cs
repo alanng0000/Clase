@@ -56,10 +56,6 @@ public class Keyword : ClassKeyword
 
 
 
-    public string Var { get; private set; }
-
-
-
 
     public string Method { get; private set; }
 
@@ -101,9 +97,6 @@ public class Keyword : ClassKeyword
 
 
 
-        this.Var = "var";
-
-
 
 
         this.Method = "method";
@@ -134,10 +127,6 @@ public class Keyword : ClassKeyword
 
 
 
-        this.All.Add(this.Var);
-
-
-
 
         this.All.Add(this.Method);
 
@@ -149,6 +138,7 @@ public class Keyword : ClassKeyword
         this.Access = new List();
         this.Access.Init();
         this.Access.Add(this.Public);
+        this.Access.Add(this.Local);
         this.Access.Add(this.Private);
         
 

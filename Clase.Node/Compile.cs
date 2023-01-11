@@ -180,11 +180,6 @@ public class Compile : ClassCompile
 
 
 
-        this.AddNodeMethod(nameof(this.VarAddressExpress), this.VarAddressExpress);
-
-
-
-
 
         this.AddNodeMethod(nameof(this.MethodAddressExpress), this.MethodAddressExpress);
 
@@ -1852,14 +1847,6 @@ public class Compile : ClassCompile
 
         if (this.Null(ret))
         {
-            ret = this.VarAddressExpress(range);
-        }
-
-
-
-
-        if (this.Null(ret))
-        {
             ret = this.MethodAddressExpress(range);
         }
 
@@ -2432,102 +2419,6 @@ public class Compile : ClassCompile
         ret.Init();
 
         ret.Type = type;
-
-
-        this.NodeInfo(ret, range);
-        
-        return ret;
-    }
-
-
-
-
-
-
-    private VarAddressExpress VarAddressExpress(Range range)
-    {
-        if (this.Zero(this.Count(range)))
-        {
-            return null;
-        }
-
-
-
-
-
-        Token varToken;
-
-
-        varToken = this.Token(this.ClaseKeyword.Var, this.IndexRange(range.Start));
-
-
-
-
-        if (this.NullToken(varToken))
-        {
-            return null;
-        }
-
-
-
-
-
-
-        Range varRange;
-
-
-        varRange = this.VarNameRange(this.Range(varToken.Range.End, range.End));
-
-
-
-
-        if (this.NullRange(varRange))
-        {
-            return null;
-        }
-
-
-
-
-
-        if (!this.Zero(this.Count(this.Range(varRange.End, range.End))))
-        {
-            return null;
-        }
-
-
-
-
-
-
-        VarName varVar;
-
-
-        varVar = this.VarName(varRange);
-
-
-
-
-
-        if (this.Null(varVar))
-        {
-            this.Error(this.ClaseErrorKind.VarInvalid, range);
-        }
-
-
-
-
-
-
-
-
-        VarAddressExpress ret;
-
-        ret = new VarAddressExpress();
-
-        ret.Init();
-
-        ret.Var = varVar;
 
 
         this.NodeInfo(ret, range);
