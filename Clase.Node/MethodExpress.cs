@@ -6,7 +6,7 @@ namespace Clase.Node;
 
 
 
-public class MethodAddressExpress : Express
+public class MethodExpress : Express
 {
     public ClassName Class { get; set; }
 

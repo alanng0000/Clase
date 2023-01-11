@@ -181,7 +181,7 @@ public class Compile : ClassCompile
 
 
 
-        this.AddNodeMethod(nameof(this.MethodAddressExpress), this.MethodAddressExpress);
+        this.AddNodeMethod(nameof(this.MethodExpress), this.MethodExpress);
 
 
 
@@ -1847,7 +1847,7 @@ public class Compile : ClassCompile
 
         if (this.Null(ret))
         {
-            ret = this.MethodAddressExpress(range);
+            ret = this.MethodExpress(range);
         }
 
 
@@ -2435,7 +2435,7 @@ public class Compile : ClassCompile
 
 
 
-    private MethodAddressExpress MethodAddressExpress(Range range)
+    private MethodExpress MethodExpress(Range range)
     {
         if (this.Zero(this.Count(range)))
         {
@@ -2575,9 +2575,9 @@ public class Compile : ClassCompile
 
 
 
-        MethodAddressExpress ret;
+        MethodExpress ret;
 
-        ret = new MethodAddressExpress();
+        ret = new MethodExpress();
 
         ret.Init();
 
