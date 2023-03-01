@@ -1,6 +1,5 @@
-bin
-obj
-.vs
-.vscode
+.vscode/
+bin/
+obj/
 Actual
 Gen.c
