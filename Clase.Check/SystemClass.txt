@@ -1,56 +1,78 @@
+Bool
+
+Int
+
 String
+Bool Init()
+Bool Final()
 Int Length
 Int Data
 Int Char(Int index)
-Bool Equal(Int other)
+Bool Equal(String other)
 
 Console
-Bool Write(Int text)
+Bool Init()
+Bool Final()
+Bool Write(String text)
 
 Format
-Int Base
+Bool Init()
+Bool Final()
+String Base
+String String
 Int ArgCount
 Bool Open()
 Bool Close()
-Int Arg(Int arg)
+FormatArg Arg(Int arg)
 Int Length()
-Int String
 Bool Result()
 Int IntLength(Int n)
 Bool Int(Int result, Int n, Int length)
 Int HexIntLength()
 Bool HexInt(Int result, Int n)
+Int HexInt32Length()
+Bool HexInt32(Int result, Int n)
 
 FormatArg
+Bool Init()
+Bool Final()
 Int Index
 Int Type
 Int Value
 
 Time
+Bool Init()
+Bool Final()
 Bool Current()
 Int Tick
-Bool AddTime(Int other)
-Bool SubTime(Int other)
-Bool Date(Int date)
+Bool AddTime(Time other)
+Bool SubTime(Time other)
+Bool Date(Date date)
 
 Date
+Bool Init()
+Bool Final()
 Int Year
 Int Month
 Int Day
 Int Hour
-Int Min
-Int Sec
-Int Millisec
-Bool Time(Int time)
+Int Minute
+Int Second
+Int Millisecond
+Bool Time(Time time)
 
 Storage
-Int Name
+Bool Init()
+Bool Final()
+String Name
 Int Mode
 Bool Status()
 Bool Open()
 Bool Close()
 
 Memory
+Bool Init()
+Bool Final()
 Int Data
 Int GetByte(Int index)
 Bool SetByte(Int index, Int value)

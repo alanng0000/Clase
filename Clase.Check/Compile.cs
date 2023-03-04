@@ -6,12 +6,13 @@ namespace Clase.Check;
 
 public class Compile : ClassCompile
 {
-    public ErrorKindList ClaseErrorKind { get; set; }
+    public CreateInfra Create { get; set; }
 
 
 
 
-    public ConstantType ConstantType { get; set; }
+
+    public ErrorKinds ClaseErrorKinds { get; set; }
 
 
 
@@ -24,15 +25,17 @@ public class Compile : ClassCompile
 
 
 
-        this.ClaseErrorKind = (ErrorKindList)this.ErrorKind;
+        this.ClaseErrorKinds = (ErrorKinds)this.ErrorKinds;
 
 
 
 
-        this.ConstantType = new ConstantType();
+        this.Create = new CreateInfra();
 
 
-        this.ConstantType.Init();
+
+        this.Create.Init();
+
 
 
 
@@ -43,35 +46,6 @@ public class Compile : ClassCompile
 
 
         return true;
-    }
-
-
-
-
-
-
-
-    public new Check CreateCheck()
-    {
-        Check check;
-
-
-
-        check = new Check();
-
-
-
-        check.Init();
-
-
-
-
-        Check ret;
-
-        ret = check;
-
-
-        return ret;
     }
 
 
@@ -93,16 +67,46 @@ public class Compile : ClassCompile
         
 
 
-
-
-        ClassMap k = new ClassMap();
-
-
-        k.Init();
+        m.Class = this.Create.ExecuteClassMap();
 
 
 
-        m.Class = k;
+
+
+        ClassClass objectClass;
+
+
+        objectClass = this.CreateObjectClass();
+
+
+        objectClass.Module = m;
+
+
+        objectClass.Index = 0;
+
+        
+
+
+
+
+        Pair u;
+
+
+        u = new Pair();
+
+
+        u.Init();
+
+
+        u.Key = objectClass.Name;
+
+
+        u.Value = objectClass;
+
+
+
+
+        m.Class.Add(u);
 
 
 
@@ -129,11 +133,8 @@ public class Compile : ClassCompile
         
         
 
-        t = new ModuleMap();
+        t = this.Create.ExecuteModuleMap();
 
-
-        t.Init();
-        
 
 
         t.Add(pair);
@@ -177,10 +178,27 @@ public class Compile : ClassCompile
 
 
 
-
-
-    protected override bool ExecuteClassBase()
+    protected override bool CheckBase(ClassClass varClass)
     {
+        bool b;
+
+
+        b =        
+        (
+            varClass == this.SystemModule.Bool |
+            varClass == this.SystemModule.Int |
+            varClass == this.SystemModule.String
+        );
+
+
+
+        if (b)
+        {
+            return false;
+        }
+        
+
+
         return true;
     }
 
@@ -188,23 +206,42 @@ public class Compile : ClassCompile
 
 
 
-
-
-
-    protected override ClassErrorKindList CreateErrorKind()
+    protected override bool SetObjectClassMembers()
     {
-        ErrorKindList errorKind;
+        base.SetObjectClassMembers();
 
 
-        errorKind = ErrorKindList.This;
+
+        this.AddObjectClassMethod("Final");
+        
+
+
+
+        return true;
+    }
+    
+
+
+
+
+
+    protected override ClassErrorKinds CreateErrorKinds()
+    {
+        ErrorKinds errorKinds;
+
+
+        errorKinds = new ErrorKinds();
+
+
+        errorKinds.Init();
 
 
         
         
-        ClassErrorKindList ret;
+        ClassErrorKinds ret;
 
 
-        ret = errorKind;
+        ret = errorKinds;
 
 
         return ret;
@@ -214,7 +251,7 @@ public class Compile : ClassCompile
 
 
 
-    protected override ClassBaseTraverse InitTraverse()
+    protected override ClassTraverse InitTraverse()
     {
         InitTraverse traverse;
 
@@ -243,8 +280,7 @@ public class Compile : ClassCompile
 
 
 
-
-    protected override ClassBaseTraverse StateTraverse()
+    protected override ClassTraverse StateTraverse()
     {
         StateTraverse traverse;
 
@@ -267,180 +303,5 @@ public class Compile : ClassCompile
 
 
         return traverse;
-    }
-
-
-
-
-
-    internal RangeInfra Range
-    {
-        get
-        {
-            return this.RangeInfra;
-        }
-    }
-
-
-
-
-
-
-
-    public Type GetConstantType(string name)
-    {
-        Type type;
-
-        type = null;
-
-
-
-
-        ConstantType a;
-
-        a = this.ConstantType;
-
-
-
-
-        type = this.ConstantTypeName(type, a.Bool, name);
-
-
-
-        type = this.ConstantTypeName(type, a.Int, name);
-
-
-
-
-        Type ret;
-
-        ret = type;
-
-
-        return ret;
-    }
-
-
-
-
-
-    private Type ConstantTypeName(Type type, Type constantType, string name)
-    {
-        if (this.Null(type))
-        {
-            if (constantType.Name == name)
-            {
-                type = constantType;
-            }
-        }
-
-
-
-        Type ret;
-
-        ret = type;
-
-
-        return ret;
-    }
-
-
-
-
-
-
-    public new Class Class(string name)
-    {
-        Class varClass;
-
-
-        
-        varClass = (Class)this.Refer.Class.Get(name);
-        
-
-
-
-        Class ret;
-
-
-        ret = varClass;
-
-
-        return ret;
-    }
-
-
-
-
-
-    public Type Type(Class varClass, string name)
-    {
-        Type h;
-
-
-        h = null;
-
-
-
-
-        if (this.Null(h))
-        {
-            h = this.GetConstantType(name);
-        }
-
-
-
-
-        if (this.Null(h))
-        {
-            object o;
-            
-            
-            o = varClass.Struct.Get(name);
-
-
-
-            if (!this.Null(o))
-            {
-                h = (Type)o;
-            }
-        }
-
-
-
-
-        if (this.Null(h))
-        {
-            object o;
-            
-            
-            o = varClass.Delegate.Get(name);
-
-
-
-            if (!this.Null(o))
-            {
-                h = (Type)o;
-            }
-        }
-
-
-
-
-        Type ret;
-
-        ret = h;
-
-
-        return ret;
-    }
-
-
-
-
-
-    private bool Null(object o)
-    {
-        return o == null;
     }
 }

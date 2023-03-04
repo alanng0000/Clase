@@ -7,6 +7,53 @@ class Exe
 {
     static void Main(string[] args)
     {
+        Array array;
+
+
+        array = new Array();
+
+
+        array.Init();
+
+
+
+
+
+        int count;
+
+
+        count = args.Length;
+
+
+
+
+        int i;
+
+
+        i = 0;
+
+
+        while (i < count)
+        {
+            string s;
+
+            s = args[i];
+
+
+
+            array.Add(s);
+
+
+
+            i = i + 1;
+        }
+
+
+
+
+
+
+
         Clase clase;
 
 
@@ -18,21 +65,6 @@ class Exe
 
 
 
-
-
-        Task task;
-
-
-
-        task = clase.CreateTask(args);
-
-
-
-
-        clase.Task = task;
-
-
-
-        clase.Execute();
+        clase.Main(array);
     }
 }

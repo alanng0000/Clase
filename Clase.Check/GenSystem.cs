@@ -11,13 +11,17 @@ class GenSystem : Object
 
 
 
-
-        this.ClassList = this.Module.Class;
-
+        this.Create = this.Compile.Create;
 
 
-        this.Range = this.Compile.Range;
 
+
+        this.ClassMap = this.Module.Class;
+
+
+
+
+        this.BaseClass = this.ClassMap.Get("Object");
 
 
 
@@ -41,23 +45,28 @@ class GenSystem : Object
 
 
 
-
-    private Map ClassMemberStringList { get; set; }
-
-
-
-
-    private List CurrentMemberStringList { get; set; }
+    private CreateInfra Create { get; set; }
 
 
 
 
-    private ClassMap ClassList { get; set; }
+    private Map StringMap { get; set; }
+
+
+
+    private List CurrentMemberStrings { get; set; }
 
 
 
 
-    private RangeInfra Range { get; set; }
+    private ClassMap ClassMap { get; set; }
+
+
+
+
+
+    private ClassClass BaseClass { get; set; }
+
 
 
 
@@ -76,13 +85,13 @@ class GenSystem : Object
 
 
 
-        this.ClassMemberStringList = new Map();
+        this.StringMap = new Map();
 
 
-        this.ClassMemberStringList.Compare = compare;
+        this.StringMap.Compare = compare;
 
 
-        this.ClassMemberStringList.Init();
+        this.StringMap.Init();
 
 
 
@@ -112,7 +121,7 @@ class GenSystem : Object
 
 
 
-        this.AddMemberList();
+        this.AddMembers();
 
 
 
@@ -128,7 +137,7 @@ class GenSystem : Object
         MapIter iter;
 
 
-        iter = this.ClassMemberStringList.Iter();
+        iter = this.StringMap.Iter();
 
 
 
@@ -147,51 +156,15 @@ class GenSystem : Object
 
 
 
-            Class varClass;
+            ClassClass varClass;
 
 
 
-            varClass = new Class();
+            varClass = this.Create.ExecuteClass(className);
 
 
 
-            varClass.Init();
-
-
-
-            varClass.Name = className;
-
-
-            
-            varClass.Struct = new StructMap();
-
-
-
-            varClass.Struct.Init();
-
-
-
-            varClass.Delegate = new DelegateMap();
-
-
-
-            varClass.Delegate.Init();
-
-
-
-            varClass.Global = new GlobalMap();
-
-
-
-            varClass.Global.Init();
-
-
-
-            varClass.Method = new MethodMap();
-
-
-
-            varClass.Method.Init();
+            varClass.Base = this.BaseClass;
 
 
 
@@ -199,7 +172,7 @@ class GenSystem : Object
 
 
 
-            varClass.Index = this.ClassList.Count;
+            varClass.Index = this.ClassMap.Count;
 
 
 
@@ -207,22 +180,14 @@ class GenSystem : Object
 
             Pair d;
 
-
             d = new Pair();
 
-
-            d.Init();
-
-
             d.Key = varClass.Name;
-
 
             d.Value = varClass;
 
 
-
-
-            this.ClassList.Add(d);
+            this.ClassMap.Add(d);
         }
 
 
@@ -235,12 +200,12 @@ class GenSystem : Object
 
 
 
-    private bool AddMemberList()
+    private bool AddMembers()
     {
         MapIter iter;
 
 
-        iter = this.ClassMemberStringList.Iter();
+        iter = this.StringMap.Iter();
 
 
 
@@ -258,21 +223,20 @@ class GenSystem : Object
 
 
 
-            List memberStringList;
+            List memberStrings;
 
-            memberStringList = (List)pair.Value;
-
-
-
-
-            Class varClass;
-
-            varClass = (Class)this.ClassList.Get(className);
+            memberStrings = (List)pair.Value;
 
 
 
 
-            this.AddClassMemberList(varClass, memberStringList);
+            ClassClass varClass;
+
+            varClass = this.ClassMap.Get(className);
+
+
+
+            this.AddClassMembers(varClass, memberStrings);
         }
 
 
@@ -283,12 +247,12 @@ class GenSystem : Object
 
 
 
-    private bool AddClassMemberList(Class varClass, List memberStringList)
+    private bool AddClassMembers(ClassClass varClass, List memberStrings)
     {
         ListIter iter;
 
 
-        iter = memberStringList.Iter();
+        iter = memberStrings.Iter();
 
 
         while (iter.Next())
@@ -310,7 +274,7 @@ class GenSystem : Object
 
 
 
-    private bool AddClassMember(Class varClass, string memberString)
+    private bool AddClassMember(ClassClass varClass, string memberString)
     {
         int u;
 
@@ -325,39 +289,27 @@ class GenSystem : Object
         
 
 
-        Range nameRange;
+        int nameEnd;
 
-        nameRange = new Range();
-
-        nameRange.Init();
-
-
-
-        int o;
-
-        o = 0;
+        nameEnd = 0;
 
 
 
         if (isMethod)
         {
-            o = u;
+            nameEnd = u;
         }
 
 
         if (!isMethod)
         {
-            o = memberString.Length;
+            nameEnd = memberString.Length;
         }
-
-
-
-        nameRange.End = o;
 
 
         
 
-        u = memberString.IndexOf(' ', 0, nameRange.End);
+        u = memberString.IndexOf(' ', 0, nameEnd);
         
 
         if (u < 0)
@@ -368,52 +320,38 @@ class GenSystem : Object
 
 
 
-        int typeEnd;
+        int classEnd;
 
-        typeEnd = u;
-
+        classEnd = u;
 
 
 
         string s;
 
-
-        s = memberString.Substring(0, typeEnd);
-
+        s = memberString.Substring(0, classEnd);
 
 
 
 
-        Type resultType;
+        ClassClass resultClass;
 
 
-        resultType = this.Compile.GetConstantType(s);
-
-
-
-        if (this.Null(resultType))
-        {
-            return false;
-        }
-
+        resultClass = this.ClassMap.Get(s);
         
 
 
 
-        o = typeEnd + 1;
+        int nameStart;
 
-
-
-        nameRange.Start = o;
+        nameStart = classEnd + 1;
 
 
 
 
+        int nameLength;
 
-        int k;
 
-
-        k = this.Range.Count(nameRange);
+        nameLength = nameEnd - nameStart;
 
 
 
@@ -421,69 +359,48 @@ class GenSystem : Object
         string name;
 
 
-        name = memberString.Substring(nameRange.Start, k);
+        name = memberString.Substring(nameStart, nameLength);
 
 
 
 
-        VarMap paramList;
+        VariableMap varParams;
 
 
-        paramList = null;
-
+        varParams = null;
 
 
         if (isMethod)
         {
-            int start;
+            int paramsStart;
 
-            start = nameRange.End + 1;
+            paramsStart = nameEnd + 1;
 
 
+            int paramsEnd;
 
-            int end;
-
-            end = memberString.Length - 1;
-
+            paramsEnd = memberString.Length - 1;
 
 
 
-            Range uRange;
+            int paramsLength;
 
-            uRange = new Range();
-
-            uRange.Init();
-
-            uRange.Start = start;
-
-            uRange.End = end;
+            paramsLength = paramsEnd - paramsStart;
 
 
 
+            string paramsString;
 
-            int count;
 
-
-            count = this.Range.Count(uRange);
-
+            paramsString = memberString.Substring(paramsStart, paramsLength);
 
 
 
-            string paramListString;
-
-
-            paramListString = memberString.Substring(uRange.Start, count);
+            varParams = this.Create.ExecuteVariableMap();
 
 
 
-
-            paramList = this.CreateParam();
-
-
-
-
-
-            this.AddParamListToMap(paramList, paramListString);
+            this.AddParamsToMap(varParams, paramsString);
         }
 
 
@@ -492,14 +409,14 @@ class GenSystem : Object
         
         if (!isMethod)
         {
-            this.AddField(varClass, resultType, name);
+            this.AddField(varClass, resultClass, name);
         }
 
 
 
         if (isMethod)
         {
-            this.AddMethod(varClass, resultType, name, paramList);
+            this.AddMethod(varClass, resultClass, name, varParams);
         }
 
 
@@ -510,27 +427,20 @@ class GenSystem : Object
 
 
 
-    private bool AddParamListToMap(VarMap map, string paramListString)
+    private bool AddParamsToMap(VariableMap map, string paramsString)
     {
-        Range range;
+        int paramStart;
 
-
-        range = new Range();
-
-
-        range.Init();
-
-
-        range.Start = 0;
+        paramStart = 0;
 
 
 
-        while (range.Start < paramListString.Length)
+        while (paramStart < paramsString.Length)
         {
             int u;
 
 
-            u = paramListString.IndexOf(',', range.Start);
+            u = paramsString.IndexOf(',', paramStart);
 
 
 
@@ -541,51 +451,46 @@ class GenSystem : Object
 
 
 
-            int o;
+            int paramEnd;
 
-            o = 0;
+            paramEnd = 0;
 
 
 
             if (b)
             {
-                o = paramListString.Length;
+                paramEnd = paramsString.Length;
             }
 
 
             if (!b)
             {
-                o = u;
+                paramEnd = u;
             }
 
 
 
-            range.End = o;
+            int paramLength;
+
+            paramLength = paramEnd - paramStart;
 
 
 
 
-            int k;
-
-            k = this.Range.Count(range);
+            string paramString;
 
 
-
-
-            string s;
-
-
-            s = paramListString.Substring(range.Start, k);
+            paramString = paramsString.Substring(paramStart, paramLength);
 
 
 
 
-            this.AddParamToMap(map, s);
+            this.AddParamToMap(map, paramString);
 
             
 
+            paramStart = paramEnd + 2;
 
-            range.Start = range.End + 2;
         }
 
 
@@ -596,16 +501,12 @@ class GenSystem : Object
 
 
 
-
-
-
-    private bool AddParamToMap(VarMap map, string paramString)
+    private bool AddParamToMap(VariableMap map, string paramString)
     {
         int u;
 
 
         u = paramString.IndexOf(' ');
-
 
 
         if (u < 0)
@@ -616,86 +517,67 @@ class GenSystem : Object
 
 
 
-        int typeEnd;
+        int classEnd;
 
 
-        typeEnd = u;
-
-
-
-
-        string typeName;
-
-
-        typeName = paramString.Substring(0, typeEnd);
+        classEnd = u;
 
 
 
 
-
-        Type type;
-
-
-        type = this.Compile.GetConstantType(typeName);
+        string className;
 
 
-
-        if (this.Null(type))
-        {
-            return false;
-        }
+        className = paramString.Substring(0, classEnd);
 
 
 
 
+        int nameStart;
 
-        Range nameRange;
-
-
-        nameRange = new Range();
-
-
-        nameRange.Init();
-
-
-        nameRange.Start = typeEnd + 1;
+        nameStart = classEnd + 1;
 
 
 
-        nameRange.End = paramString.Length;
+        int nameEnd;
+
+
+        nameEnd = paramString.Length;
 
 
 
+        int nameLength;
 
-        int k;
-
-
-        k = this.Range.Count(nameRange);
+        nameLength = nameEnd - nameStart;
 
 
 
 
-        string varName;
+        string variableName;
 
 
-        varName = paramString.Substring(nameRange.Start, k);
+        variableName = paramString.Substring(nameStart, nameLength);
 
 
 
 
 
+        ClassClass varClass;
 
-        Var varVar;
 
-        varVar = new Var();
+        varClass = this.ClassMap.Get(className);
 
-        varVar.Init();
 
-        varVar.Name = varName;
 
-        varVar.Type = type;
 
+
+        Variable variable;
+
+
+        variable = this.Create.ExecuteVariable(varClass, variableName);
         
+
+
 
 
 
@@ -703,16 +585,53 @@ class GenSystem : Object
 
         pair = new Pair();
 
-        pair.Init();
+        pair.Key = variable.Name;
 
-        pair.Key = varVar.Name;
-
-        pair.Value = varVar;
-
+        pair.Value = variable;
 
 
 
         map.Add(pair);
+
+
+        return true;
+    }
+
+
+
+
+
+    private bool AddField(ClassClass parent, ClassClass varClass, string name)
+    {
+        Field field;
+
+
+        field = this.Create.ExecuteField(Accesss.This.Public, varClass, name);
+
+
+        field.Parent = parent;
+
+
+        field.Index = parent.Fields.Count;
+
+
+
+
+
+        Pair pair;
+
+
+        pair = new Pair();
+
+
+        pair.Key = field.Name;
+
+
+        pair.Value = field;
+
+
+
+        parent.Fields.Add(pair);
 
 
 
@@ -723,49 +642,18 @@ class GenSystem : Object
 
 
 
-    private bool AddClassMethod(Class varClass, Type resultType, string name, VarMap param)
+    private bool AddMethod(ClassClass parent, ClassClass varClass, string name, VariableMap varParams)
     {
         Method method;
 
 
-
-        method = new Method();
-        
-        
-
-        method.Init();
+        method = this.Create.ExecuteMethod(Accesss.This.Public, varClass, name, varParams);
 
 
-
-        method.Name = name;
-
+        method.Parent = parent;
 
 
-        method.Access = this.Compile.Access.Public;
-
-
-
-        method.Type = resultType;
-
-
-
-        method.Param = param;
-
-
-
-        method.Call = new VarMap();
-
-
-
-        method.Call.Init();
-
-
-
-        method.Parent = varClass;
-
-
-
-        method.Index = varClass.Method.Count;
+        method.Index = parent.Methods.Count;
 
 
 
@@ -775,9 +663,6 @@ class GenSystem : Object
 
 
         pair = new Pair();
-
-
-        pair.Init();
 
 
         pair.Key = method.Name;
@@ -787,92 +672,7 @@ class GenSystem : Object
 
 
 
-        varClass.Method.Add(pair);
-
-
-
-
-        return true;
-    }
-
-
-
-
-
-
-    private bool AddField(Class varClass, Type resultType, string name)
-    {
-        string getName;
-
-        getName = "Get" + name;
-
-
-
-        string setName;
-
-        setName = "Set" + name;
-
-
-
-
-
-        VarMap param;
-
-
-
-
-        param = this.CreateParam();
-
-
-
-        this.AddClassMethod(varClass, resultType, getName, param);
-
-
-
-
-        param = this.CreateParam();
-
-
-
-        this.AddClassMethod(varClass, resultType, setName, param);
-
-
-
-
-        return true;
-    }
-
-
-
-
-
-
-    private VarMap CreateParam()
-    {
-        VarMap param;
-
-        param = new VarMap();
-
-        param.Init();
-
-
-
-        VarMap ret;
-
-        ret = param;
-
-
-        return ret;
-    }
-
-
-
-
-
-
-    private bool AddMethod(Class varClass, Type resultType, string name, VarMap param)
-    {
-        this.AddClassMethod(varClass, resultType, name, param);
+        parent.Methods.Add(pair);
 
 
 
@@ -974,6 +774,14 @@ class GenSystem : Object
 
     private bool AddClassString(string className)
     {
+        Pair pair;
+
+        pair = new Pair();
+
+        pair.Key = className;
+
+
+
         List list;
 
         list = new List();
@@ -981,43 +789,30 @@ class GenSystem : Object
         list.Init();
 
 
-
-
-        Pair pair;
-
-        pair = new Pair();
-
-        pair.Init();
-
-        pair.Key = className;
-
         pair.Value = list;
 
 
 
-        this.ClassMemberStringList.Add(pair);
+        this.StringMap.Add(pair);
 
 
 
-        this.CurrentMemberStringList = list;
+        this.CurrentMemberStrings = list;
 
 
 
         return true;
     }
-
-
 
 
 
     private bool AddMemberString(string memberString)
     {
-        this.CurrentMemberStringList.Add(memberString);
+        this.CurrentMemberStrings.Add(memberString);
 
 
         return true;
     }
-
 
 
 

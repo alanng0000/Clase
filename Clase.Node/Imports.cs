@@ -1,0 +1,10 @@
+global using Range = System.Infra.Range;
+global using ClassKeywords = Class.Infra.Keywords;
+global using ErrorKind = Class.Infra.ErrorKind;
+global using ClassCompile = Class.Node.Compile;
+global using State = Class.Node.State;
+global using Express = Class.Node.Express;
+global using JoinExpress = Class.Node.JoinExpress;
+global using Token = Class.Node.Token;
+global using ClassErrorKinds = Class.Node.ErrorKinds;
+global using Keywords = Clase.Infra.Keywords;

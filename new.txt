@@ -1,0 +1,19 @@
+Door m;
+
+
+m = new Door;
+
+
+
+
+
+delete m;
+
+
+
+
+
+
+
+
+

@@ -5,39 +5,55 @@ namespace Clase.Check;
 
 
 
-class InitTraverse : Traverse
+class InitTraverse : ClassInitTraverse
 {
-    protected override bool ExecuteNode(NodeNode node)
+    public override bool ExecuteState(State state)
     {
-        Check check;
-
-
-
-        check = this.Compile.CreateCheck();
-
-
-
-
-
-        Pair pair;
-
-
-        pair = new Pair();
-
-
-        pair.Init();
-
-
-        pair.Key = node;
-
-
-        pair.Value = check;
+        if (this.Null(state))
+        {
+            return true;
+        }
 
 
 
 
-        this.Compile.Check.Add(pair);
+        base.ExecuteState(state);
 
+
+
+
+        if (state is DeleteState)
+        {
+            this.ExecuteDeleteState((DeleteState)state);
+        }
+
+
+
+        return true;
+    }
+
+
+
+
+
+
+    public virtual bool ExecuteDeleteState(DeleteState deleteState)
+    {
+        if (this.Null(deleteState))
+        {
+            return true;
+        }
+
+
+
+
+        this.ExecuteNode(deleteState);
+
+        
+
+
+        this.ExecuteExpress(deleteState.Object);
+        
 
 
 
