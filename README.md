@@ -1,3 +1,3 @@
 # Clase
 
-System Program Lang.
+Sema Prom Lang.
